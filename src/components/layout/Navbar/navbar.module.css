@@ -1,0 +1,28 @@
+nav {
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: var(--secondary);
+  text-align: center;
+  display: flex;
+  gap: 25px;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+  padding: 0 5px;
+}
+
+a {
+  color: var(--primary);
+}
+
+@media (max-width: 650px) {
+  .nav {
+    justify-content: center;
+  }
+}

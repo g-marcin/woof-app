@@ -1,0 +1,14 @@
+.main {
+  padding: 10px;
+  background: var(--primary);
+  min-height: 85vh;
+  display: flex;
+}
+@media (max-width: 960px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+
+    max-height: none;
+  }
+}
