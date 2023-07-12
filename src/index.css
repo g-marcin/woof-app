@@ -1,3 +1,59 @@
+:root {
+  --primary: #1f1d2b;
+  --secondary: #efba54;
+  --typography: #7a7881;
+}
+
 * {
   font-family: Lato;
+  color: #7a7881;
+  font-weight: 200;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: start;
+  cursor: pointer;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+}
+
+h1 {
+  margin: 0;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
+}
+.flex {
+  display: flex;
 }
