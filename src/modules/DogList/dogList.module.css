@@ -1,0 +1,7 @@
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  min-height: 86vh;
+  overflow-y: scroll;
+}
