@@ -14,7 +14,11 @@ export const DogList: FC<DogListProps> = ({ exampleProp }) => {
       <h1 className={styles["list-header"]}>Lista ras:</h1>
       <div className={styles["list-wrapper"]}>
         {Object.keys(backup.message).map((dog) => {
-          return <button onClick={listButtonHandler}>{dog}</button>;
+          return (
+            <button onClick={listButtonHandler} className={styles["list-item"]}>
+              {dog}
+            </button>
+          );
         })}
       </div>
     </div>

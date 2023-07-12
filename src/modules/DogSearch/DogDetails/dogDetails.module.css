@@ -1,0 +1,17 @@
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-avatar {
+  padding: 5px 0 15px 0;
+  max-width: 180px;
+  max-height: 180px;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.details-description {
+  text-justify: distribute;
+  align-items: center;
+}

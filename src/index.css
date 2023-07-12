@@ -1,12 +1,14 @@
 :root {
   --primary: #1f1d2b;
   --secondary: #efba54;
-  --typography: #7a7881;
+  --typography: #787779;
+  --link-pending: #131625;
+  --link-active: #1f83bb;
 }
 
 * {
-  font-family: Lato;
-  color: #7a7881;
+  font-family: Poppins;
+  color: #b0afb6;
   font-weight: 200;
   font-size: 16px;
 }
@@ -16,7 +18,8 @@ body {
   padding: 0;
 }
 
-button {
+button,
+a {
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -26,34 +29,26 @@ button {
   cursor: pointer;
 }
 
-a {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  background: none;
-  cursor: pointer;
-}
-
 h1 {
   margin: 0;
-  padding: 15px 0;
-  font-size: 18px;
+
+  font-size: 14px;
   color: #ffffff;
   font-weight: 400;
 }
 
-.flex {
-  display: flex;
+p {
+  margin: 10px 0;
+  padding: 0;
+  line-height: 21px;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  font-weight: 500;
 }
 
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex {
-  display: flex;
-}
-.flex {
-  display: flex;
+input {
+  background: var(--primary);
+  border: 1px solid rgba(255, 255, 255, 0.776);
+  border-radius: 8px;
+  padding: 8px;
 }
