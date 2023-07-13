@@ -5,22 +5,19 @@ nav {
 
 .nav {
   height: 30px;
-  width: 100vw;
+  width: 98vw;
   position: fixed;
   bottom: 0;
   left: 0;
   display: flex;
   align-items: center;
-  gap: 25px;
+  justify-content: space-between;
   padding: 15px;
   background: var(--secondary);
   text-align: center;
 }
 
 @media (max-width: 650px) {
-  .nav {
-    justify-content: center;
-  }
 }
 
 .active {
@@ -28,5 +25,10 @@ nav {
 }
 
 .button-language {
-  padding: 5px;
+  padding: 5px 15px;
+}
+
+.group {
+  display: flex;
+  gap: 25px;
 }

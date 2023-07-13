@@ -12,6 +12,9 @@ export const DogSearch: FC<DogSearchProps> = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const onSearch = () => {
+    if (!searchQuery) {
+      return;
+    }
     navigate(`${searchQuery}`.toLocaleLowerCase());
   };
 
@@ -26,6 +29,8 @@ export const DogSearch: FC<DogSearchProps> = () => {
             onChange={(e) => {
               setSearchQuery(e.target.value);
             }}
+            autoFocus
+            required
           />
           <div className={styles["input-label"]}>{t("labels.typeDog")}</div>
         </div>

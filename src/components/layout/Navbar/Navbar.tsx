@@ -27,12 +27,15 @@ export const Navbar: FC = () => {
   return (
     <>
       <nav className={`${styles.nav}`}>
-        <NavLink to="/home" className={navLinkState}>
-          <img src={dogIcon} alt="search" className={styles.icon} />
-        </NavLink>
-        <NavLink to="/search" className={navLinkState}>
-          <img src={searchIcon} alt="search" className={styles.icon} />
-        </NavLink>
+        <span className={styles["group"]}>
+          <NavLink to="/home" className={navLinkState}>
+            <img src={dogIcon} alt="search" className={styles.icon} />
+          </NavLink>
+          <NavLink to="/search" className={navLinkState}>
+            <img src={searchIcon} alt="search" className={styles.icon} />
+          </NavLink>
+        </span>
+
         <button onClick={onFlagClick} className={styles["button-language"]}>
           {language ? <img src={plFlag} alt="" /> : <img src={enFlag} alt="" />}
         </button>
