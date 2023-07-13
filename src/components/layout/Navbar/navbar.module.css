@@ -26,3 +26,7 @@ nav {
 .active {
   border: 1px solid var(--typography-secondary);
 }
+
+.button-language {
+  padding: 5px;
+}
