@@ -61,6 +61,7 @@ input {
   border: 1px solid var(--typography-primary);
   border-radius: 8px;
   padding: 8px;
+  display: flex;
 }
 
 button.primary {

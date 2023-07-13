@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDogDetails } from "../../../hooks";
 import { DogError } from "./DogError";
 import styles from "./dogDetails.module.css";
@@ -9,7 +10,9 @@ type ComponentNameProps = {
 };
 
 export const DogDetails: FC<ComponentNameProps> = () => {
+  const { t, i18n } = useTranslation();
   const { id: breedName } = useParams();
+  const navigate = useNavigate();
   const { dogDetails, isLoading, isError } = useDogDetails(breedName || "");
   if (!breedName) {
     return;
@@ -21,25 +24,19 @@ export const DogDetails: FC<ComponentNameProps> = () => {
         <DogError />
       ) : (
         <div className={styles["main-wrapper"]}>
-          <img
-            src={`${dogDetails.imageSrc}`}
-            alt="dog-image"
-            className={styles["details-avatar"]}
-          />
+          <div className={styles["wrapper"]}>
+            <img
+              src={`${dogDetails.imageSrc}`}
+              alt="dog-image"
+              className={styles["details-avatar"]}
+              onClick={() => location.reload()}
+            />
+            <div className={styles["avatar-description"]}>{t("buttons.clickMe")}</div>
+          </div>
           <div className={styles["details-description"]}>
             <h1>{breedName?.charAt(0).toLocaleUpperCase() + breedName?.slice(1)}</h1>
-            <p>
-              Ten pies to wierny i przyjacielski czworonóg, który świetnie czuję się w
-              roli rodzinnego towarzysza. Dobrze dogaduje się z dziećmi, uwielbia
-              pieszczoty i wspólne zabawy. Jest łatwy w prowadzeniu, choć bywa uparty.
-              Sprawdzi się zarówno w małym mieszkaniu jak i w domu z ogrodem.
-            </p>
-            <p>
-              Wysokość w kłębie 30-35cm, masa ciała 22-25kg. Sierść krótka, delikatna,
-              lśniąca, umaszczenie płowe, pręgowane lub łaciate. Charakter czujny, śmiały,
-              oddany, odważny, łagodny, czasem uparty. W zależności od dnia pokazuje różne
-              oblicza swojej natury...
-            </p>
+            <p>{t("content.dogDescription1")}</p>
+            <p>{t("content.dogDescription2")}</p>
           </div>
         </div>
       )}

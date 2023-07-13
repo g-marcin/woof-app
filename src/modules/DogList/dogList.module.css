@@ -1,9 +1,10 @@
 .main-wrapper {
   display: flex;
   flex-direction: column;
-  width: 97vw;
-  max-height: 750px;
-  padding-bottom: 50px;
+  width: 100vw;
+
+  max-height: 90vh;
+
   overflow-y: scroll;
 }
 
