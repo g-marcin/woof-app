@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../components";
 import { DogList, DogSearch } from "../modules";
 import { DogDetails } from "../modules/DogSearch/DogDetails/DogDetails";
-import { DogError } from "../modules/DogSearch/DogDetails/DogError";
+import { DogError } from "../modules/DogSearch/DogError";
+import { DogIntro } from "../modules/DogSearch/DogIntro";
 import { ErrorPage } from "./ErrorPage";
 
 export const AppRouter = createBrowserRouter([
@@ -19,7 +20,7 @@ export const AppRouter = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <DogError />,
+            element: <DogIntro />,
           },
           {
             path: ":id",

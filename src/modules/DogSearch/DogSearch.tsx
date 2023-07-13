@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import styles from "./dogSearch.module.css";
 
 type DogSearchProps = {
@@ -8,6 +8,7 @@ type DogSearchProps = {
 };
 
 export const DogSearch: FC<DogSearchProps> = () => {
+  const { id: breedName } = useParams();
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
@@ -20,7 +21,10 @@ export const DogSearch: FC<DogSearchProps> = () => {
 
   return (
     <div className={styles["main-wrapper"]}>
-      <h1 className={styles["search-header"]}>{t("headers.keepSearching")}</h1>
+      {!breedName && (
+        <h1 className={styles["search-header"]}>{t("headers.keepSearching")}</h1>
+      )}
+
       <form className={styles["searchbar"]}>
         <div className={styles["input-wrapper"]}>
           <input

@@ -1,8 +1,9 @@
 .main-wrapper {
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
-  max-height: 800px;
+  min-height: fit-content;
+  z-index: 1;
+  padding-bottom: 60px;
 }
 
 .wrapper {
@@ -13,7 +14,7 @@
 }
 
 .details-avatar {
-  padding: 25px;
+  padding: 5px;
   max-width: 250px;
   max-height: 250px;
   border-radius: 50%;
@@ -24,7 +25,7 @@
 
 .avatar-description {
   position: absolute;
-  top: 92%;
+  top: 98%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;

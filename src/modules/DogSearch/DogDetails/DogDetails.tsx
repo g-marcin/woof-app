@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDogDetails } from "../../../hooks";
-import { DogError } from "./DogError";
+import { DogError } from "../DogError";
 import styles from "./dogDetails.module.css";
 
 type ComponentNameProps = {

@@ -10,6 +10,8 @@ export const en = {
 
     dogDescription2:
       "Height at the withers 30-35 cm, body weight 22-25 kg. The coat is short, smooth, shiny, fawn, brindle or spotted. Alert character, bold, cautious, sensitive, sometimes stubborn. Depending on the day, they define different faces of their nature...",
+    intro1: "Here we will display the info",
+    intro2: "about the pet chosen by you.",
   },
   buttons: {
     search: "Search",
