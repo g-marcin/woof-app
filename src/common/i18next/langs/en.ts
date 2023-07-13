@@ -19,6 +19,7 @@ export const en = {
     typeDog: "Type requested breed",
   },
   errors: {
-    noBreed: "Oh no! This race is not available yet. Keep looking!",
+    noBreed1: "Oh no! This race is not ",
+    noBreed2: "available yet. Keep looking!",
   },
 } as const;
