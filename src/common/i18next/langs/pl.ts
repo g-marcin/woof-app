@@ -10,6 +10,8 @@ export const pl = {
 
     dogDescription2:
       "Wysokość w kłębie 30-35cm, masa ciała 22-25kg. Sierść krótka, delikatna, lśniąca,umaszczenie płowe, pręgowane lub łaciate. Charakter czujny, śmiały, oddany,odważny, łagodny, czasem uparty. W zależności od dnia pokazuje różne obliczaswojej natury...",
+    intro1: "Tu wyświetlimy informacje",
+    intro2: "O interesującym Cię pupilu.",
   },
   buttons: {
     search: "Szukaj",

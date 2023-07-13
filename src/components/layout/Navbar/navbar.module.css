@@ -1,11 +1,6 @@
-nav {
-  margin: 0;
-  padding: 0;
-}
-
 .nav {
-  height: 30px;
-  width: 98vw;
+  height: 25px;
+  width: 98%;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -14,14 +9,11 @@ nav {
   justify-content: space-between;
   padding: 15px;
   background: var(--secondary);
-  text-align: center;
-}
-
-@media (max-width: 650px) {
 }
 
 .active {
-  border: 1px solid var(--typography-secondary);
+  filter: invert(44%) sepia(65%) saturate(629%) hue-rotate(158deg) brightness(87%)
+    contrast(89%);
 }
 
 .button-language {
