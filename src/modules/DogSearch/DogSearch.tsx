@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Outlet, useNavigate } from "react-router-dom";
 import styles from "./dogSearch.module.css";
 
@@ -7,6 +8,7 @@ type DogSearchProps = {
 };
 
 export const DogSearch: FC<DogSearchProps> = () => {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const onSearch = () => {
@@ -15,7 +17,7 @@ export const DogSearch: FC<DogSearchProps> = () => {
 
   return (
     <div className={styles["main-wrapper"]}>
-      <h1 className={styles["search-header"]}>Szukaj a znajdziesz: </h1>
+      <h1 className={styles["search-header"]}>{t("headers.keepSearching")}</h1>
       <form className={styles["searchbar"]}>
         <div className={styles["input-wrapper"]}>
           <input
@@ -25,10 +27,10 @@ export const DogSearch: FC<DogSearchProps> = () => {
               setSearchQuery(e.target.value);
             }}
           />
-          <div className={styles["input-label"]}>Wpisz rasę, której szukasz</div>
+          <div className={styles["input-label"]}>{t("labels.typeDog")}</div>
         </div>
         <button type="submit" className="primary" onClick={onSearch}>
-          Szukaj
+          {t("buttons.search")}
         </button>
       </form>
       <Outlet />
