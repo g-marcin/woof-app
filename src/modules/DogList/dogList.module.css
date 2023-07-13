@@ -5,6 +5,7 @@
   width: 96vw;
   max-height: 92vh;
   overflow-y: scroll;
+  padding: 0 25px;
 }
 
 .list-wrapper {

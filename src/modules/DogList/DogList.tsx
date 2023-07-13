@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import backup from "../../mocks/backup.json";
 import styles from "./dogList.module.css";
 
@@ -7,7 +8,10 @@ type DogListProps = {
 };
 
 export const DogList: FC<DogListProps> = ({ exampleProp }) => {
-  const listButtonHandler = () => null;
+  const navigate = useNavigate();
+  const listButtonHandler = (queryParam: string) => {
+    navigate(`search/${queryParam}`);
+  };
 
   return (
     <div className={styles["main-wrapper"]}>
@@ -15,9 +19,13 @@ export const DogList: FC<DogListProps> = ({ exampleProp }) => {
       <div className={styles["list-wrapper"]}>
         {Object.keys(backup.message).map((dog) => {
           return (
-            <button onClick={listButtonHandler} className={styles["list-item"]}>
+            <Link
+              to={`search/${dog}`}
+              onClick={() => listButtonHandler(dog)}
+              className={styles["list-item"]}
+            >
               {dog}
-            </button>
+            </Link>
           );
         })}
       </div>

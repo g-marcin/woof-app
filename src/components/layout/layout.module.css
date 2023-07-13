@@ -1,10 +1,16 @@
 .main {
   padding: 10px;
-  margin-bottom: 75px;
+  padding-bottom: 75px;
   background: var(--primary);
-  min-height: 95vh;
+  max-height: 76vh;
   display: flex;
   align-items: center;
-
+  overflow: hidden;
   flex-direction: column;
+}
+
+@media (max-width: 968px) {
+  .main {
+    min-height: 90vh;
+  }
 }
