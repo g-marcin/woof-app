@@ -10,7 +10,7 @@ export const DogSearch: FC<DogSearchProps> = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const onSearch = () => {
-    navigate(`${searchQuery}`);
+    navigate(`${searchQuery}`.toLocaleLowerCase());
   };
 
   return (
