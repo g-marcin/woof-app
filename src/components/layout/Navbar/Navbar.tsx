@@ -16,7 +16,7 @@ export const Navbar: FC = () => {
 
   return (
     <>
-      <nav className={`${styles.nav} text-decoration-none`}>
+      <nav className={`${styles.nav}`}>
         <NavLink to="/home" className={navLinkState}>
           <img src={dogIcon} alt="search" className={styles.icon} />
         </NavLink>

@@ -1,18 +1,21 @@
 .main-wrapper {
   display: flex;
-  margin: 0 auto;
   flex-direction: column;
-  width: 96vw;
-  max-height: 92vh;
-  overflow-y: scroll;
+  width: 97vw;
+  min-height: 86vh;
   padding: 0 25px;
+  overflow-y: scroll;
+}
+
+@media (max-width: 660px) {
+  .main-wrapper {
+    min-height: 82vh;
+  }
 }
 
 .list-wrapper {
   display: flex;
   flex-direction: column;
-
-  min-height: 86vh;
 }
 
 .list-item {

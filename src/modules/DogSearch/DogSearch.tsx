@@ -6,7 +6,7 @@ type DogSearchProps = {
   exampleProp?: "";
 };
 
-export const DogSearch: FC<DogSearchProps> = ({ exampleProp }) => {
+export const DogSearch: FC<DogSearchProps> = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const onSearch = () => {
@@ -15,7 +15,7 @@ export const DogSearch: FC<DogSearchProps> = ({ exampleProp }) => {
 
   return (
     <div className={styles["main-wrapper"]}>
-      <h1 className={styles["search-header"]}>Szukaj a znajdziesz </h1>
+      <h1 className={styles["search-header"]}>Szukaj a znajdziesz: </h1>
       <div className={styles["searchbar"]}>
         <div className={styles["input-wrapper"]}>
           <input
@@ -27,7 +27,7 @@ export const DogSearch: FC<DogSearchProps> = ({ exampleProp }) => {
           />
           <div className={styles["input-label"]}>Wpisz rasę, której szukasz</div>
         </div>
-        <button className={styles["button-primary"]} onClick={onSearch}>
+        <button className="primary" onClick={onSearch}>
           Szukaj
         </button>
       </div>

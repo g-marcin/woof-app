@@ -1,22 +1,30 @@
 :root {
   --primary: #1f1d2b;
   --secondary: #efba54;
-  --typography: #787779;
+  --typography-primary: #787779;
   --typography-secondary: #000000;
+  --typography-headers: #ffffff;
   --link-pending: #131625;
   --link-active: #1f83bb;
 }
 
 * {
   font-family: Poppins;
-  color: #b0afb6;
+  color: var(--typography-primary);
   font-weight: 200;
   font-size: 16px;
+}
+
+@media (max-width: 968px) {
+  * {
+    font-size: 14px;
+  }
 }
 
 body {
   margin: 0;
   padding: 0;
+  background: var(--primary);
 }
 
 button,
@@ -32,9 +40,8 @@ a {
 
 h1 {
   margin: 0;
-
   font-size: 14px;
-  color: #ffffff;
+  color: var(--typography-headers);
   font-weight: 400;
 }
 
@@ -49,7 +56,21 @@ p {
 
 input {
   background: var(--primary);
-  border: 1px solid rgba(255, 255, 255, 0.776);
+  border: 1px solid var(--typography-primary);
   border-radius: 8px;
   padding: 8px;
+}
+
+button.primary {
+  background: var(--secondary);
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  width: 80px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--typography-secondary);
+  letter-spacing: 0.05em;
 }
