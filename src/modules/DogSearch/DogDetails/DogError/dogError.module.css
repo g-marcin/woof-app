@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.icon {
+  background: var(--typography-primary);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 90px;
+  margin: 35px 0;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.details-description {
+  text-justify: distribute;
+  align-items: center;
+}

@@ -1,14 +1,16 @@
 .main-wrapper {
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 .details-avatar {
-  padding: 5px 0 15px 0;
-  max-width: 180px;
-  max-height: 180px;
+  padding: 25px;
+  max-width: 250px;
+  max-height: 250px;
   border-radius: 50%;
   align-self: center;
+  object-fit: fill;
 }
 
 .details-description {
