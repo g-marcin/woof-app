@@ -1,3 +1,55 @@
+:root {
+  --primary: #1f1d2b;
+  --secondary: #efba54;
+  --typography: #787779;
+  --typography-secondary: #000000;
+  --link-pending: #131625;
+  --link-active: #1f83bb;
+}
+
 * {
-  font-family: Lato;
+  font-family: Poppins;
+  color: #b0afb6;
+  font-weight: 200;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+button,
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: start;
+  cursor: pointer;
+}
+
+h1 {
+  margin: 0;
+
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+p {
+  margin: 10px 0;
+  padding: 0;
+  line-height: 21px;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+
+input {
+  background: var(--primary);
+  border: 1px solid rgba(255, 255, 255, 0.776);
+  border-radius: 8px;
+  padding: 8px;
 }

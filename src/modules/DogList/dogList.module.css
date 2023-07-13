@@ -1,0 +1,20 @@
+.main-wrapper {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  width: 96vw;
+  max-height: 92vh;
+  overflow-y: scroll;
+  padding: 0 25px;
+}
+
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 86vh;
+}
+
+.list-item {
+  padding: 10px 0;
+}
