@@ -1,16 +1,18 @@
 .main {
-  padding: 10px;
-  padding-bottom: 75px;
-  background: var(--primary);
-  max-height: 76vh;
+  height: 84vh;
   display: flex;
-  align-items: center;
-  overflow: hidden;
-  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 10px;
 }
 
 @media (max-width: 968px) {
   .main {
-    min-height: 90vh;
+    min-height: 81vh;
+  }
+}
+@media (max-width: 660px) {
+  .main {
+    min-height: 96vh;
   }
 }

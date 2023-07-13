@@ -7,7 +7,7 @@ type DogListProps = {
   exampleProp?: "";
 };
 
-export const DogList: FC<DogListProps> = ({ exampleProp }) => {
+export const DogList: FC<DogListProps> = () => {
   const navigate = useNavigate();
   const listButtonHandler = (queryParam: string) => {
     navigate(`search/${queryParam}`);
@@ -16,6 +16,7 @@ export const DogList: FC<DogListProps> = ({ exampleProp }) => {
   return (
     <div className={styles["main-wrapper"]}>
       <h1 className={styles["list-header"]}>Lista ras:</h1>
+
       <div className={styles["list-wrapper"]}>
         {Object.keys(backup.message).map((dog) => {
           return (
