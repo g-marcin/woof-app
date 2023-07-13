@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 92vh;
+  min-height: 80vh;
   padding: 0 20px;
   max-width: 500px;
 }
 
-@media (min-width: 560px) {
+@media (min-width: 968px) {
   .main-wrapper {
-    padding: 0 auto;
+    min-height: 90vh;
   }
 }
 
