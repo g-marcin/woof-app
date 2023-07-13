@@ -19,13 +19,7 @@ export const pl = {
     typeDog: "Wpisz rasę, której szukasz",
   },
   errors: {
-    noBreed: "Ajajaj! Tej rasy nie ma jeszcze w naszej bazie. Poszukaj innej",
+    noBreed1: "Ajajaj! Tej rasy nie ma jeszcze",
+    noBreed2: " w naszej bazie. Poszukaj innej",
   },
 } as const;
-//  ,dogDescription2:"
-
-//               Wysokość w kłębie 30-35cm, masa ciała 22-25kg. Sierść krótka, delikatna,
-//               lśniąca, umaszczenie płowe, pręgowane lub łaciate. Charakter czujny, śmiały,
-//               oddany, odważny, łagodny, czasem uparty. W zależności od dnia pokazuje różne
-//               oblicza swojej natury...
-//             "</p>"

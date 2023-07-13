@@ -17,12 +17,13 @@ export const Navbar: FC = () => {
     isPending: boolean;
   }) => (isPending ? styles.link : isActive ? styles.active : "");
 
+  const [language, setLanguage] = useState(window.localStorage.getItem("lang") === "en");
+
   const onFlagClick = () => {
     const i18 = i18n.changeLanguage(`${language ? "pl" : "en"}`);
     setLanguage(!language);
+    window.localStorage.setItem("lang", language ? "pl" : "en");
   };
-
-  const [language, setLanguage] = useState(false);
 
   return (
     <>
