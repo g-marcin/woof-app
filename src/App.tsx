@@ -1,10 +1,10 @@
-import { FC } from "react"
-
-const App:FC = ()=> {
+import { RouterProvider } from 'react-router-dom'
+import { AppRouter } from './router/AppRouter.tsx'
+function App  () {
 
   return (
     <>   
-    App here
+   <RouterProvider router={AppRouter}/>
     </>
   )
 }
