@@ -7,8 +7,8 @@ export const Header: FC = () => {
   return (
     <header className={styles.header}>
       <Link className={styles.logo} to="/">
-        <img src={dogIcon} alt="logo" className={styles.logoImage} />
-        <span className="text-decoration-none">woof-app</span>
+        <img src={dogIcon} alt="logo" className={styles["logo-image"]} />
+        <span className={styles["logo-text"]}>woof-app</span>
       </Link>
     </header>
   );
