@@ -1,6 +1,6 @@
 .main-wrapper {
   max-width: 500px;
-  margin: 15px 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,13 +16,24 @@
 }
 
 .searchbar {
+  margin-left: 5px;
+  padding: 25px;
   display: flex;
   gap: 15px;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid var(--secondary);
+  opacity: 0.8;
+}
+@media (max-width: 660px) {
+  .searchbar {
+    padding: 15px;
+  }
 }
 
 .input-label {
+  display: flex;
+  justify-content: center;
   color: var(--typography-secondary);
   width: 130px;
   height: 15px;
@@ -45,4 +56,8 @@
 .input-wrapper {
   align-self: center;
   padding-top: 15px;
+}
+
+.search-header {
+  align-self: start;
 }

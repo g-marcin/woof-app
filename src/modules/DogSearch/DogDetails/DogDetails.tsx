@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
 import { useDogDetails } from "../../../hooks";
+import { DogError } from "./DogError";
 import styles from "./dogDetails.module.css";
 
 type ComponentNameProps = {
@@ -9,13 +10,16 @@ type ComponentNameProps = {
 
 export const DogDetails: FC<ComponentNameProps> = () => {
   const { id: breedName } = useParams();
-  const { dogDetails, isLoading } = useDogDetails(breedName || "");
+  const { dogDetails, isLoading, isError } = useDogDetails(breedName || "");
   if (!breedName) {
     return;
   }
+
   return (
     <>
-      {dogDetails.status === "success" ? (
+      {isError ? (
+        <DogError />
+      ) : (
         <div className={styles["main-wrapper"]}>
           <img
             src={`${dogDetails.imageSrc}`}
@@ -38,8 +42,6 @@ export const DogDetails: FC<ComponentNameProps> = () => {
             </p>
           </div>
         </div>
-      ) : (
-        <div>No such dog...</div>
       )}
     </>
   );

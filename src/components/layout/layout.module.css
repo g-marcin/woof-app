@@ -1,19 +1,8 @@
 .main {
   height: 84vh;
+
   display: flex;
   justify-content: center;
   align-content: center;
-  padding: 10px;
-  margin-bottom: 60px;
-}
-
-@media (max-width: 968px) {
-  .main {
-    min-height: 81vh;
-  }
-}
-@media (max-width: 660px) {
-  .main {
-    min-height: 96vh;
-  }
+  padding: 5px 10px 25px 10px;
 }
