@@ -3,17 +3,21 @@ import { initReactI18next } from "react-i18next";
 import { en } from "./langs/en";
 import { pl } from "./langs/pl";
 
-const i18nInstance = i18n.use(initReactI18next).init({
-  resources: {
-    pl: {
-      translation: pl,
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      pl: {
+        translation: pl,
+      },
+      en: {
+        translation: en,
+      },
     },
-    en: {
-      translation: en,
-    },
-  },
-  lng: window.localStorage.getItem("lang") || "pl",
-  fallbackLng: "pl",
-});
+    lng: window.localStorage.getItem("lang") || "pl",
+    fallbackLng: "pl",
+  })
+  .then(() => null)
+  .catch((error) => console.log(error));
 
 export default i18n;
