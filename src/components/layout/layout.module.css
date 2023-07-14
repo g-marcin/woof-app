@@ -11,3 +11,8 @@
     overflow: hidden;
   }
 }
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,7 +1,7 @@
 .list-wrapper {
   display: flex;
   flex-direction: column;
-  max-height: 90vh;
+  max-height: 85vh;
   overflow-y: scroll;
   align-self: center;
   justify-self: center;
@@ -9,7 +9,8 @@
 }
 @media (max-width: 660px) {
   .main-wrapper {
-    max-height: 100vh;
+    height: 90vh;
+    margin-top: 250px;
   }
 }
 
