@@ -18,6 +18,9 @@ export const useDogVariants = (breedName: string) => {
           setIsError(false);
           setDogVariants(dogVariantsMapper(response.data));
         } else {
+          if (!response.data.status) {
+            return;
+          }
           throw new Error(`${response.data.code} ${response.data.status}`);
         }
       })
