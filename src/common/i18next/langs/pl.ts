@@ -4,6 +4,7 @@ export const pl = {
     keepSearching: "Szukaj a znajdziesz",
     unfortunately: "Niestety",
     variants: "- rodzaje",
+    welcome: "Cześć!",
   },
   content: {
     dogDescription1:
@@ -18,6 +19,7 @@ export const pl = {
   buttons: {
     search: "Szukaj",
     clickMe: "Naciśnij mnie!",
+    start: "Rozpocznij",
   },
   labels: {
     typeDog: "Wpisz rasę, której szukasz",

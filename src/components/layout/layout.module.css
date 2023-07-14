@@ -1,5 +1,6 @@
 .main {
   display: flex;
+  flex-direction: column;
   padding: 10px 1px 5px 10px;
   min-height: 82vh;
   align-content: center;
