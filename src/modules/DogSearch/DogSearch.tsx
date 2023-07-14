@@ -1,36 +1,19 @@
-import { FC, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { FC } from "react";
+import { useTranslation } from "react-i18next";
+import { Outlet, useParams } from "react-router-dom";
+import { Searchbar } from ".";
 import styles from "./dogSearch.module.css";
 
-type DogSearchProps = {
-  exampleProp?: "";
-};
-
-export const DogSearch: FC<DogSearchProps> = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
-  const onSearch = () => {
-    navigate(`${searchQuery}`.toLocaleLowerCase());
-  };
+export const DogSearch: FC = () => {
+  const { breedName } = useParams();
+  const { t } = useTranslation();
 
   return (
     <div className={styles["main-wrapper"]}>
-      <h1 className={styles["search-header"]}>Szukaj a znajdziesz: </h1>
-      <form className={styles["searchbar"]}>
-        <div className={styles["input-wrapper"]}>
-          <input
-            type="text"
-            className={styles["search-input"]}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-            }}
-          />
-          <div className={styles["input-label"]}>Wpisz rasę, której szukasz</div>
-        </div>
-        <button type="submit" className="primary" onClick={onSearch}>
-          Szukaj
-        </button>
-      </form>
+      {!breedName && (
+        <h1 className={styles["search-header"]}>{t("headers.keepSearching")}</h1>
+      )}
+      <Searchbar />
       <Outlet />
     </div>
   );

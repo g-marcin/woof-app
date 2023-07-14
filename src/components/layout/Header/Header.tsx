@@ -6,7 +6,7 @@ import styles from "./header.module.css";
 export const Header: FC = () => {
   return (
     <header className={styles.header}>
-      <Link className={styles.logo} to="/">
+      <Link className={styles.logo} to="/home">
         <img src={dogIcon} alt="logo" className={styles["logo-image"]} />
         <span className={styles["logo-text"]}>woof-app</span>
       </Link>

@@ -1,19 +1,28 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
-import { useDogDetails } from "../../../hooks";
-import { DogError } from "./DogError";
+import { RefreshCw } from "react-feather";
+import { useTranslation } from "react-i18next";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useDogDetails, useDogVariants } from "../../../hooks";
+import { NavLinkState } from "../../../types";
+import { DogError } from "../DogError";
 import styles from "./dogDetails.module.css";
 
-type ComponentNameProps = {
-  exampleProp?: "";
-};
-
-export const DogDetails: FC<ComponentNameProps> = () => {
-  const { id: breedName } = useParams();
-  const { dogDetails, isLoading, isError } = useDogDetails(breedName || "");
+export const DogDetails: FC = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { breedName, variant } = useParams();
+  const { dogDetails, isError } = useDogDetails(breedName, variant);
+  const { dogVariants } = useDogVariants(breedName || "");
   if (!breedName) {
     return;
   }
+
+  const capitalizeFirstLetter = (word: string) => {
+    return word?.charAt(0).toLocaleUpperCase() + word?.slice(1);
+  };
+
+  const navLinkState = ({ isActive }: NavLinkState) =>
+    isActive ? styles["tag-active"] : styles["tag"];
 
   return (
     <>
@@ -21,25 +30,41 @@ export const DogDetails: FC<ComponentNameProps> = () => {
         <DogError />
       ) : (
         <div className={styles["main-wrapper"]}>
-          <img
-            src={`${dogDetails.imageSrc}`}
-            alt="dog-image"
-            className={styles["details-avatar"]}
-          />
-          <div className={styles["details-description"]}>
-            <h1>{breedName?.charAt(0).toLocaleUpperCase() + breedName?.slice(1)}</h1>
-            <p>
-              Ten pies to wierny i przyjacielski czworonóg, który świetnie czuję się w
-              roli rodzinnego towarzysza. Dobrze dogaduje się z dziećmi, uwielbia
-              pieszczoty i wspólne zabawy. Jest łatwy w prowadzeniu, choć bywa uparty.
-              Sprawdzi się zarówno w małym mieszkaniu jak i w domu z ogrodem.
-            </p>
-            <p>
-              Wysokość w kłębie 30-35cm, masa ciała 22-25kg. Sierść krótka, delikatna,
-              lśniąca, umaszczenie płowe, pręgowane lub łaciate. Charakter czujny, śmiały,
-              oddany, odważny, łagodny, czasem uparty. W zależności od dnia pokazuje różne
-              oblicza swojej natury...
-            </p>
+          <div className={styles["image-wrapper"]}>
+            <img
+              src={`${dogDetails.imageSrc}`}
+              alt="dog-image"
+              className={styles["details-avatar"]}
+              onClick={() => location.reload()}
+            />
+            <div className={styles["avatar-description"]}>{t("buttons.clickMe")}</div>
+          </div>
+          <div className={styles["description-wrapper"]}>
+            <h1>{capitalizeFirstLetter(breedName)}</h1>
+            <p>{t("content.dogDescription1")}</p>
+            <p>{t("content.dogDescription2")}</p>
+          </div>
+          <h1>
+            {capitalizeFirstLetter(breedName)} {t("headers.variants")}{" "}
+            <button
+              onClick={() => {
+                variant && navigate(`/search/${breedName}`);
+              }}
+            >
+              <RefreshCw size={12} />
+            </button>
+          </h1>
+          <div className={styles["tags-wrapper"]}>
+            {dogVariants.length === 0 && (
+              <p className={styles["tag"]}>{t("content.noVariants")}</p>
+            )}
+            {dogVariants.map((variant) => {
+              return (
+                <NavLink to={`/search/${breedName}/${variant}`} className={navLinkState}>
+                  {variant}
+                </NavLink>
+              );
+            })}
           </div>
         </div>
       )}

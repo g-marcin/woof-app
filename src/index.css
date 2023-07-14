@@ -22,10 +22,16 @@
 } */
 
 body {
-  margin: 0;
+  margin: 0 300px;
   padding: 0;
   background: var(--primary);
   height: 100vh;
+}
+
+@media (max-width: 1365px) {
+  body {
+    margin: 0;
+  }
 }
 
 button,
@@ -49,7 +55,7 @@ h1 {
 p {
   margin: 10px 0;
   padding: 0;
-  line-height: 21px;
+  line-height: 18px;
   font-size: 12px;
   letter-spacing: 0.03em;
   font-weight: 500;
@@ -61,6 +67,7 @@ input {
   border: 1px solid var(--typography-primary);
   border-radius: 8px;
   padding: 8px;
+  display: flex;
 }
 
 button.primary {
@@ -75,4 +82,8 @@ button.primary {
   align-items: center;
   color: var(--typography-secondary);
   letter-spacing: 0.02em;
+}
+
+button.primary:hover {
+  opacity: 0.8;
 }
