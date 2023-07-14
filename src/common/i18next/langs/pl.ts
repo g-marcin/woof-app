@@ -3,6 +3,7 @@ export const pl = {
     dogList: "Lista ras",
     keepSearching: "Szukaj a znajdziesz",
     unfortunately: "Niestety",
+    variants: "- rodzaje",
   },
   content: {
     dogDescription1:

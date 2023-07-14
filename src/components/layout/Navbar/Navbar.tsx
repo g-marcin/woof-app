@@ -36,10 +36,11 @@ export const Navbar: FC = () => {
             <img src={searchIcon} alt="search" className={styles.icon} />
           </NavLink>
         </span>
-
-        <button onClick={onFlagClick} className={styles["button-language"]}>
-          {language ? <img src={plFlag} alt="" /> : <img src={enFlag} alt="" />}
-        </button>
+        <span className={styles["group"]}>
+          <button onClick={onFlagClick} className={styles["button-language"]}>
+            {language ? <img src={plFlag} alt="" /> : <img src={enFlag} alt="" />}
+          </button>
+        </span>
       </nav>
     </>
   );
