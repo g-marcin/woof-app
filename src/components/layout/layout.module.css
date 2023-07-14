@@ -1,14 +1,17 @@
 .main {
-  display: flex;
-  flex-direction: column;
-
-  align-content: center;
+  padding: 65px 0;
+  z-index: 0;
 }
 
 @media (max-width: 1365px) {
   .main {
     min-height: 90vh;
     overflow: hidden;
+  }
+}
+@media (max-width: 660px) {
+  .main {
+    padding: 0;
   }
 }
 
