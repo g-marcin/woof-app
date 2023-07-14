@@ -6,7 +6,7 @@ import styles from "./layout.module.css";
 
 export const Layout: FC = () => {
   return (
-    <div className="">
+    <div className={styles["main-wrapper"]}>
       <Header />
       <main className={styles.main}>
         <Outlet />
