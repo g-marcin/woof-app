@@ -15,6 +15,9 @@ export const useDogList = () => {
         if (!response.data.code) {
           setDogEntries(dogListMapper(response.data));
         } else {
+          if (!response.data.status) {
+            return;
+          }
           throw new Error(`${response.data.code} ${response.data.status}`);
         }
       })
