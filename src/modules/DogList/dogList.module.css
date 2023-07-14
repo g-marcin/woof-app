@@ -1,11 +1,11 @@
 .list-wrapper {
   display: flex;
   flex-direction: column;
-  width: 100vw;
   max-height: 90vh;
   overflow-y: scroll;
   align-self: center;
   justify-self: center;
+  width: 100%;
 }
 @media (max-width: 660px) {
   .main-wrapper {
@@ -30,9 +30,9 @@
   background: var(--secondary);
   color: var(--typography-secondary);
   border-radius: 12px;
-  padding: 4px;
+  padding: 6px;
   font-size: 10px;
-  height: 11px;
+  height: 13px;
 }
 
 .tag:hover {
@@ -44,4 +44,5 @@
   flex-wrap: wrap;
   align-content: center;
   gap: 2px;
+  max-width: 400px;
 }
