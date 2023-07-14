@@ -1,4 +1,4 @@
-.main-wrapper {
+.list-wrapper {
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -9,15 +9,6 @@
   .main-wrapper {
     max-height: 88vh;
   }
-}
-
-.list-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.list-wrapper:first-child {
-  padding-top: 0;
 }
 
 .list-item {

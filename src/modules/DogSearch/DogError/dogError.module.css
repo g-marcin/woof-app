@@ -8,19 +8,8 @@
 .icon {
   background: var(--typography-primary);
   border-radius: 50%;
-  width: 90px;
-  height: 90px;
+  width: 85px;
+  height: 85px;
   padding: 70px;
   margin: 35px 0;
-}
-
-.main-wrapper {
-  display: flex;
-  flex-direction: column;
-  overflow: scroll;
-}
-
-.details-description {
-  text-justify: distribute;
-  align-items: center;
 }

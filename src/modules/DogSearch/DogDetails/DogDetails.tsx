@@ -2,26 +2,17 @@ import { FC } from "react";
 import { RefreshCw } from "react-feather";
 import { useTranslation } from "react-i18next";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { useDogDetails } from "../../../hooks";
-import { useDogVariants } from "../../../hooks/useDogVariants";
+import { useDogDetails, useDogVariants } from "../../../hooks";
 import { NavLinkState } from "../../../types";
 import { DogError } from "../DogError";
 import styles from "./dogDetails.module.css";
 
-type ComponentNameProps = {
-  exampleProp?: "";
-};
-
-export const DogDetails: FC<ComponentNameProps> = () => {
+export const DogDetails: FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { id: breedName, variant } = useParams();
-  const { dogDetails, isLoading, isError } = useDogDetails(breedName, variant);
-  const {
-    dogVariants,
-    isLoading: isBreedsLoading,
-    isError: isBreedsError,
-  } = useDogVariants(breedName || "");
+  const { breedName, variant } = useParams();
+  const { dogDetails, isError } = useDogDetails(breedName, variant);
+  const { dogVariants } = useDogVariants(breedName || "");
   if (!breedName) {
     return;
   }
@@ -30,8 +21,8 @@ export const DogDetails: FC<ComponentNameProps> = () => {
     return word?.charAt(0).toLocaleUpperCase() + word?.slice(1);
   };
 
-  const navLinkState = ({ isActive, isPending }: NavLinkState) =>
-    isPending ? styles["tag"] : isActive ? styles["tag-active"] : styles["tag"];
+  const navLinkState = ({ isActive }: NavLinkState) =>
+    isActive ? styles["tag-active"] : styles["tag"];
 
   return (
     <>
@@ -39,7 +30,7 @@ export const DogDetails: FC<ComponentNameProps> = () => {
         <DogError />
       ) : (
         <div className={styles["main-wrapper"]}>
-          <div className={styles["wrapper"]}>
+          <div className={styles["image-wrapper"]}>
             <img
               src={`${dogDetails.imageSrc}`}
               alt="dog-image"
@@ -48,7 +39,7 @@ export const DogDetails: FC<ComponentNameProps> = () => {
             />
             <div className={styles["avatar-description"]}>{t("buttons.clickMe")}</div>
           </div>
-          <div className={styles["details-description"]}>
+          <div className={styles["description-wrapper"]}>
             <h1>{capitalizeFirstLetter(breedName)}</h1>
             <p>{t("content.dogDescription1")}</p>
             <p>{t("content.dogDescription2")}</p>
@@ -63,24 +54,18 @@ export const DogDetails: FC<ComponentNameProps> = () => {
               <RefreshCw size={12} />
             </button>
           </h1>
-          <p className={styles["tags-wrapper"]}>
+          <div className={styles["tags-wrapper"]}>
             {dogVariants.length === 0 && (
               <p className={styles["tag"]}>{t("content.noVariants")}</p>
             )}
-
             {dogVariants.map((variant) => {
               return (
-                <>
-                  <NavLink
-                    to={`/search/${breedName}/${variant}`}
-                    className={navLinkState}
-                  >
-                    {variant}
-                  </NavLink>
-                </>
+                <NavLink to={`/search/${breedName}/${variant}`} className={navLinkState}>
+                  {variant}
+                </NavLink>
               );
             })}
-          </p>
+          </div>
         </div>
       )}
     </>

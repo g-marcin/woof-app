@@ -10,36 +10,37 @@ import styles from "./navbar.module.css";
 
 export const Navbar: FC = () => {
   const { i18n } = useTranslation();
-  const navLinkState = ({ isActive, isPending }: NavLinkState) =>
-    isPending ? styles.link : isActive ? styles.active : "";
-
-  const [language, setLanguage] = useState(window.localStorage.getItem("lang") === "en");
-  // true - english ; false - polish
-
+  const navLinkState = ({ isActive }: NavLinkState) => (isActive ? styles.active : "");
+  const getUserLanguage = () => {
+    return window.localStorage.getItem("lang");
+  };
+  const [language, setLanguage] = useState(getUserLanguage() === "en");
   const onFlagClick = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const _ = i18n.changeLanguage(`${language ? "pl" : "en"}`);
-    setLanguage(!language);
-
+    setLanguage(() => !language);
     window.localStorage.setItem("lang", language ? "pl" : "en");
   };
 
   return (
-    <>
-      <nav className={`${styles.nav}`}>
-        <span className={styles["group"]}>
-          <NavLink to="/home" className={navLinkState}>
-            <img src={dogIcon} alt="search" className={styles.icon} />
-          </NavLink>
-          <NavLink to="/search" className={navLinkState}>
-            <img src={searchIcon} alt="search" className={styles.icon} />
-          </NavLink>
-        </span>
-        <span className={styles["group"]}>
-          <button onClick={onFlagClick} className={styles["button-language"]}>
-            {language ? <img src={plFlag} alt="" /> : <img src={enFlag} alt="" />}
-          </button>
-        </span>
-      </nav>
-    </>
+    <nav className={styles["navbar"]}>
+      <span className={styles["navbar-group"]}>
+        <NavLink to="/home" className={navLinkState}>
+          <img src={dogIcon} alt="dog-icon" className={styles.icon} />
+        </NavLink>
+        <NavLink to="/search" className={navLinkState}>
+          <img src={searchIcon} alt="search-icon" className={styles.icon} />
+        </NavLink>
+      </span>
+      <span className={styles["navbar-group"]}>
+        <button onClick={onFlagClick} className={styles["button-language"]}>
+          {language ? (
+            <img src={plFlag} alt="polish-flag" />
+          ) : (
+            <img src={enFlag} alt="uk-flag" />
+          )}
+        </button>
+      </span>
+    </nav>
   );
 };

@@ -3,11 +3,16 @@
   flex-direction: column;
   min-height: fit-content;
   z-index: 1;
-  overflow-y: scroll;
   max-height: 82vh;
 }
 
-.wrapper {
+@media (max-width: 960px) {
+  .main-wrapper {
+    overflow-y: scroll;
+  }
+}
+
+.image-wrapper {
   z-index: 0;
   position: relative;
   text-align: center;
@@ -46,7 +51,7 @@
   filter: blur(4px);
 }
 
-.details-description {
+.description-wrapper {
   text-justify: distribute;
   align-items: center;
 }
@@ -60,6 +65,9 @@
   padding: 4px;
   font-size: 10px;
   height: 13px;
+}
+.tag:hover {
+  opacity: 0.8;
 }
 
 .tag-active {
