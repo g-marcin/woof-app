@@ -3,11 +3,7 @@ import { useTranslation } from "react-i18next";
 import dogIcon from "../../../assets/shield-dog-solid.svg";
 import styles from "./dogError.module.css";
 
-type DogErrorProps = {
-  exampleProp?: "";
-};
-
-export const DogError: FC<DogErrorProps> = () => {
+export const DogError: FC = () => {
   const { t } = useTranslation();
   return (
     <div className={styles["wrapper"]}>
