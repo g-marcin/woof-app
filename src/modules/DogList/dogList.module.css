@@ -30,12 +30,18 @@
   background: var(--secondary);
   color: var(--typography-secondary);
   border-radius: 12px;
-  padding: 2px;
+  padding: 4px;
   font-size: 10px;
   height: 11px;
 }
+
+.tag:hover {
+  background: var(--link-active);
+}
+
 .tags-wrapper {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  gap: 2px;
 }

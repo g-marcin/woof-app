@@ -4,7 +4,7 @@ import { httpClient } from "../common";
 import { DogDetails, DogDetailsDTO } from "../types";
 import { dogDetailsMapper } from "./dogDetailsMapper";
 
-export const useDogDetails = (breedName: string) => {
+export const useDogDetails = (breedName: string, breedVariant = "") => {
   const [dogDetails, setDogDetails] = useState<DogDetails>({
     imageSrc: "",
   });
@@ -14,7 +14,7 @@ export const useDogDetails = (breedName: string) => {
     setIsLoading(true);
 
     httpClient
-      .get(`/breed/${breedName}/images/random`)
+      .get(`/breed/${breedName}${(breedVariant && "/") + breedVariant}/images/random`)
       .then((response: AxiosResponse<DogDetailsDTO>) => {
         if (!response.data.code) {
           setIsError(false);
@@ -28,6 +28,6 @@ export const useDogDetails = (breedName: string) => {
         console.error(error);
         setIsError(true);
       });
-  }, [breedName]);
+  }, [breedName, breedVariant]);
   return { dogDetails: dogDetails, isLoading: isLoading, isError: isError };
 };

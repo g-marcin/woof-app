@@ -22,18 +22,25 @@ export const DogList: FC<DogListProps> = () => {
       <div className={styles["list-wrapper"]}>
         {dogEntries.map(([dog, variants]) => {
           return (
-            <Link
-              to={`search/${dog}`}
-              onClick={() => listButtonHandler(dog)}
-              className={styles["list-item"]}
-            >
-              {dog}
+            <div className={styles["list-item"]}>
+              <Link to={`search/${dog}`} onClick={() => listButtonHandler(dog)}>
+                {dog}
+              </Link>
               <div className={styles["tags-wrapper"]}>
                 {variants.map((variant) => {
-                  return <span className={styles.tag}>{variant}</span>;
+                  return (
+                    <button
+                      onClick={() => {
+                        navigate(`/search/${dog}/${variant}`);
+                      }}
+                      className={styles.tag}
+                    >
+                      {variant}
+                    </button>
+                  );
                 })}
               </div>
-            </Link>
+            </div>
           );
         })}
       </div>

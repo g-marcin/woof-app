@@ -1,6 +1,7 @@
 import { FC } from "react";
+import { RefreshCw } from "react-feather";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDogDetails } from "../../../hooks";
 import { useDogBreeds } from "../../../hooks/useDogBreeds";
 import { DogError } from "../DogError";
@@ -11,9 +12,13 @@ type ComponentNameProps = {
 };
 
 export const DogDetails: FC<ComponentNameProps> = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
-  const { id: breedName } = useParams();
-  const { dogDetails, isLoading, isError } = useDogDetails(breedName || "");
+  const { id: breedName, variant } = useParams();
+  const { dogDetails, isLoading, isError } = useDogDetails(
+    breedName || "",
+    variant || ""
+  );
   const {
     dogBreeds,
     isLoading: isBreedsLoading,
@@ -26,6 +31,14 @@ export const DogDetails: FC<ComponentNameProps> = () => {
   const capitalizeFirstLetter = (word: string) => {
     return word?.charAt(0).toLocaleUpperCase() + word?.slice(1);
   };
+
+  const navLinkState = ({
+    isActive,
+    isPending,
+  }: {
+    isActive: boolean;
+    isPending: boolean;
+  }) => (isPending ? styles["tag"] : isActive ? styles["tag-active"] : styles["tag"]);
 
   return (
     <>
@@ -48,12 +61,31 @@ export const DogDetails: FC<ComponentNameProps> = () => {
             <p>{t("content.dogDescription2")}</p>
           </div>
           <h1>
-            {capitalizeFirstLetter(breedName)} {t("headers.variants")}
+            {capitalizeFirstLetter(breedName)} {t("headers.variants")}{" "}
+            <button
+              onClick={() => {
+                variant && navigate(-1);
+              }}
+            >
+              <RefreshCw size={12} />
+            </button>
           </h1>
           <p className={styles["tags-wrapper"]}>
-            {dogBreeds.length === 0 && <p>No dog variants available</p>}
-            {dogBreeds.map((breed) => {
-              return <span className={styles["tag"]}>{breed}</span>;
+            {dogBreeds.length === 0 && (
+              <p className={styles["tag"]}>{t("content.noVariants")}</p>
+            )}
+
+            {dogBreeds.map((variant) => {
+              return (
+                <>
+                  <NavLink
+                    to={`/search/${breedName}/${variant}`}
+                    className={navLinkState}
+                  >
+                    {variant}
+                  </NavLink>
+                </>
+              );
             })}
           </p>
         </div>

@@ -16,7 +16,7 @@ export const DogSearch: FC<DogSearchProps> = () => {
     if (!searchQuery) {
       return;
     }
-    navigate(`${searchQuery}`.toLocaleLowerCase());
+    navigate(`${searchQuery}`.toLocaleLowerCase().trim());
   };
 
   return (
