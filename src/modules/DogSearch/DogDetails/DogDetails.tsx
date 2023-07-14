@@ -64,7 +64,7 @@ export const DogDetails: FC<ComponentNameProps> = () => {
             {capitalizeFirstLetter(breedName)} {t("headers.variants")}{" "}
             <button
               onClick={() => {
-                variant && navigate(-1);
+                variant && navigate(`/search/${breedName}`);
               }}
             >
               <RefreshCw size={12} />

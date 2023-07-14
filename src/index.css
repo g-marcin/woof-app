@@ -22,10 +22,16 @@
 } */
 
 body {
-  margin: 0;
+  margin: 0 300px;
   padding: 0;
   background: var(--primary);
   height: 100vh;
+}
+
+@media (max-width: 1365px) {
+  body {
+    margin: 0;
+  }
 }
 
 button,

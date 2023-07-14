@@ -3,7 +3,8 @@
   flex-direction: column;
   min-height: fit-content;
   z-index: 1;
-  padding-bottom: 60px;
+  overflow-y: scroll;
+  max-height: 82vh;
 }
 
 .wrapper {

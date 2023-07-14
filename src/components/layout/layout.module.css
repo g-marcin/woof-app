@@ -1,5 +1,13 @@
 .main {
   display: flex;
+  padding: 10px 1px 5px 10px;
+  min-height: 82vh;
+  align-content: center;
+}
 
-  padding: 10px 5px 5px 10px;
+@media (max-width: 1365px) {
+  .main {
+    min-height: 90vh;
+    overflow: hidden;
+  }
 }
