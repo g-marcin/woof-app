@@ -17,3 +17,11 @@ export type DogListDTO = {
 };
 
 export type DogEntries = [string, [] | string[]][];
+
+export type DogBreedsDTO = {
+  message: string[];
+  status: "success" | "error";
+  code?: number;
+};
+
+export type DogBreeds = string[];

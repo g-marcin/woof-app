@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDogDetails } from "../../../hooks";
+import { useDogBreeds } from "../../../hooks/useDogBreeds";
 import { DogError } from "../DogError";
 import styles from "./dogDetails.module.css";
 
@@ -10,13 +11,21 @@ type ComponentNameProps = {
 };
 
 export const DogDetails: FC<ComponentNameProps> = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { id: breedName } = useParams();
-  const navigate = useNavigate();
   const { dogDetails, isLoading, isError } = useDogDetails(breedName || "");
+  const {
+    dogBreeds,
+    isLoading: isBreedsLoading,
+    isError: isBreedsError,
+  } = useDogBreeds(breedName || "");
   if (!breedName) {
     return;
   }
+
+  const capitalizeFirstLetter = (word: string) => {
+    return word?.charAt(0).toLocaleUpperCase() + word?.slice(1);
+  };
 
   return (
     <>
@@ -34,10 +43,19 @@ export const DogDetails: FC<ComponentNameProps> = () => {
             <div className={styles["avatar-description"]}>{t("buttons.clickMe")}</div>
           </div>
           <div className={styles["details-description"]}>
-            <h1>{breedName?.charAt(0).toLocaleUpperCase() + breedName?.slice(1)}</h1>
+            <h1>{capitalizeFirstLetter(breedName)}</h1>
             <p>{t("content.dogDescription1")}</p>
             <p>{t("content.dogDescription2")}</p>
           </div>
+          <h1>
+            {capitalizeFirstLetter(breedName)} {t("headers.variants")}
+          </h1>
+          <p className={styles["tags-wrapper"]}>
+            {dogBreeds.length === 0 && <p>No dog variants available</p>}
+            {dogBreeds.map((breed) => {
+              return <span className={styles["tag"]}>{breed}</span>;
+            })}
+          </p>
         </div>
       )}
     </>
