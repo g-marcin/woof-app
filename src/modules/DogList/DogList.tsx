@@ -3,8 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useDogList } from "../../hooks/useDogList";
 import styles from "./dogList.module.css";
-
-export const DogList: FC = () => {
+const DogList: FC = () => {
   const { dogEntries } = useDogList();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -36,3 +35,5 @@ export const DogList: FC = () => {
     </div>
   );
 };
+
+export default DogList;
