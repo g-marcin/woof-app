@@ -26,6 +26,10 @@ export const AppRouter = createBrowserRouter([
             path: ":id",
             element: <DogDetails />,
           },
+          {
+            path: ":id/:variant",
+            element: <DogDetails />,
+          },
         ],
       },
     ],

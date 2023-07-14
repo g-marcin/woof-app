@@ -60,9 +60,26 @@
   font-size: 10px;
   height: 13px;
 }
+
+.tag-active {
+  display: flex;
+  align-items: center;
+  background: var(--secondary);
+  color: var(--typography-secondary);
+  border-radius: 12px;
+  padding: 4px;
+  font-size: 10px;
+  height: 13px;
+  background: var(--link-active);
+}
+
 .tags-wrapper {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   gap: 2px;
+}
+
+.close {
+  padding: 10px;
 }
