@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
-import { httpClient } from "../common";
-import { DogEntries, DogListDTO } from "../types";
+import { httpClient } from "../../common";
+import { DogEntries, DogListDTO } from "../../types";
 import { dogListMapper } from "./dogListMapper";
 
 export const useDogList = () => {

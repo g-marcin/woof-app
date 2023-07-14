@@ -1,4 +1,4 @@
-import { DogDetailsDTO } from "../types";
+import { DogDetailsDTO } from "../../types";
 
 export const dogDetailsMapper = (dogDetailsDTO: DogDetailsDTO) => {
   return {

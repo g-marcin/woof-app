@@ -1,47 +1,19 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
+import { Searchbar } from ".";
 import styles from "./dogSearch.module.css";
 
-type DogSearchProps = {
-  exampleProp?: "";
-};
-
-export const DogSearch: FC<DogSearchProps> = () => {
-  const { id: breedName } = useParams();
+export const DogSearch: FC = () => {
+  const { breedName } = useParams();
   const { t } = useTranslation();
-  const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
-  const onSearch = () => {
-    if (!searchQuery) {
-      return;
-    }
-    navigate(`${searchQuery}`.toLocaleLowerCase().trim());
-  };
 
   return (
     <div className={styles["main-wrapper"]}>
       {!breedName && (
         <h1 className={styles["search-header"]}>{t("headers.keepSearching")}</h1>
       )}
-
-      <form className={styles["searchbar"]}>
-        <div className={styles["input-wrapper"]}>
-          <input
-            type="text"
-            className={styles["search-input"]}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-            }}
-            autoFocus
-            required
-          />
-          <div className={styles["input-label"]}>{t("labels.typeDog")}</div>
-        </div>
-        <button type="submit" className="primary" onClick={onSearch}>
-          {t("buttons.search")}
-        </button>
-      </form>
+      <Searchbar />
       <Outlet />
     </div>
   );

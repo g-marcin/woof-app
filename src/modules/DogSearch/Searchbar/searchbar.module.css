@@ -1,0 +1,44 @@
+.searchbar {
+  padding: 0 10px;
+
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  border: 1px solid var(--secondary);
+  margin: 0 auto;
+  justify-content: center;
+  z-index: 2;
+}
+@media (max-width: 660px) {
+  .searchbar {
+    width: 300px;
+    height: 50px;
+  }
+}
+
+.input-label {
+  display: flex;
+  justify-content: center;
+  color: var(--typography-secondary);
+  width: 130px;
+  height: 15px;
+  font-size: 8px;
+  background: var(--secondary);
+  z-index: 2;
+  position: relative;
+  bottom: 50px;
+  left: 15px;
+}
+
+.input-wrapper {
+  z-index: 0;
+}
+
+.search-input {
+  z-index: 1;
+}
+
+.input-wrapper {
+  align-self: center;
+  padding-top: 15px;
+}

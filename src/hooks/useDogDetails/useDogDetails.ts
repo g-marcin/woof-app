@@ -1,10 +1,10 @@
 import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
-import { httpClient } from "../common";
-import { DogDetails, DogDetailsDTO } from "../types";
+import { httpClient } from "../../common";
+import { DogDetails, DogDetailsDTO } from "../../types";
 import { dogDetailsMapper } from "./dogDetailsMapper";
 
-export const useDogDetails = (breedName: string, breedVariant = "") => {
+export const useDogDetails = (breedName = "", breedVariant = "") => {
   const [dogDetails, setDogDetails] = useState<DogDetails>({
     imageSrc: "",
   });
