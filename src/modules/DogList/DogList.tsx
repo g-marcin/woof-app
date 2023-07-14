@@ -9,7 +9,7 @@ type DogListProps = {
 };
 
 export const DogList: FC<DogListProps> = () => {
-  const { dogList, isLoading } = useDogList();
+  const { dogEntries, isLoading } = useDogList();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const listButtonHandler = (queryParam: string) => {
@@ -20,7 +20,7 @@ export const DogList: FC<DogListProps> = () => {
     <div className={styles["main-wrapper"]}>
       <h1 className={styles["list-header"]}>{t("headers.dogList")}</h1>
       <div className={styles["list-wrapper"]}>
-        {dogList.map((dog) => {
+        {dogEntries.map(([dog, variants]) => {
           return (
             <Link
               to={`search/${dog}`}
@@ -28,6 +28,11 @@ export const DogList: FC<DogListProps> = () => {
               className={styles["list-item"]}
             >
               {dog}
+              <div className={styles["tags-wrapper"]}>
+                {variants.map((variant) => {
+                  return <span className={styles.tag}>{variant}</span>;
+                })}
+              </div>
             </Link>
           );
         })}
