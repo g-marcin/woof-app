@@ -1,12 +1,11 @@
 .searchbar {
-  padding: 10px 10px;
-
   display: flex;
   gap: 15px;
   align-items: center;
   border: 1px solid var(--secondary);
   margin: 0 auto;
   justify-content: center;
+  padding: 5px 10px;
 }
 @media (max-width: 660px) {
   .searchbar {

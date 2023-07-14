@@ -2,17 +2,17 @@
   height: 29px;
   position: fixed;
   bottom: 0;
-  width: 65%;
+  width: 98vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 15px;
   background: var(--secondary);
+  z-index: 1;
 }
 
 @media (max-width: 660px) {
   .navbar {
-    width: 100vw;
   }
 }
 

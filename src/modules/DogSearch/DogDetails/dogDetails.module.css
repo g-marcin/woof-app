@@ -2,14 +2,6 @@
   display: flex;
   flex-direction: column;
   min-height: fit-content;
-  z-index: 1;
-  max-height: 82vh;
-}
-
-@media (max-width: 960px) {
-  .main-wrapper {
-    overflow-y: scroll;
-  }
 }
 
 .image-wrapper {
@@ -27,6 +19,7 @@
   align-self: center;
   object-fit: fill;
   cursor: pointer;
+  z-index: -1;
 }
 
 .avatar-description {

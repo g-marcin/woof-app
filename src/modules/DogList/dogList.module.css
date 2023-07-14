@@ -3,14 +3,14 @@
   flex-direction: column;
   max-height: 85vh;
   overflow-y: scroll;
-  align-self: center;
-  justify-self: center;
-  width: 100%;
+  width: 800px;
+  margin: 0 auto;
 }
 @media (max-width: 660px) {
   .main-wrapper {
     height: 90vh;
     margin-top: 250px;
+    margin: 0;
   }
 }
 
@@ -46,4 +46,9 @@
   align-content: center;
   gap: 2px;
   max-width: 400px;
+}
+@media (max-width: 660px) {
+  .tags-wrapper {
+    max-width: 250px;
+  }
 }
