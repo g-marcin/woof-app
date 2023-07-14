@@ -3,7 +3,8 @@ import { RefreshCw } from "react-feather";
 import { useTranslation } from "react-i18next";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDogDetails } from "../../../hooks";
-import { useDogBreeds } from "../../../hooks/useDogBreeds";
+import { useDogVariants } from "../../../hooks/useDogVariants";
+import { NavLinkState } from "../../../types";
 import { DogError } from "../DogError";
 import styles from "./dogDetails.module.css";
 
@@ -15,15 +16,12 @@ export const DogDetails: FC<ComponentNameProps> = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { id: breedName, variant } = useParams();
-  const { dogDetails, isLoading, isError } = useDogDetails(
-    breedName || "",
-    variant || ""
-  );
+  const { dogDetails, isLoading, isError } = useDogDetails(breedName, variant);
   const {
-    dogBreeds,
+    dogVariants,
     isLoading: isBreedsLoading,
     isError: isBreedsError,
-  } = useDogBreeds(breedName || "");
+  } = useDogVariants(breedName || "");
   if (!breedName) {
     return;
   }
@@ -32,13 +30,8 @@ export const DogDetails: FC<ComponentNameProps> = () => {
     return word?.charAt(0).toLocaleUpperCase() + word?.slice(1);
   };
 
-  const navLinkState = ({
-    isActive,
-    isPending,
-  }: {
-    isActive: boolean;
-    isPending: boolean;
-  }) => (isPending ? styles["tag"] : isActive ? styles["tag-active"] : styles["tag"]);
+  const navLinkState = ({ isActive, isPending }: NavLinkState) =>
+    isPending ? styles["tag"] : isActive ? styles["tag-active"] : styles["tag"];
 
   return (
     <>
@@ -71,11 +64,11 @@ export const DogDetails: FC<ComponentNameProps> = () => {
             </button>
           </h1>
           <p className={styles["tags-wrapper"]}>
-            {dogBreeds.length === 0 && (
+            {dogVariants.length === 0 && (
               <p className={styles["tag"]}>{t("content.noVariants")}</p>
             )}
 
-            {dogBreeds.map((variant) => {
+            {dogVariants.map((variant) => {
               return (
                 <>
                   <NavLink
