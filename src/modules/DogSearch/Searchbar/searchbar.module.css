@@ -1,5 +1,5 @@
 .searchbar {
-  padding: 0 10px;
+  padding: 10px 10px;
 
   display: flex;
   gap: 15px;
@@ -7,11 +7,10 @@
   border: 1px solid var(--secondary);
   margin: 0 auto;
   justify-content: center;
-  z-index: 2;
 }
 @media (max-width: 660px) {
   .searchbar {
-    width: 300px;
+    width: 250px;
     height: 50px;
   }
 }
@@ -36,6 +35,7 @@
 
 .search-input {
   z-index: 1;
+  max-width: 180px;
 }
 
 .input-wrapper {
