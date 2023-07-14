@@ -18,10 +18,15 @@ export type DogListDTO = {
 
 export type DogEntries = [string, [] | string[]][];
 
-export type DogBreedsDTO = {
+export type DogVariantsDTO = {
   message: string[];
   status: "success" | "error";
   code?: number;
 };
 
-export type DogBreeds = string[];
+export type DogVariants = string[];
+
+export type NavLinkState = {
+  isActive: boolean;
+  isPending: boolean;
+};

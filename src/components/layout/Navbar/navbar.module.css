@@ -1,7 +1,6 @@
 .nav {
   height: 25px;
   width: 95%;
-  z-index: 2;
   bottom: 0;
   left: 0;
   display: flex;
@@ -18,10 +17,10 @@
 }
 
 .active {
+  /* a change svg icon color with css  */
   filter: invert(44%) sepia(65%) saturate(629%) hue-rotate(158deg) brightness(87%)
     contrast(89%);
 }
-/* a change svg icon color with css  */
 
 .button-language {
   padding: 5px 15px;

@@ -5,23 +5,21 @@ import dogIcon from "../../../assets/dog-solid.svg";
 import enFlag from "../../../assets/en.svg";
 import plFlag from "../../../assets/pl.svg";
 import searchIcon from "../../../assets/search.svg";
+import { NavLinkState } from "../../../types";
 import styles from "./navbar.module.css";
 
 export const Navbar: FC = () => {
-  const { t, i18n } = useTranslation();
-  const navLinkState = ({
-    isActive,
-    isPending,
-  }: {
-    isActive: boolean;
-    isPending: boolean;
-  }) => (isPending ? styles.link : isActive ? styles.active : "");
+  const { i18n } = useTranslation();
+  const navLinkState = ({ isActive, isPending }: NavLinkState) =>
+    isPending ? styles.link : isActive ? styles.active : "";
 
   const [language, setLanguage] = useState(window.localStorage.getItem("lang") === "en");
+  // true - english ; false - polish
 
   const onFlagClick = () => {
-    const i18 = i18n.changeLanguage(`${language ? "pl" : "en"}`);
+    const _ = i18n.changeLanguage(`${language ? "pl" : "en"}`);
     setLanguage(!language);
+
     window.localStorage.setItem("lang", language ? "pl" : "en");
   };
 
