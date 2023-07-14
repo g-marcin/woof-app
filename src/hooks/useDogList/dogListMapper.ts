@@ -1,6 +1,6 @@
-import { DogListDTO } from "../types";
+import { DogListDTO } from "../../types";
 
 export const dogListMapper = (dogListDTO: DogListDTO) => {
   console.log(dogListDTO);
-  return Object.keys(dogListDTO.message);
+  return Object.entries(dogListDTO.message);
 };

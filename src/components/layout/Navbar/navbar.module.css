@@ -1,28 +1,34 @@
-nav {
-  margin: 0;
-  padding: 0;
-}
-
-.nav {
-  height: 30px;
-  width: 100vw;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+.navbar {
+  height: 25px;
+  width: 95%;
   display: flex;
   align-items: center;
-  gap: 25px;
+  justify-content: space-between;
   padding: 15px;
   background: var(--secondary);
-  text-align: center;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 660px) {
   .nav {
-    justify-content: center;
+    width: 92%;
   }
 }
 
 .active {
-  border: 1px solid var(--typography-secondary);
+  /* a change svg icon color with css  */
+  filter: invert(44%) sepia(65%) saturate(629%) hue-rotate(158deg) brightness(87%)
+    contrast(89%);
+}
+
+.button-language {
+  padding: 5px 15px;
+}
+
+.navbar-group {
+  display: flex;
+  gap: 25px;
+}
+
+.icon:hover {
+  opacity: 0.8;
 }

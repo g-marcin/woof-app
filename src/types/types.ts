@@ -4,16 +4,28 @@ export type DogDetailsDTO = {
   code?: number;
 };
 
-export type DogDetails = {
-  imageSrc: string;
+export interface Response {
   status?: "success" | "error";
   code?: number;
-};
+}
 
-export type DogListDTO = {
+export interface DogDetails extends Response {
+  imageSrc: string;
+}
+
+export interface DogListDTO extends Response {
   message: { [k: string]: [] | string[] };
-  status: string;
-  code?: number;
-};
+}
 
-export type DogList = string[];
+export type DogEntries = [string, [] | string[]][];
+
+export interface DogVariantsDTO extends Response {
+  message: string[];
+}
+
+export type DogVariants = string[];
+
+export type NavLinkState = {
+  isActive: boolean;
+  isPending: boolean;
+};

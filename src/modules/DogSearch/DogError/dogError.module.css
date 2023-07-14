@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon {
+  background: var(--typography-primary);
+  border-radius: 50%;
+  width: 85px;
+  height: 85px;
+  padding: 70px;
+  margin: 35px 0;
+}
