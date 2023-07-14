@@ -16,4 +16,4 @@ export type DogListDTO = {
   code?: number;
 };
 
-export type DogList = string[];
+export type DogEntries = [string, [] | string[]][];
