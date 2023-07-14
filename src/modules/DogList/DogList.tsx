@@ -14,7 +14,9 @@ const DogList: FC = () => {
       {dogEntries.map(([dog, variants]) => {
         return (
           <div className={styles["list-item"]}>
-            <Link to={`/search/${dog}`}>{dog}</Link>
+            <Link to={`/search/${dog}`} className={styles["link"]}>
+              {dog}
+            </Link>
             <div className={styles["tags-wrapper"]}>
               {variants.map((variant) => {
                 return (

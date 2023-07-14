@@ -18,6 +18,10 @@
   gap: 20px;
 }
 
+.link:hover {
+  color: white;
+}
+
 .tag {
   display: flex;
   align-items: center;
