@@ -70,7 +70,8 @@ input {
   display: flex;
 }
 
-button.primary {
+button.primary,
+.primary {
   background: var(--secondary);
   font-size: 14px;
   font-weight: 600;
@@ -84,6 +85,7 @@ button.primary {
   letter-spacing: 0.02em;
 }
 
-button.primary:hover {
+button.primary:hover,
+.primary:hover {
   opacity: 0.8;
 }

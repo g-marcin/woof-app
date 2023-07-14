@@ -4,7 +4,7 @@ import { Outlet, useParams } from "react-router-dom";
 import { Searchbar } from ".";
 import styles from "./dogSearch.module.css";
 
-export const DogSearch: FC = () => {
+const DogSearch: FC = () => {
   const { breedName } = useParams();
   const { t } = useTranslation();
 
@@ -18,3 +18,5 @@ export const DogSearch: FC = () => {
     </div>
   );
 };
+
+export default DogSearch;
