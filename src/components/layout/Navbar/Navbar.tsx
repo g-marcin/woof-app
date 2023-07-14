@@ -16,10 +16,13 @@ export const Navbar: FC = () => {
   };
   const [language, setLanguage] = useState(getUserLanguage() === "en");
   const onFlagClick = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _ = i18n.changeLanguage(`${language ? "pl" : "en"}`);
-    setLanguage(() => !language);
-    window.localStorage.setItem("lang", language ? "pl" : "en");
+    i18n
+      .changeLanguage(`${language ? "pl" : "en"}`)
+      .then(() => {
+        setLanguage(() => !language);
+        window.localStorage.setItem("lang", language ? "pl" : "en");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
