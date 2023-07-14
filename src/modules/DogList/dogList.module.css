@@ -2,12 +2,14 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-  max-height: 82vh;
+  max-height: 90vh;
   overflow-y: scroll;
+  align-self: center;
+  justify-self: center;
 }
 @media (max-width: 660px) {
   .main-wrapper {
-    max-height: 88vh;
+    max-height: 100vh;
   }
 }
 
