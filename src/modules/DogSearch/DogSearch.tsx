@@ -10,13 +10,13 @@ export const DogSearch: FC<DogSearchProps> = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const onSearch = () => {
-    navigate(`${searchQuery}`);
+    navigate(`${searchQuery}`.toLocaleLowerCase());
   };
 
   return (
     <div className={styles["main-wrapper"]}>
       <h1 className={styles["search-header"]}>Szukaj a znajdziesz: </h1>
-      <div className={styles["searchbar"]}>
+      <form className={styles["searchbar"]}>
         <div className={styles["input-wrapper"]}>
           <input
             type="text"
@@ -27,10 +27,10 @@ export const DogSearch: FC<DogSearchProps> = () => {
           />
           <div className={styles["input-label"]}>Wpisz rasę, której szukasz</div>
         </div>
-        <button className="primary" onClick={onSearch}>
+        <button type="submit" className="primary" onClick={onSearch}>
           Szukaj
         </button>
-      </div>
+      </form>
       <Outlet />
     </div>
   );
