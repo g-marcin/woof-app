@@ -67,7 +67,7 @@
   display: flex;
   align-items: center;
   background: var(--secondary);
-  color: var(--typography-secondary);
+  color: var(--typography-active);
   border-radius: 12px;
   padding: 4px;
   font-size: 10px;

@@ -1,11 +1,21 @@
-:root {
+html[data-theme="light"] {
   --primary: #1f1d2b;
   --secondary: #efba54;
   --typography-primary: #787779;
   --typography-secondary: #000000;
   --typography-headers: #ffffff;
-  --link-pending: #131625;
+  --typography-active: #000000;
   --link-active: #1f83bb;
+}
+
+html[data-theme="dark"] {
+  --primary: #8d8d92;
+  --secondary: #ffffff;
+  --typography-primary: #0f0e0f;
+  --typography-secondary: #0c0c0c;
+  --typography-headers: #000000;
+  --typography-active: #ffffff;
+  --link-active: #0a0a0a;
 }
 
 * {
@@ -78,6 +88,7 @@ button.primary,
   align-items: center;
   color: var(--typography-secondary);
   letter-spacing: 0.02em;
+  padding: 2px;
 }
 
 button.primary:hover,
