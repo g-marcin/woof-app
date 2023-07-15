@@ -1,16 +1,23 @@
 .list-wrapper {
   display: flex;
   flex-direction: column;
-  max-height: 85vh;
+  max-height: 90vh;
   overflow-y: scroll;
   width: 800px;
   margin: 0 auto;
+  padding-left: 10px;
 }
 @media (max-width: 660px) {
   .main-wrapper {
-    height: 90vh;
-    margin-top: 250px;
+    max-height: 90vh;
     margin: 0;
+    align-self: center;
+    justify-self: center;
+  }
+}
+@media (max-width: 660px) {
+  .list-header {
+    padding-top: 20px;
   }
 }
 
