@@ -87,6 +87,4 @@ button.primary:hover,
 
 .dark {
   filter: brightness(0.8);
-
-  overflow: hidden;
 }
