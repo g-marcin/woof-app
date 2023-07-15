@@ -1,6 +1,8 @@
 import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
+import bulbRegular from "../../../assets/bulb-regular.svg";
+import bulbSolid from "../../../assets/bulb-solid.svg";
 import dogIcon from "../../../assets/dog-solid.svg";
 import enFlag from "../../../assets/en.svg";
 import infoIcon from "../../../assets/info.svg";
@@ -11,6 +13,7 @@ import styles from "./navbar.module.css";
 
 export const Navbar: FC = () => {
   const { i18n } = useTranslation();
+  const [isDark, setIsDark] = useState(false);
   const navLinkState = ({ isActive }: NavLinkState) => (isActive ? styles.active : "");
   const getUserLanguage = () => {
     return window.localStorage.getItem("lang");
@@ -25,6 +28,15 @@ export const Navbar: FC = () => {
       })
       .catch((error) => console.log(error));
   };
+  const onBulbClick = () => {
+    const currentTheme = isDark;
+    const newTheme = !currentTheme;
+    setIsDark(newTheme);
+    window.localStorage.setItem("theme", newTheme ? "light" : "dark");
+    document
+      .getElementsByTagName("body")[0]
+      .setAttribute("class", `${newTheme ? "dark" : ""}`);
+  };
 
   return (
     <nav className={styles["navbar"]}>
@@ -37,6 +49,13 @@ export const Navbar: FC = () => {
         </NavLink>
       </span>
       <span className={styles["navbar-group"]}>
+        <button onClick={onBulbClick}>
+          {isDark ? (
+            <img src={bulbRegular} alt="bulb-off" />
+          ) : (
+            <img src={bulbSolid} alt="bulb-on" />
+          )}
+        </button>
         <NavLink to="/readme" className={navLinkState}>
           <img src={infoIcon} alt="info-icon" className={styles.icon} />
         </NavLink>

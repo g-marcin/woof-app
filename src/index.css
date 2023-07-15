@@ -16,7 +16,6 @@
 }
 
 body {
-  /* margin: 0 300px; */
   margin: 0;
   padding: 0;
   background: var(--primary);
@@ -83,5 +82,11 @@ button.primary,
 
 button.primary:hover,
 .primary:hover {
-  opacity: 0.8;
+  opacity: 0.7;
+}
+
+.dark {
+  filter: brightness(0.8);
+
+  overflow: hidden;
 }

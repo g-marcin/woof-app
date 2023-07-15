@@ -17,11 +17,6 @@ nav {
   margin-top: 10px;
 }
 
-@media (max-width: 660px) {
-  .navbar {
-  }
-}
-
 .active {
   /* a change svg icon color with css  */
   filter: invert(44%) sepia(65%) saturate(629%) hue-rotate(158deg) brightness(87%)
@@ -35,9 +30,15 @@ nav {
 .navbar-group {
   display: flex;
   gap: 25px;
-  padding: 15px;
+  padding: 15px 25px;
+  align-items: center;
+  align-content: center;
 }
 
 .icon:hover {
   opacity: 0.8;
+}
+
+.icon {
+  align-items: center;
 }
