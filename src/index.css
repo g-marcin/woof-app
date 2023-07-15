@@ -91,3 +91,13 @@ button.primary:hover,
   padding: 0;
   height: 100vh;
 }
+.light {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+.theme {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
