@@ -15,7 +15,7 @@ const LandingPage: FC = () => {
       <Link to="/home" className="primary">
         {t("buttons.start")}
       </Link>
-      <Link to="/home" className="primary">
+      <Link to="/readme" className="primary">
         {t("buttons.readme")}
       </Link>
     </div>
