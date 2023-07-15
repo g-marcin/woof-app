@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import dogIcon from "../../../assets/dog-solid.svg";
 import enFlag from "../../../assets/en.svg";
+import infoIcon from "../../../assets/info.svg";
 import plFlag from "../../../assets/pl.svg";
 import searchIcon from "../../../assets/search.svg";
 import { NavLinkState } from "../../../types";
@@ -36,6 +37,9 @@ export const Navbar: FC = () => {
         </NavLink>
       </span>
       <span className={styles["navbar-group"]}>
+        <NavLink to="/readme" className={navLinkState}>
+          <img src={infoIcon} alt="info-icon" className={styles.icon} />
+        </NavLink>
         <button onClick={onFlagClick} className={styles["button-language"]}>
           {language ? (
             <img src={plFlag} alt="polish-flag" />

@@ -8,6 +8,7 @@ import { ErrorPage } from "./ErrorPage";
 const DogList = lazy(() => import("../modules/DogList/DogList"));
 const DogSearch = lazy(() => import("../modules/DogSearch/DogSearch"));
 const LandingPage = lazy(() => import("../modules/LandingPage/LandingPage"));
+const Readme = lazy(() => import("../modules/Readme/Readme"));
 export const AppRouter = createBrowserRouter([
   {
     path: "",
@@ -20,6 +21,14 @@ export const AppRouter = createBrowserRouter([
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             <LandingPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/readme",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Readme />
           </Suspense>
         ),
       },

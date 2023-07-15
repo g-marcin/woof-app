@@ -20,6 +20,7 @@ export const en = {
     search: "Search",
     clickMe: "Click me!",
     start: "Start",
+    readme: "Readme",
   },
   labels: {
     typeDog: "Type requested breed",
