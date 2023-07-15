@@ -20,6 +20,8 @@
 
 .header {
   padding: 20px 0;
+  display: flex;
+  gap: 15px;
 }
 
 .logo-text {
