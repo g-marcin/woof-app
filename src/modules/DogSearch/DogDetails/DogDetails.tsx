@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { RefreshCw } from "react-feather";
 import { useTranslation } from "react-i18next";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDogDetails, useDogVariants } from "../../../hooks";
@@ -46,22 +45,25 @@ export const DogDetails: FC = () => {
           </div>
           <h1>
             {capitalizeFirstLetter(breedName)} {t("headers.variants")}{" "}
-            <button
-              onClick={() => {
-                variant && navigate(`/search/${breedName}`);
-              }}
-            >
-              <RefreshCw size={12} />
-            </button>
           </h1>
           <div className={styles["tags-wrapper"]}>
             {dogVariants.length === 0 && (
               <p className={styles["tag"]}>{t("content.noVariants")}</p>
             )}
-            {dogVariants.map((variant) => {
+            {dogVariants.map((dogVariant) => {
               return (
-                <NavLink to={`/search/${breedName}/${variant}`} className={navLinkState}>
-                  {variant}
+                <NavLink
+                  onClick={(e) => {
+                    const target = e.target as Element;
+                    if (target.innerHTML === variant) {
+                      e.preventDefault();
+                      navigate(`/search/${breedName}`);
+                    }
+                  }}
+                  to={`/search/${breedName}/${dogVariant}`}
+                  className={navLinkState}
+                >
+                  {dogVariant}
                 </NavLink>
               );
             })}
