@@ -8,7 +8,6 @@ export const DogIntro: FC = () => {
   return (
     <div className={styles["wrapper"]}>
       <img src={dogIcon} alt="search" className={styles.icon} />
-
       <p>
         {t("content.intro1")}
         <br />
