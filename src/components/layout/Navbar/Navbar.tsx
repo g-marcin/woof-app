@@ -33,9 +33,7 @@ export const Navbar: FC = () => {
     const newTheme = !currentTheme;
     setIsDark(newTheme);
     window.localStorage.setItem("theme", newTheme ? "light" : "dark");
-    document
-      .getElementsByTagName("body")[0]
-      .setAttribute("class", `${newTheme ? "dark" : ""}`);
+    document.getElementById("theme")?.setAttribute("class", `${newTheme ? "dark" : ""}`);
   };
 
   return (
