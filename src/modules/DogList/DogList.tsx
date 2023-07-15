@@ -13,7 +13,7 @@ const DogList: FC = () => {
       <h1 className={styles["list-header"]}>{t("headers.dogList")}</h1>
       {dogEntries.map(([dog, variants]) => {
         return (
-          <div className={styles["list-item"]}>
+          <div className={styles["list-item"]} key={dog}>
             <Link to={`/search/${dog}`} className={styles["link"]}>
               {dog}
             </Link>
@@ -21,6 +21,7 @@ const DogList: FC = () => {
               {variants.map((variant) => {
                 return (
                   <button
+                    key={variant}
                     onClick={() => {
                       navigate(`/search/${dog}/${variant}`);
                     }}

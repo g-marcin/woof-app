@@ -62,6 +62,7 @@ export const DogDetails: FC = () => {
                   }}
                   to={`/search/${breedName}/${dogVariant}`}
                   className={navLinkState}
+                  key={dogVariant}
                 >
                   {dogVariant}
                 </NavLink>

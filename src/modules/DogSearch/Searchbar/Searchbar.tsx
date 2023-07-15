@@ -1,10 +1,11 @@
 import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./searchbar.module.css";
 
 export const Searchbar: FC = () => {
   const { t } = useTranslation();
+  const { breedName } = useParams();
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const onSearch = () => {
@@ -23,6 +24,16 @@ export const Searchbar: FC = () => {
           }}
           autoFocus
           required
+          placeholder={breedName}
+          onFocus={(e) => {
+            e.target.placeholder = "";
+          }}
+          onBlur={(e) => {
+            if (!breedName) {
+              return;
+            }
+            e.target.setAttribute("placeholder", breedName);
+          }}
         />
         <div className={styles["input-label"]}>{t("labels.typeDog")}</div>
       </div>
