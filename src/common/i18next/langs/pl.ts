@@ -5,6 +5,7 @@ export const pl = {
     unfortunately: "Niestety",
     variants: "- rodzaje",
     welcome: "Cześć!",
+    readme: "PL",
   },
   content: {
     dogDescription1:
@@ -28,5 +29,18 @@ export const pl = {
   errors: {
     noBreed1: "Ajajaj! Tej rasy nie ma jeszcze",
     noBreed2: " w naszej bazie. Poszukaj innej",
+  },
+  readme: {
+    router1: `Zastosowałem react-router do zmiany stron, strony z danymi pobierają je za pomocą
+        custom-hooków. `,
+    router2: `np useDogList hook pobiera liste ras i pod-ras psów. Następnie dane
+        wyświetlane są w komponencie DogList.`,
+    axios: `Użyłem http-clienta żeby łatwiej wysyłać rządania do API oraz umożliwić zmianę opcji rządań(np. nagłówków) w przyszłości`,
+    i18next: `Dodałem tłumaczenia przez biblotekę i18-next żeby pokazać że kojarzę temat internacjonalizacji`,
+    svgIcons: `Użyłem ikon w formacie svg pobranych ze strony font-awesome`,
+    formApi: `Użyłem html tagu form żeby w prosty sposób umożliwić wysyłanie submitu po kliknęciu ENTER`,
+    inputValidation: `Dodałem prostą validację do imputu za pomocą atrybutu required`,
+    cssModules: `Użyłem css modules żeby rozdzielić style do oddzielnych plików co zapewnia enkapsulację styli`,
+    cssVariables: `Użyłem zmiennych css  żeby w prosty sposób można było edytować kolory aplikacji`,
   },
 } as const;

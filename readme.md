@@ -23,7 +23,8 @@
 <h3 >input-validation</h3 >
 <p >I added simple built-in validation with input <b>required</b> attribute</p>
 <h3 >css-modules</h3 >
-<p >I used separate css-modules for each component for <h3 >css-variables</h3 >
+<p >I used separate css-module for each component to support style encapsulation.
+<h3 >css-variables</h3 >
 <p >I used css-variables to collect colors in one place. They may be changed easily</p>
 
 <h1 >PL:</h1>
