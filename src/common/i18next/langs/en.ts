@@ -1,9 +1,9 @@
 export const en = {
   headers: {
-    dogList: "Breed list",
+    dogList: "Breed list:",
     keepSearching: "Keep looking!",
     unfortunately: "Unfortunately",
-    variants: "- variants",
+    variants: "- variants:",
     welcome: "Welcome!",
     readme: "EN",
   },
@@ -24,7 +24,7 @@ export const en = {
     readme: "Readme",
   },
   labels: {
-    typeDog: "Type requested breed",
+    typeDog: "Type requested breed...",
   },
   errors: {
     noBreed1: "Oh no! This race is not ",
@@ -38,10 +38,14 @@ eg. useDogList hook gets breeds & subBreeds list and pass to DogList component.
     `,
     axios: `Axios http-client was used for http requests as it will be more easy to customize request options in the future and improve the app.`,
     i18next: `I added i18 next translation to show i am aware of this library and importance of internationalization process.`,
-    svgIcons: `I used svg icons manually downloaderd from font-awesome website`,
+    svgIcons: `I used svg icons manually downloaded from font-awesome website`,
     formApi: `I used form tag to enable submit on ENTER click.`,
     inputValidation: `I added simple built-in validation with input required attribute.`,
     cssModules: `I used separate css-module for each component to support style encapsulation.`,
     cssVariables: `I used css-variables to collect colors in one place. They may be changed easily.`,
+    darkMode: `I used css-variables to implement simple dark mode feature.`,
+    lazyLoading: `I used lazy loadning to load each page which reduces amount of data required to be download on page load`,
+    inputAutofocus: `I added built in autofocus attribute to input tag `,
+    responsiveDesign: `App is fully responsive. Ready to be displayed on desktop, tablet and mobile devices`,
   },
 } as const;

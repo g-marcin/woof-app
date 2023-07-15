@@ -34,7 +34,6 @@ export const pl = {
     router: `Użyłem react router do poruszania się pomiędzy stronami. Nawigacja jest obsłużona z pomocą komponentów <Link> i <NavLink> oraz hooka useNavigate(). `,
     customHooks1: `Każda strona z danymi używa custom-hooka do pobrania ich po wejściu na daną stronę.`,
     customHooks2: `
-eg. useDogList hook gets breeds & subBreeds list and pass to DogList component.
 np hook useDogList pobiera dane o rasach i podrasach. Następnie hook użyty jest w komponencie dogList.
     `,
     axios: `Użyłem http-clienta żeby łatwiej wysyłać rządania do API oraz umożliwić zmianę opcji rządań(np. nagłówków) w przyszłości.`,
@@ -44,5 +43,9 @@ np hook useDogList pobiera dane o rasach i podrasach. Następnie hook użyty jes
     inputValidation: `Dodałem prostą validację do imputu za pomocą atrybutu required.`,
     cssModules: `Użyłem css modules żeby rozdzielić style do oddzielnych plików co zapewnia enkapsulację styli.`,
     cssVariables: `Użyłem zmiennych css  żeby w prosty sposób można było edytować kolory aplikacji.`,
+    darkMode: `Użyłem zmiennych css do zaimplementowania podstawowej funkcjonalności dark theme.`,
+    lazyLoading: `Użyłem lazy loading importu żeby zmniejszyć ilość danych potrzebnych do załadowania strony`,
+    inputAutofocus: `Wykorzystałem wbudowany attrybut autofocus na htmlowym tagu input `,
+    responsiveDesign: `Aplikacja jest responsywna. Można używać na desktopie, tablecie i telefonie`,
   },
 } as const;

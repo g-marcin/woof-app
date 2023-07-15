@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: fit-content;
+  gap: 10px;
 }
 
 .image-wrapper {
@@ -20,11 +21,13 @@
   object-fit: fill;
   cursor: pointer;
   z-index: -1;
+  padding: 4px;
+  background: var(--secondary);
 }
 
 .avatar-description {
   position: absolute;
-  top: 98%;
+  top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -35,6 +38,7 @@
   cursor: pointer;
   pointer-events: none;
 
+  padding: 40px;
   gap: 15px;
   align-items: center;
   font-weight: bold;
