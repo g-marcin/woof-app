@@ -11,7 +11,7 @@
 }
 @media (max-width: 660px) {
   .main {
-    padding: 0;
+    padding: 0 10px;
     margin-bottom: -15px;
   }
 }
