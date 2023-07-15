@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import bulbRegular from "../../../assets/bulb-regular.svg";
@@ -13,12 +13,9 @@ import styles from "./navbar.module.css";
 
 export const Navbar: FC = () => {
   const { i18n } = useTranslation();
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(window.localStorage.getItem("theme") === "dark");
   const navLinkState = ({ isActive }: NavLinkState) => (isActive ? styles.active : "");
-  const getUserLanguage = () => {
-    return window.localStorage.getItem("lang");
-  };
-  const [language, setLanguage] = useState(getUserLanguage() === "en");
+  const [language, setLanguage] = useState(window.localStorage.getItem("lang") === "en");
   const onFlagClick = () => {
     i18n
       .changeLanguage(`${language ? "pl" : "en"}`)
@@ -28,14 +25,20 @@ export const Navbar: FC = () => {
       })
       .catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    document
+      .getElementsByTagName("html")[0]
+      .setAttribute("data-theme", window.localStorage.getItem("theme") || "dark");
+  }, []);
   const onBulbClick = () => {
     const currentTheme = isDark;
     const newTheme = !currentTheme;
+    window.localStorage.setItem("theme", newTheme ? "dark" : "light");
     setIsDark(newTheme);
-    window.localStorage.setItem("theme", newTheme ? "light" : "dark");
     document
-      .getElementById("theme")
-      ?.setAttribute("class", `${newTheme ? "dark" : "light"}`);
+      .getElementsByTagName("html")[0]
+      ?.setAttribute("data-theme", `${newTheme ? "dark" : "light"}`);
   };
 
   return (
@@ -51,9 +54,9 @@ export const Navbar: FC = () => {
       <span className={styles["navbar-group"]}>
         <button onClick={onBulbClick}>
           {isDark ? (
-            <img src={bulbRegular} alt="bulb-off" />
+            <img src={bulbSolid} alt="bulb-off" />
           ) : (
-            <img src={bulbSolid} alt="bulb-on" />
+            <img src={bulbRegular} alt="bulb-on" />
           )}
         </button>
         <NavLink to="/readme" className={navLinkState}>

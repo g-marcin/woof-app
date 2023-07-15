@@ -34,7 +34,7 @@ export const DogDetails: FC = () => {
               src={`${dogDetails.imageSrc}`}
               alt="dog-image"
               className={styles["details-avatar"]}
-              onClick={() => location.reload()}
+              onClick={() => navigate(0)}
             />
             <div className={styles["avatar-description"]}>{t("buttons.clickMe")}</div>
           </div>

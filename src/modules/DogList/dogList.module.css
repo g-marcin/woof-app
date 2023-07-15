@@ -45,6 +45,7 @@
 
 .tag:hover {
   background: var(--link-active);
+  color: var(--typography-active);
 }
 
 .tags-wrapper {
