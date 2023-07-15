@@ -19,7 +19,8 @@ export const pl = {
   buttons: {
     search: "Szukaj",
     clickMe: "Naciśnij mnie!",
-    start: "Rozpocznij",
+    start: "Dalej",
+    readme: "Readme",
   },
   labels: {
     typeDog: "Wpisz rasę, której szukasz",
