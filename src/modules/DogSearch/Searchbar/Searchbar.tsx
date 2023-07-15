@@ -7,9 +7,8 @@ export const Searchbar: FC = () => {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const onSearch = (e: Event) => {
+  const onSearch = () => {
     if (searchQuery) {
-      e.preventDefault();
       navigate(`/search/${searchQuery}`.toLocaleLowerCase().trim());
     }
   };
