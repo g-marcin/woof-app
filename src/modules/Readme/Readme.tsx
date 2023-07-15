@@ -36,10 +36,18 @@ const Readme: FC = () => {
       <p>{t("readme.formApi")}</p>
       <h1>input-validation:</h1>
       <p>{t("readme.inputValidation")}</p>
+      <h1>input autofocus:</h1>
+      <p>{t("readme.inputAutofocus")}</p>
       <h1>css-modules:</h1>
       <p>{t("readme.cssModules")}</p>
       <h1>css-variables:</h1>
       <p>{t("readme.cssVariables")}</p>
+      <h1>dark-mode:</h1>
+      <p>{t("readme.darkMode")}</p>
+      <h1>lazy-loading:</h1>
+      <p>{t("readme.lazyLoading")}</p>
+      <h1>responive-design:</h1>
+      <p>{t("readme.responsiveDesign")}</p>
     </div>
   );
 };

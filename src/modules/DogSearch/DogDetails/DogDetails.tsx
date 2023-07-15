@@ -39,12 +39,12 @@ export const DogDetails: FC = () => {
             <div className={styles["avatar-description"]}>{t("buttons.clickMe")}</div>
           </div>
           <div className={styles["description-wrapper"]}>
-            <h1>{capitalizeFirstLetter(breedName)}</h1>
+            <h1>{capitalizeFirstLetter(breedName)}:</h1>
             <p>{t("content.dogDescription1")}</p>
             <p>{t("content.dogDescription2")}</p>
           </div>
           <h1>
-            {capitalizeFirstLetter(breedName)} {t("headers.variants")}{" "}
+            {capitalizeFirstLetter(breedName)} {t("headers.variants")}
           </h1>
           <div className={styles["tags-wrapper"]}>
             {dogVariants.length === 0 && (
