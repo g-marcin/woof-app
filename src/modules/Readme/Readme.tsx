@@ -10,7 +10,7 @@ const Readme: FC = () => {
   return (
     <div className={styles["wrapper"]}>
       <span className={styles.header}>
-        <h1>{t("headers.readme")}</h1>
+        <h1>Readme:{t("headers.readme")}</h1>
         {t("headers.readme") == "PL" ? (
           <img src={plFlag} alt="" />
         ) : (
@@ -18,11 +18,13 @@ const Readme: FC = () => {
         )}{" "}
         <img src="" alt="" />
       </span>
-      <h1>react-router & custom hooks:</h1>
+      <h1>react-router:</h1>
+      <p>{t("readme.router")}</p>
+      <h1>custom hooks:</h1>
       <p>
-        {t("readme.router1")}
+        {t("readme.customHooks1")}
         <br />
-        {t("readme.router2")}
+        {t("readme.customHooks2")}
       </p>{" "}
       <h1>Axios:</h1>
       <p>{t("readme.axios")}</p>

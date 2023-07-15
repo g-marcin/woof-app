@@ -13,14 +13,3 @@
   padding: 70px;
   margin: 35px 0;
 }
-
-.main-wrapper {
-  display: flex;
-  flex-direction: column;
-  overflow: scroll;
-}
-
-.details-description {
-  text-justify: distribute;
-  align-items: center;
-}

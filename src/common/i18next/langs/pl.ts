@@ -31,16 +31,18 @@ export const pl = {
     noBreed2: " w naszej bazie. Poszukaj innej",
   },
   readme: {
-    router1: `Zastosowałem react-router do zmiany stron, strony z danymi pobierają je za pomocą
-        custom-hooków. `,
-    router2: `np useDogList hook pobiera liste ras i pod-ras psów. Następnie dane
-        wyświetlane są w komponencie DogList.`,
-    axios: `Użyłem http-clienta żeby łatwiej wysyłać rządania do API oraz umożliwić zmianę opcji rządań(np. nagłówków) w przyszłości`,
-    i18next: `Dodałem tłumaczenia przez biblotekę i18-next żeby pokazać że kojarzę temat internacjonalizacji`,
-    svgIcons: `Użyłem ikon w formacie svg pobranych ze strony font-awesome`,
-    formApi: `Użyłem html tagu form żeby w prosty sposób umożliwić wysyłanie submitu po kliknęciu ENTER`,
-    inputValidation: `Dodałem prostą validację do imputu za pomocą atrybutu required`,
-    cssModules: `Użyłem css modules żeby rozdzielić style do oddzielnych plików co zapewnia enkapsulację styli`,
-    cssVariables: `Użyłem zmiennych css  żeby w prosty sposób można było edytować kolory aplikacji`,
+    router: `Użyłem react router do poruszania się pomiędzy stronami. Nawigacja jest obsłużona z pomocą komponentów <Link> i <NavLink> oraz hooka useNavigate(). `,
+    customHooks1: `Każda strona z danymi używa custom-hooka do pobrania ich po wejściu na daną stronę.`,
+    customHooks2: `
+eg. useDogList hook gets breeds & subBreeds list and pass to DogList component.
+np hook useDogList pobiera dane o rasach i podrasach. Następnie hook użyty jest w komponencie dogList.
+    `,
+    axios: `Użyłem http-clienta żeby łatwiej wysyłać rządania do API oraz umożliwić zmianę opcji rządań(np. nagłówków) w przyszłości.`,
+    i18next: `Dodałem tłumaczenia przez biblotekę i18-next żeby pokazać że kojarzę temat internacjonalizacji.`,
+    svgIcons: `Użyłem ikon w formacie svg pobranych ze strony font-awesome.`,
+    formApi: `Użyłem html tagu form żeby w prosty sposób umożliwić wysyłanie submitu po kliknęciu ENTER.`,
+    inputValidation: `Dodałem prostą validację do imputu za pomocą atrybutu required.`,
+    cssModules: `Użyłem css modules żeby rozdzielić style do oddzielnych plików co zapewnia enkapsulację styli.`,
+    cssVariables: `Użyłem zmiennych css  żeby w prosty sposób można było edytować kolory aplikacji.`,
   },
 } as const;

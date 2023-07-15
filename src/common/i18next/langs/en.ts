@@ -31,14 +31,17 @@ export const en = {
     noBreed2: "available yet. Keep looking!",
   },
   readme: {
-    router1: `I used react router to enable navigating between diferent pages. Each page with content uses custom hook and request required data.`,
-    router2: `eg. useDogList hook gets breeds & subBreeds list and pass to DogList component.`,
-    axios: `Axios http-client was used for http requests as it will be more easy to customize request options in the future and improve the app`,
+    router: `I used react router to enable navigating between diferent pages. Navigation is done with <Navlink>, <Link> components and useNavigate() hook.`,
+    customHooks1: `Each page with content uses custom hook and request required data.`,
+    customHooks2: `
+eg. useDogList hook gets breeds & subBreeds list and pass to DogList component.
+    `,
+    axios: `Axios http-client was used for http requests as it will be more easy to customize request options in the future and improve the app.`,
     i18next: `I added i18 next translation to show i am aware of this library and importance of internationalization process.`,
     svgIcons: `I used svg icons manually downloaderd from font-awesome website`,
-    formApi: `I used form tag to enable submit on ENTER click`,
-    inputValidation: `I added simple built-in validation with input required attribute`,
+    formApi: `I used form tag to enable submit on ENTER click.`,
+    inputValidation: `I added simple built-in validation with input required attribute.`,
     cssModules: `I used separate css-module for each component to support style encapsulation.`,
-    cssVariables: `I used css-variables to collect colors in one place. They may be changed easily`,
+    cssVariables: `I used css-variables to collect colors in one place. They may be changed easily.`,
   },
 } as const;

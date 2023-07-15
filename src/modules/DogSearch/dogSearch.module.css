@@ -5,9 +5,14 @@
   margin: 0 auto;
   max-width: 850px;
 
-  overflow-y: scroll;
   padding-top: 20px;
   padding-bottom: 65px;
+}
+
+@media (max-width: 660px) {
+  .main-wrapper {
+    overflow: scroll;
+  }
 }
 
 .search-header {
