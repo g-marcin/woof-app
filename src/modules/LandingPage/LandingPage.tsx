@@ -9,8 +9,9 @@ const LandingPage: FC = () => {
 
   return (
     <div className={styles["wrapper"]}>
-      <h1>{t("headers.welcome")}</h1>
+      <h1 className={styles["header"]}>{t("headers.welcome")}</h1>
       <img src={dogIcon} alt="" className={styles["icon"]} />
+      <div className={styles["logo-text"]}>Woof-app</div>
       <Link to="/home" className="primary">
         {t("buttons.start")}
       </Link>

@@ -1,5 +1,5 @@
 .main {
-  padding: 65px 0;
+  padding: 65px 10px;
   z-index: 0;
 }
 
@@ -12,6 +12,7 @@
 @media (max-width: 660px) {
   .main {
     padding: 0;
+    margin-bottom: -15px;
   }
 }
 
