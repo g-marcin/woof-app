@@ -99,5 +99,4 @@ button.primary:hover,
 .theme {
   display: flex;
   height: 100vh;
-  overflow: hidden;
 }
