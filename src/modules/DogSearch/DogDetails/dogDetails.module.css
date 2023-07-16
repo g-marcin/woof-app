@@ -89,3 +89,15 @@
 .close {
     padding: 10px;
 }
+
+.loader-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vw;
+    max-width: 680px;
+    margin: auto;
+    padding-left: 10px;
+    justify-self: center;
+    height: 100vh;
+    padding: 25vh 0;
+}
