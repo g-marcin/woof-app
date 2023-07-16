@@ -1,1 +1,1 @@
-export * from "./DogError";
+export * from './DogError';

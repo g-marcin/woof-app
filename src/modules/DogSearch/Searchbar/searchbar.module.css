@@ -1,45 +1,45 @@
 .searchbar {
-  width: 620px;
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  border: 2px solid var(--secondary);
-  margin: 0 auto;
-  justify-content: center;
-  padding: 5px 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 620px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    border: 2px solid var(--secondary);
+    margin: 0 auto;
+    justify-content: center;
+    padding: 5px 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 @media (max-width: 660px) {
-  .searchbar {
-    max-width: 320px;
-    height: 50px;
-  }
+    .searchbar {
+        max-width: 320px;
+        height: 50px;
+    }
 }
 
 .input-label {
-  display: flex;
-  justify-content: center;
-  color: var(--typography-secondary);
-  width: 130px;
-  height: 15px;
-  font-size: 8px;
-  background: var(--secondary);
-  z-index: 2;
-  position: relative;
-  bottom: 50px;
-  left: 15px;
+    display: flex;
+    justify-content: center;
+    color: var(--typography-secondary);
+    width: 130px;
+    height: 15px;
+    font-size: 8px;
+    background: var(--secondary);
+    z-index: 2;
+    position: relative;
+    bottom: 50px;
+    left: 15px;
 }
 
 .input-wrapper {
-  z-index: 0;
+    z-index: 0;
 }
 
 .search-input {
-  z-index: 1;
-  max-width: 180px;
+    z-index: 1;
+    max-width: 180px;
 }
 
 .input-wrapper {
-  align-self: center;
-  padding-top: 15px;
+    align-self: center;
+    padding-top: 15px;
 }
