@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import dogIcon from '../../assets/shield-dog-solid.svg';
 import styles from './landingPage.module.css';
 
-const LandingPage: FC = () => {
+export const LandingPage: FC = () => {
     const { t } = useTranslation();
 
     return (
@@ -21,5 +21,3 @@ const LandingPage: FC = () => {
         </div>
     );
 };
-
-export default LandingPage;

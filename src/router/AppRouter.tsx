@@ -1,17 +1,15 @@
 import { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import { Layout } from '../components';
-
-import { DogIntro } from '../modules/DogSearch/DogIntro';
+import { Layout, Loader } from '../components';
+import { LandingPage } from '../modules/LandingPage/LandingPage';
 import { ErrorPage } from './ErrorPage';
-
 const DogList = lazy(() => import('../modules/DogList/DogList'));
 const DogSearch = lazy(() => import('../modules/DogSearch/DogSearch'));
+const Readme = lazy(() => import('../modules/Readme/Readme'));
 const DogDetails = lazy(
     () => import('../modules/DogSearch/DogDetails/DogDetails'),
 );
-const LandingPage = lazy(() => import('../modules/LandingPage/LandingPage'));
-const Readme = lazy(() => import('../modules/Readme/Readme'));
+const DogIntro = lazy(() => import('../modules/DogSearch/DogIntro/DogIntro'));
 export const AppRouter = createBrowserRouter([
     {
         path: '',
@@ -21,16 +19,12 @@ export const AppRouter = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: (
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <LandingPage />
-                    </Suspense>
-                ),
+                element: <LandingPage />,
             },
             {
                 path: '/readme',
                 element: (
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<Loader />}>
                         <Readme />
                     </Suspense>
                 ),
@@ -38,7 +32,7 @@ export const AppRouter = createBrowserRouter([
             {
                 path: '/home',
                 element: (
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<Loader />}>
                         <DogList />
                     </Suspense>
                 ),
@@ -46,7 +40,7 @@ export const AppRouter = createBrowserRouter([
             {
                 path: '/search',
                 element: (
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<Loader />}>
                         <DogSearch />
                     </Suspense>
                 ),
@@ -54,15 +48,25 @@ export const AppRouter = createBrowserRouter([
                     {
                         path: '',
                         element: (
-                            <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense fallback={<Loader />}>
                                 <DogIntro />
                             </Suspense>
                         ),
                     },
                     {
-                        path: ':breedName*',
+                        path: ':breedName',
+
                         element: (
-                            <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense fallback={<Loader />}>
+                                <DogDetails />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':breedName/:variant',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                {' '}
                                 <DogDetails />
                             </Suspense>
                         ),
