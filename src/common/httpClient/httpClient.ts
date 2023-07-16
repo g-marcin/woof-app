@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const httpClient = axios.create({
-  baseURL: `https://dog.ceo/api`,
-  timeout: 4000,
+    baseURL: `https://dog.ceo/api`,
+    timeout: 4000,
 });

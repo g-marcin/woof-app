@@ -1,44 +1,39 @@
-nav {
-  padding: 0;
-  margin: 0;
-}
-
 .navbar {
-  height: 29px;
-  position: fixed;
-  bottom: 0;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  background: var(--secondary);
-  z-index: 1;
-  margin-top: 10px;
+    height: 29px;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    background: var(--secondary);
+    z-index: 1;
+    margin-top: 10px;
 }
 
 .active {
-  /* a change svg icon color with css  */
-  filter: invert(44%) sepia(65%) saturate(629%) hue-rotate(158deg) brightness(87%)
-    contrast(89%);
+    /* a change svg icon color with css  */
+    filter: invert(44%) sepia(65%) saturate(629%) hue-rotate(158deg)
+        brightness(87%) contrast(89%);
 }
 
 .button-language {
-  margin-top: -2px;
+    margin-top: -2px;
 }
 
 .navbar-group {
-  display: flex;
-  gap: 25px;
-  padding: 15px 25px;
-  align-items: center;
-  align-content: center;
+    display: flex;
+    gap: 25px;
+    padding: 15px 25px;
+    align-items: center;
+    align-content: center;
 }
 
 .icon:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 .icon {
-  align-items: center;
+    align-items: center;
 }

@@ -1,66 +1,72 @@
 .list-wrapper {
-  display: flex;
-  flex-direction: column;
-  max-height: 84vh;
-  overflow-y: scroll;
-  max-width: 680px;
-  margin: 0 auto;
-  padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: 84vh;
+    overflow-y: scroll;
+    max-width: 680px;
+    margin: 0 auto;
+    padding-left: 10px;
 }
-@media (max-width: 660px) {
-  .main-wrapper {
-    max-height: 90vh;
-    margin: 0;
-    align-self: center;
+
+.loader-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vw;
+    max-width: 680px;
+    margin: auto;
+    padding-left: 10px;
     justify-self: center;
-  }
+    height: 100vh;
+    padding: 40vh 0;
 }
+
 @media (max-width: 660px) {
-  .list-header {
-    padding-top: 20px;
-  }
+    .list-header {
+        padding-top: 20px;
+    }
 }
 
 .list-item {
-  padding: 10px 0;
-  padding-left: 5px;
-  display: flex;
-  gap: 20px;
+    padding: 10px 0;
+    padding-left: 5px;
+    display: flex;
+    gap: 20px;
+    cursor: auto;
 }
 
 .list-item:hover {
-  filter: contrast(0.3);
+    filter: contrast(0.3);
 }
 
 .link:hover {
-  color: white;
+    color: white;
 }
 
 .tag {
-  display: flex;
-  align-items: center;
-  background: var(--secondary);
-  color: var(--typography-secondary);
-  border-radius: 12px;
-  padding: 6px;
-  font-size: 10px;
-  height: 13px;
+    display: flex;
+    align-items: center;
+    background: var(--secondary);
+    color: var(--typography-secondary);
+    border-radius: 12px;
+    padding: 6px;
+    font-size: 10px;
+    height: 13px;
 }
 
 .tag:hover {
-  background: var(--link-active);
-  color: var(--typography-active);
+    background: var(--link-active);
+    color: var(--typography-active);
 }
 
 .tags-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  gap: 2px;
-  max-width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 2px;
+    max-width: 400px;
 }
 @media (max-width: 660px) {
-  .tags-wrapper {
-    max-width: 250px;
-  }
+    .tags-wrapper {
+        max-width: 250px;
+    }
 }
