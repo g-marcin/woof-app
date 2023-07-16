@@ -14,11 +14,16 @@
 .animation-container {
     align-self: center;
     justify-self: center;
-    margin: auto;
+    padding: 30vh 50vw;
+}
+@media (max-width: 660px) {
+    .animation-container {
+        padding: 45vh 40vw;
+    }
 }
 
 .icon {
-    /* a change svg icon color with css  */
+    /*  change svg format icon color with css  */
     filter: invert(44%) sepia(65%) saturate(629%) hue-rotate(158deg)
         brightness(87%) contrast(89%);
 }
