@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import dogIcon from '../../../assets/shield-dog-solid.svg';
 import styles from './dogIntro.module.css';
 
-export const DogIntro: FC = () => {
+const DogIntro: FC = () => {
     const { t } = useTranslation();
     return (
         <div className={styles['wrapper']}>
@@ -16,3 +16,4 @@ export const DogIntro: FC = () => {
         </div>
     );
 };
+export default DogIntro;
