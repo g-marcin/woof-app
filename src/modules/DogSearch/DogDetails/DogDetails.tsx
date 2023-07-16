@@ -6,7 +6,7 @@ import { NavLinkState } from '../../../types';
 import { DogError } from '../DogError';
 import styles from './dogDetails.module.css';
 
-export const DogDetails: FC = () => {
+const DogDetails: FC = () => {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const { breedName, variant } = useParams();
@@ -79,3 +79,5 @@ export const DogDetails: FC = () => {
         </>
     );
 };
+
+export default DogDetails;
