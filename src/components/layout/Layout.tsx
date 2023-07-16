@@ -6,12 +6,12 @@ import styles from './layout.module.css';
 
 export const Layout: FC = () => {
     return (
-        <div id="theme" className="light">
+        <>
             <Header />
             <main className={styles.main}>
                 <Outlet />
             </main>
             <Navbar />
-        </div>
+        </>
     );
 };

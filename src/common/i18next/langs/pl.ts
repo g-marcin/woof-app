@@ -24,11 +24,11 @@ export const pl = {
         readme: 'Readme',
     },
     labels: {
-        typeDog: 'Wpisz rasę, której szukasz',
+        typeDog: 'Wpisz rasę, której szukasz...',
     },
     errors: {
         noBreed1: 'Ajajaj! Tej rasy nie ma jeszcze',
-        noBreed2: ' w naszej bazie. Poszukaj innej',
+        noBreed2: ' w naszej bazie. Poszukaj innej.',
     },
     readme: {
         router: `Użyłem react router do poruszania się pomiędzy stronami. Nawigacja jest obsłużona z pomocą komponentów <Link> i <NavLink> oraz hooka useNavigate(). `,

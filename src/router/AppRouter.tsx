@@ -15,7 +15,6 @@ export const AppRouter = createBrowserRouter([
         path: '',
         element: <Layout />,
         errorElement: <ErrorPage errorMessage="Page not found" />,
-
         children: [
             {
                 path: '',
@@ -55,7 +54,6 @@ export const AppRouter = createBrowserRouter([
                     },
                     {
                         path: ':breedName',
-
                         element: (
                             <Suspense fallback={<Loader />}>
                                 <DogDetails />
@@ -66,7 +64,6 @@ export const AppRouter = createBrowserRouter([
                         path: ':breedName/:variant',
                         element: (
                             <Suspense fallback={<Loader />}>
-                                {' '}
                                 <DogDetails />
                             </Suspense>
                         ),
