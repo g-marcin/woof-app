@@ -1,91 +1,73 @@
-:root {
-  --primary: #1f1d2b;
-  --secondary: #efba54;
-  --typography-primary: #787779;
-  --typography-secondary: #000000;
-  --typography-headers: #ffffff;
-  --link-pending: #131625;
-  --link-active: #1f83bb;
-}
-
 * {
-  font-family: Poppins;
-  color: var(--typography-primary);
-  font-weight: 200;
-  font-size: 16px;
+    font-family: Poppins;
+    color: var(--typography-primary);
+    font-weight: 200;
+    font-size: 16px;
 }
-
-/* @media (max-width: 968px) {
-  * {
-    font-size: 14px;
-  }
-} */
 
 body {
-  margin: 0 300px;
-  padding: 0;
-  background: var(--primary);
-  height: 100vh;
-}
-
-@media (max-width: 1365px) {
-  body {
     margin: 0;
-  }
+    padding: 0;
+    background: var(--primary);
+    height: 100vh;
 }
 
 button,
-a {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  background: none;
-  border: none;
-  text-align: start;
-  cursor: pointer;
+a,
+main,
+nav,
+header {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    background: none;
+    border: none;
+    text-align: start;
+    cursor: pointer;
 }
 
 h1 {
-  margin: 0;
-  font-size: 14px;
-  color: var(--typography-headers);
-  font-weight: 400;
+    margin: 0;
+    font-size: 14px;
+    color: var(--typography-headers);
+    font-weight: 400;
 }
 
 p {
-  margin: 10px 0;
-  padding: 0;
-  line-height: 18px;
-  font-size: 12px;
-  letter-spacing: 0.03em;
-  font-weight: 500;
-  padding-left: 5px;
+    margin: 10px 0;
+    padding: 0;
+    line-height: 18px;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    font-weight: 500;
+    padding-left: 5px;
 }
 
 input {
-  background: var(--primary);
-  border: 1px solid var(--typography-primary);
-  border-radius: 8px;
-  padding: 8px;
-  display: flex;
+    background: var(--primary);
+    border: 1px solid var(--typography-primary);
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
 }
 
 button.primary,
 .primary {
-  background: var(--secondary);
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 8px;
-  width: 80px;
-  height: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--typography-secondary);
-  letter-spacing: 0.02em;
+    background: var(--secondary);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    width: 80px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--typography-secondary);
+    letter-spacing: 0.02em;
+    padding: 2px;
 }
 
 button.primary:hover,
 .primary:hover {
-  opacity: 0.8;
+    opacity: 0.7;
 }
