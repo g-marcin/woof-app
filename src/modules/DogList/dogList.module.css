@@ -7,14 +7,19 @@
     margin: 0 auto;
     padding-left: 10px;
 }
-@media (max-width: 660px) {
-    .main-wrapper {
-        max-height: 90vh;
-        margin: 0;
-        align-self: center;
-        justify-self: center;
-    }
+
+.loader-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vw;
+    max-width: 680px;
+    margin: auto;
+    padding-left: 10px;
+    justify-self: center;
+    height: 100vh;
+    padding: 40vh 0;
 }
+
 @media (max-width: 660px) {
     .list-header {
         padding-top: 20px;
