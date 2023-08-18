@@ -4,7 +4,7 @@ https://woof-app-ff670.web.app
 
 
 <h2>Netlify:</h2>
-https://woof-app2.netlify.app
+woof-app2.netlify.app
 <p>Warning! netlify limits some of the functionalities(random picture, search)</p>
 <p>Uwaga! netlify ogranicza niektóre funckcjonalności(losowy obraz, wyszukiwanie)</p>
 
