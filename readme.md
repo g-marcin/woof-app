@@ -49,6 +49,6 @@ http://www.woof-app2.netlify.app
 <h3 >input-validation</h3 >
 <p >Dodałem prostą validację do imputu za pomocą atrybutu <b>required</b></p>
 <h3 >css-modules</h3 >
-<p >Użyłem css modules żeby rozdzielić onentów do odzielnych plików co poprawia enkapsulację styli</p>
+<p >Użyłem css modules żeby rozdzielić style do odzielnych plików co zapewnia enkapsulację styli</p>
 <h3 >css-variables</h3 >
 <p >Użyłem zmiennych css  żeby w prosty sposób można było edytować kolory aplikacji</p>
