@@ -36,7 +36,7 @@ export const pl = {
         customHooks2: `
 np hook useDogList pobiera dane o rasach i podrasach. Następnie hook użyty jest w komponencie dogList.
     `,
-        axios: `Użyłem http-clienta żeby łatwiej wysyłać rządania do API oraz umożliwić zmianę opcji rządań(np. nagłówków) w przyszłości.`,
+        axios: `Użyłem http-clienta żeby łatwiej wysyłać żądania do API oraz umożliwić zmianę opcji żądań(np. nagłówków) w przyszłości.`,
         i18next: `Dodałem tłumaczenia przez biblotekę i18-next żeby pokazać że kojarzę temat internacjonalizacji.`,
         svgIcons: `Użyłem ikon w formacie svg pobranych ze strony font-awesome.`,
         formApi: `Użyłem html tagu form żeby w prosty sposób umożliwić wysyłanie submitu po kliknęciu ENTER.`,
