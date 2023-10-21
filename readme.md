@@ -39,7 +39,7 @@ http://www.woof-app2.netlify.app
 <p >Zastosowałem react-router do zmiany stron, strony z danymi pobierają je za pomocą custom-hooków</p>
 <p >np useDogList hook pobiera liste ras i pod-ras psów. Następnie dane wyświetlane są w komponencie DogList</p>
 <h3 >Axios</h3 >
-<p >Użyłem <b>http-clienta</b> żeby łatwiej wysyłać rządania do API oraz umożliwić zmianę opcji rządań(np. nagłówków) w przyszłości</p>
+<p >Użyłem <b>http-clienta</b> żeby łatwiej wysyłać żądania do API oraz umożliwić zmianę opcji żądań(np. nagłówków) w przyszłości</p>
 <h3 >i18-next</h3 >
 <p >Dodałem tłumaczenia przez biblotekę i18-next żeby pokazać że kojarzę temat internacjonalizacji</p>
 <h3 >svg-icons</h3 >
