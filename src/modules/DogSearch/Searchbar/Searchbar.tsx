@@ -44,6 +44,7 @@ export const Searchbar: FC = () => {
                         }
                         e.target.setAttribute('placeholder', breedName);
                     }}
+                    value={searchQuery}
                 />
                 <div className={styles['input-label']}>
                     {t('labels.typeDog')}
