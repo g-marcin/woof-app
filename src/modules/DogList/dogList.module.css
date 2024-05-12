@@ -31,15 +31,16 @@
     padding-left: 5px;
     display: flex;
     gap: 20px;
-    cursor: auto;
+    cursor: pointer;
 }
 
 .list-item:hover {
-    filter: contrast(0.3);
+    background-color: var(--secondary);
+    color: var(--typography-secondary);
 }
 
 .link:hover {
-    color: white;
+   background:  var(--link-active);
 }
 
 .tag {

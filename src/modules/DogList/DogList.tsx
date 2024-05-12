@@ -22,13 +22,13 @@ const DogList: FC = () => {
                     </h1>
                     {dogEntries.map(([dog, variants]) => {
                         return (
-                            <div className={styles['list-item']} key={dog}>
                                 <Link
                                     to={`/search/${dog}`}
                                     className={styles['link']}
                                 >
+                            <div className={styles['list-item']} key={dog}>
                                     {dog}
-                                </Link>
+                                
                                 <div className={styles['tags-wrapper']}>
                                     {variants.map((variant) => {
                                         return (
@@ -47,6 +47,7 @@ const DogList: FC = () => {
                                     })}
                                 </div>
                             </div>
+                            </Link>
                         );
                     })}
                 </div>
