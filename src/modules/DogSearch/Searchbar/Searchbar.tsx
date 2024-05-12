@@ -1,10 +1,9 @@
-import { FC,useEffect} from 'react';
+import { FC, useState} from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './searchbar.module.css';
 import { Autocomplete } from '../../../components/Autocomplete';
 import { useDogList } from '../../../hooks';
-import { Loader } from '../../../components';
 import { useDogSearchContext } from '../../../hooks/useDogSearchContext';
 
 export type DogBreed = string;
@@ -12,20 +11,21 @@ export type DogBreed = string;
 export const Searchbar: FC = () => {
     const { t } = useTranslation();
     const { breedName } = useParams();
-    const [searchQuery, setSearchQuery] = useDogSearchContext()
     const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useDogSearchContext()
+    const {dogEntries, isLoading} = useDogList();
+    const [isFocused, setIsFocused] = useState(false);
+
     const onSearch = (breedName:DogBreed) => {
         if (searchQuery) {
             navigate(`/search/${breedName}`.toLocaleLowerCase().trim());
         }
+        setIsFocused(false);
     };
-    const {dogEntries, isLoading} = useDogList();
-    useEffect(() => {
-        
-    }, [searchQuery])
     return (
         <form className={styles['searchbar']}>
             <div className={styles['input-wrapper']}>
+                <div className={styles['input-container']}>
                 <input
                     type="text"
                     className={styles['search-input']}
@@ -37,19 +37,25 @@ export const Searchbar: FC = () => {
                     placeholder={breedName}
                     onFocus={(e) => {
                         e.target.placeholder = '';
+                        setIsFocused(true);
                     }}
                     onBlur={(e) => {
                         if (!breedName) {
                             return;
                         }
                         e.target.setAttribute('placeholder', breedName);
+                        setTimeout(() => {
+                             setIsFocused(false);
+                        }, 100);
                     }}
                     value={searchQuery}
                 />
                 <div className={styles['input-label']}>
                     {t('labels.typeDog')}
                 </div>
-            {isLoading ? <Loader/> : <Autocomplete results={dogEntries} searchQuery={searchQuery} setSearchQuery={setSearchQuery} onSearch={onSearch}/>}
+                    {isFocused ? <Autocomplete results={dogEntries} onSearch={onSearch}/>: <></> }
+                </div>
+               
             </div>
             <button type="submit" className="primary" onClick={()=>onSearch(searchQuery as DogBreed)}>
                 {t('buttons.search')}
