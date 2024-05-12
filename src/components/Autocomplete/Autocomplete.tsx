@@ -2,12 +2,11 @@ import { FC, useEffect, useState} from 'react';
 import styles from './autocomplete.module.css';
 import { useDogSearchContext } from '../../hooks/useDogSearchContext';
 import { DogBreed, } from '../../modules/DogSearch';
+import { DogEntries } from '../../types';
 
-
-type BreedVariant = string;
 
 type AutocompleteProps = {
-    dogList: [DogBreed, BreedVariant[]]
+    dogList: DogEntries
     onSearch: (breedName: DogBreed) => void
 
 }

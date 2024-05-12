@@ -53,7 +53,7 @@ export const Searchbar: FC = () => {
                 <div className={styles['input-label']}>
                     {t('labels.typeDog')}
                 </div>
-                    {isFocused ? <Autocomplete results={dogEntries} onSearch={onSearch}/>: <></> }
+                    {isFocused ? <Autocomplete dogList={dogEntries} onSearch={onSearch}/>: <></> }
                 </div>
                
             </div>
