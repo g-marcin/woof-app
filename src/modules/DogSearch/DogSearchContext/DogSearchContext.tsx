@@ -1,7 +1,9 @@
-import React, { PropsWithChildren, FC, useState } from 'react'
+import { PropsWithChildren, FC, useState, Dispatch, SetStateAction } from 'react'
 import { createContext } from 'react'
 
-export const DogSearchContext = createContext<any|undefined>(undefined)
+type DogSearchContextType = [string, Dispatch<SetStateAction<string>>]
+
+export const DogSearchContext = createContext<DogSearchContextType|undefined>(undefined)
 
 export const DogSearchContextProvider: FC<PropsWithChildren> = ({ children }) => {
     const [searchQuery, setSearchQuery] = useState('')
