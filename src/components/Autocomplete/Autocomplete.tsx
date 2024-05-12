@@ -8,7 +8,6 @@ import { DogEntries } from '../../types';
 type AutocompleteProps = {
     dogList: DogEntries
     onSearch: (breedName: DogBreed) => void
-
 }
 
 export const Autocomplete:FC<AutocompleteProps> = ({dogList, onSearch}) => {
@@ -35,7 +34,7 @@ export const Autocomplete:FC<AutocompleteProps> = ({dogList, onSearch}) => {
 .map((result, index) => {
         console.log(result);
         
-        return (<li className={styles['autocomplete-item']} key={index} onClick={()=>onClick(result[0])}>{result}</li>)
+        return (<li className={styles['autocomplete-item']} key={index} onClick={()=>onClick(result[0])}>{result[0]}</li>)
         })}
         </ul>
     </div>;
