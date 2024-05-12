@@ -12,7 +12,7 @@ export const Searchbar: FC = () => {
     const { t } = useTranslation();
     const { breedName } = useParams();
     const navigate = useNavigate();
-    const [searchQuery, setSearchQuery] = useDogSearchContext() || ["", () => null]
+    const [searchQuery, setSearchQuery] = useDogSearchContext()
     const {dogEntries} = useDogList();
     const [isFocused, setIsFocused] = useState(false);
 
