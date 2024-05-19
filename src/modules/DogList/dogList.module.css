@@ -1,7 +1,6 @@
 .list-wrapper {
     display: flex;
     flex-direction: column;
-    max-height: 84vh;
     overflow-y: scroll;
     max-width: 680px;
     margin: 0 auto;
@@ -40,7 +39,7 @@
 }
 
 .link:hover {
-   background:  var(--link-active);
+    background: var(--link-active);
 }
 
 .tag {
