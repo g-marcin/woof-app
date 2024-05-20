@@ -32,7 +32,7 @@ export const Searchbar: FC = () => {
                     onChange={(e) => {
                         setSearchQuery(e.target.value);
                     }}
-                    autoFocus
+                    
                     required
                     placeholder={breedName}
                     onFocus={(e) => {

@@ -1,5 +1,5 @@
 .pageWrapper {
-    padding: 55px 0px 35px 0px;
+    padding: 55px 0px;
     max-height: calc(100vh - 60px);
     overflow-y: scroll;
     overflow-x: hidden;
