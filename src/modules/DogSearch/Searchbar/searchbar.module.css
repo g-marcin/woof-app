@@ -1,5 +1,5 @@
 .searchbar {
-    width: 620px;
+    width: 600px;
     display: flex;
     gap: 15px;
     align-items: center;
@@ -7,11 +7,11 @@
     margin: 0 auto;
     justify-content: center;
     padding: 5px 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: var(--shadow-primary);
 }
 @media (max-width: 660px) {
     .searchbar {
-        max-width: 320px;
+        width: 320px;
         height: 50px;
     }
 }
