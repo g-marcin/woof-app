@@ -6,6 +6,7 @@ html[data-theme='dark'] {
     --typography-headers: #ffffff;
     --typography-active: #000000;
     --link-active: #1f83bb;
+    --shadow-primary:rgba(226, 169, 65, 0.4) 0px 3px 8px;
 }
 
 html[data-theme='light'] {
@@ -16,4 +17,5 @@ html[data-theme='light'] {
     --typography-headers: #000000;
     --typography-active: #ffffff;
     --link-active: #0a0a0a;
+    --shadow-primary:rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
