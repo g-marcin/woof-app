@@ -1,39 +1,39 @@
-import { AxiosResponse } from 'axios';
-import { useEffect, useState } from 'react';
 import { httpClient } from '../../common';
-import { DogDetails, DogDetailsDTO } from '../../types';
+import { DogDetailsDTO } from '../../types';
 import { dogDetailsMapper } from './dogDetailsMapper';
 
-export const useDogDetails = (breedName = '', breedVariant = '') => {
-    const [dogDetails, setDogDetails] = useState<DogDetails>({
-        imageSrc: '',
-    });
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
-    useEffect(() => {
-        setIsLoading(true);
+export const MAX_QUEUE_SIZE = 5;
 
-        httpClient
-            .get(
-                `/breed/${breedName}${
-                    (breedVariant && '/') + breedVariant
-                }/images/random`,
-            )
-            .then((response: AxiosResponse<DogDetailsDTO>) => {
-                if (!response.data.code) {
-                    setIsError(false);
-                    setDogDetails(dogDetailsMapper(response.data));
-                } else {
-                    throw new Error(
-                        `${response.data.code} ${response.data.status}`,
-                    );
-                }
-            })
-            .then(() => setIsLoading(false))
-            .catch((error: Error) => {
-                console.error(error);
-                setIsError(true);
-            });
-    }, [breedName, breedVariant]);
-    return { dogDetails: dogDetails, isLoading: isLoading, isError: isError };
+export const preloadImage = (src: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve();
+        img.onerror = reject;
+        img.src = src;
+    });
+};
+
+export const fetchSingleImage = async (
+    breedName: string,
+    breedVariant: string,
+): Promise<string> => {
+    const response = await httpClient.get<DogDetailsDTO>(
+        `/breed/${breedName}${breedVariant ? `/${breedVariant}` : ''}/images/random`,
+    );
+    if (!response.data.code) {
+        return dogDetailsMapper(response.data).imageSrc;
+    }
+    throw new Error(`${response.data.code} ${response.data.status}`);
+};
+
+export const fetchInitialImages = async (
+    breedName: string,
+    breedVariant: string,
+): Promise<string[]> => {
+    const promises = Array.from({ length: MAX_QUEUE_SIZE }, () =>
+        fetchSingleImage(breedName, breedVariant),
+    );
+    const images = await Promise.all(promises);
+    await Promise.all(images.map(img => preloadImage(img)));
+    return images;
 };

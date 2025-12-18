@@ -1,7 +1,15 @@
-import { FC } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { useDogDetails, useDogVariants } from '../../../hooks';
+import spinnerIcon from '../../../assets/spinner.svg';
+import {
+    fetchInitialImages,
+    fetchSingleImage,
+    MAX_QUEUE_SIZE,
+    preloadImage,
+} from '../../../hooks/useDogDetails/useDogDetails';
+import { useDogVariants } from '../../../hooks';
 import { NavLinkState } from '../../../types';
 import { DogError } from '../DogError';
 import styles from './dogDetails.module.css';
@@ -10,7 +18,38 @@ const DogDetails: FC = () => {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const { breedName, variant } = useParams();
-    const { dogDetails, isError } = useDogDetails(breedName, variant);
+    const queryClient = useQueryClient();
+    const queryKey = ['dogDetails', breedName, variant];
+
+    const {
+        data: imageQueue = [],
+        isError,
+    } = useQuery({
+        queryKey,
+        queryFn: () => fetchInitialImages(breedName || '', variant || ''),
+        enabled: !!breedName,
+        staleTime: Infinity,
+        gcTime: Infinity,
+    });
+
+    const mutation = useMutation({
+        mutationFn: () => fetchSingleImage(breedName || '', variant || ''),
+        onSuccess: async (newImage) => {
+            await preloadImage(newImage);
+            queryClient.setQueryData<string[]>(queryKey, (old = []) => {
+                const updated = [...old, newImage];
+                return updated.length > MAX_QUEUE_SIZE
+                    ? updated.slice(-MAX_QUEUE_SIZE)
+                    : updated;
+            });
+        },
+    });
+
+    const currentImage = useMemo(
+        () => (imageQueue.length > 0 ? imageQueue[imageQueue.length - 1] : ''),
+        [imageQueue],
+    );
+
     const { dogVariants } = useDogVariants(breedName || '');
     if (!breedName) {
         return;
@@ -30,12 +69,26 @@ const DogDetails: FC = () => {
             ) : (
                 <div className={styles['main-wrapper']}>
                     <div className={styles['image-wrapper']}>
-                        <img
-                            src={`${dogDetails.imageSrc}`}
-                            alt="dog-image"
-                            className={styles['details-avatar']}
-                            onClick={() => navigate(0)}
-                        />
+                        <div className={styles['image-container']}>
+                            {currentImage && (
+                                <img
+                                    key={imageQueue.length}
+                                    src={currentImage}
+                                    alt="dog-image"
+                                    className={styles['details-avatar']}
+                                    onClick={() => mutation.mutate()}
+                                />
+                            )}
+                            {mutation.isPending && (
+                                <div className={styles['loader-overlay']}>
+                                    <img
+                                        src={spinnerIcon}
+                                        alt="loading"
+                                        className={styles['loader-spinner']}
+                                    />
+                                </div>
+                            )}
+                        </div>
                         <div className={styles['avatar-description']}>
                             {t('buttons.clickMe')}
                         </div>
