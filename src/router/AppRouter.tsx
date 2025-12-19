@@ -10,6 +10,12 @@ const DogDetails = lazy(
     () => import('../modules/DogSearch/DogDetails/DogDetails'),
 );
 const DogIntro = lazy(() => import('../modules/DogSearch/DogIntro/DogIntro'));
+const DogImageList = lazy(
+    () => import('../modules/DogSearch/DogImageList/DogImageList'),
+);
+const RandomDogImage = lazy(
+    () => import('../modules/DogSearch/RandomDogImage/RandomDogImage'),
+);
 export const AppRouter = createBrowserRouter([
     {
         path: '',
@@ -68,7 +74,47 @@ export const AppRouter = createBrowserRouter([
                             </Suspense>
                         ),
                     },
+                    {
+                        path: ':breedName/:variant/images',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <DogImageList />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':breedName/images',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <DogImageList />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':breedName/:variant/random',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <RandomDogImage />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':breedName/random',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <RandomDogImage />
+                            </Suspense>
+                        ),
+                    },
                 ],
+            },
+            {
+                path: '/random',
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <RandomDogImage />
+                    </Suspense>
+                ),
             },
         ],
     },

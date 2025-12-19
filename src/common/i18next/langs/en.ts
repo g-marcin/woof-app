@@ -6,6 +6,8 @@ export const en = {
         variants: '- variants:',
         welcome: 'Welcome!',
         readme: 'EN',
+        imageList: 'Gallery',
+        randomImage: 'Random',
     },
     content: {
         dogDescription1:
@@ -16,12 +18,17 @@ export const en = {
         intro1: 'Here we will display the info',
         intro2: 'about the pet chosen by you.',
         noVariants: 'No dog variants available',
+        imageCount: 'Total images: {{count}}',
     },
     buttons: {
         search: 'Search',
         clickMe: 'Click me!',
         start: 'Start',
         readme: 'Readme',
+        getRandom: 'random',
+        viewList: 'Gallery',
+        viewRandom: 'Random',
+        viewDefault: 'Details',
     },
     labels: {
         typeDog: 'Type requested breed...',

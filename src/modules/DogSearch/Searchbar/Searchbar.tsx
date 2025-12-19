@@ -57,7 +57,7 @@ export const Searchbar: FC = () => {
                 </div>
                
             </div>
-            <button type="submit" className="primary" onClick={()=>onSearch(searchQuery as DogBreed)}>
+            <button type="submit" className="primary primary-search" onClick={()=>onSearch(searchQuery as DogBreed)}>
                 {t('buttons.search')}
             </button>
         </form>

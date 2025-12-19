@@ -73,3 +73,15 @@ button.primary:hover,
 .primary:hover {
     opacity: 0.7;
 }
+
+.typography-secondary {
+    color: var(--typography-secondary);
+}
+
+.typography-active {
+    color: var(--typography-active);
+}
+
+.typography-xs {
+    font-size: 10px;
+}

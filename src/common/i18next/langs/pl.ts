@@ -6,6 +6,8 @@ export const pl = {
         variants: '- rodzaje',
         welcome: 'Cześć!',
         readme: 'PL',
+        imageList: 'Galeria',
+        randomImage: 'Losowe',
     },
     content: {
         dogDescription1:
@@ -16,12 +18,17 @@ export const pl = {
         intro1: 'Tu wyświetlimy informacje',
         intro2: 'O interesującym Cię pupilu.',
         noVariants: 'Brak rodzajów do wyświetlenia',
+        imageCount: 'Ilość: {{count}}',
     },
     buttons: {
         search: 'Szukaj',
         clickMe: 'Naciśnij mnie!',
         start: 'Dalej',
         readme: 'Readme',
+        getRandom: 'Losuj',
+        viewList: 'Galeria',
+        viewRandom: 'Losowe',
+        viewDefault: 'Detale',
     },
     labels: {
         typeDog: 'Wpisz rasę, której szukasz...',
