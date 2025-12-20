@@ -1,10 +1,8 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-import { DogVariantsTags, Loader } from '../../components';
-import { NavLinkState } from '../../types';
+import { Loader } from '../../components';
 import { useDogList } from '../../hooks/useDogList';
-import tagStyles from '../../components/DogVariantTags/dogVariantTags.module.css';
 import styles from './dogList.module.css';
 
 const DogList: FC = () => {
@@ -14,11 +12,6 @@ const DogList: FC = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const navLinkState = ({ isActive }: NavLinkState) =>
-        isActive 
-            ? `${tagStyles['tag-active']}  typography-active typography-xs` 
-            : `${tagStyles['tag']}  typography-secondary typography-xs`;
-
     return (
         <>
             {isLoading ? (
@@ -26,7 +19,7 @@ const DogList: FC = () => {
                     <Loader />
                 </div>
             ) : (
-                <div className={styles['list-wrapper']}>
+                <div className={styles.listWrapperComponent} style={{ paddingLeft: '100px' }}>
               
                     <h1 className={styles['list-header']}>
                         {t('headers.dogList')}
