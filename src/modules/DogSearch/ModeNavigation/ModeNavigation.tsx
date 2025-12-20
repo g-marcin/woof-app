@@ -1,18 +1,17 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
+import { ModeType } from '../DogDetails/constants';
 import styles from './modeNavigation.module.css';
-
-type Mode = 'default' | 'list' | 'random';
 
 export const ModeNavigation: FC = () => {
     const { t } = useTranslation();
     const [searchParams, setSearchParams] = useSearchParams();
-    const currentMode = (searchParams.get('mode') || 'default') as Mode;
+    const currentMode = (searchParams.get('mode') || ModeType.DETAILS) as ModeType;
 
-    const handleModeChange = (mode: Mode) => {
+    const handleModeChange = (mode: ModeType) => {
         const newParams = new URLSearchParams(searchParams);
-        if (mode === 'default') {
+        if (mode === ModeType.DETAILS) {
             newParams.delete('mode');
         } else {
             newParams.set('mode', mode);
@@ -23,25 +22,25 @@ export const ModeNavigation: FC = () => {
     return (
         <div className={styles['mode-navigation']}>
             <button
-                onClick={() => handleModeChange('default')}
+                onClick={() => handleModeChange(ModeType.DETAILS)}
                 className={`primary ${styles['mode-button']}  ${
-                    currentMode === 'default' ? `${styles['active']} typography-primary` : 'typography-secondary'
+                    currentMode === ModeType.DETAILS ? `${styles['active']} typography-primary` : 'typography-secondary'
                 }`}
             >
                 {t('buttons.viewDefault')}
             </button>
             <button
-                onClick={() => handleModeChange('list')}
+                onClick={() => handleModeChange(ModeType.GALLERY)}
                 className={`primary ${styles['mode-button']} ${
-                    currentMode === 'list' ? `${styles['active']} typography-primary` : 'typography-secondary'
+                    currentMode === ModeType.GALLERY ? `${styles['active']} typography-primary` : 'typography-secondary'
                 }`}
             >
                 {t('buttons.viewList')}
             </button>
             <button
-                onClick={() => handleModeChange('random')}
+                onClick={() => handleModeChange(ModeType.RANDOM)}
                 className={`primary ${styles['mode-button']}  typography-bold ${
-                    currentMode === 'random' ? `${styles['active']} typography-primary` : 'typography-secondary'
+                    currentMode === ModeType.RANDOM ? `${styles['active']} typography-primary` : 'typography-secondary'
                 }`}
             >
                 {t('buttons.viewRandom')}

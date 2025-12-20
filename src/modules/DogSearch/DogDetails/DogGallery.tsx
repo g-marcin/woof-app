@@ -1,35 +1,34 @@
-import { useQuery } from '@tanstack/react-query';
-import { FC, useState, useEffect, useRef } from 'react';
+import { FC, useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { Loader } from '../../../components';
-import { fetchDogImageList } from '../../../hooks/useDogDetails/useDogDetails';
-import { DogError } from '../DogError';
+import { DogVariantsTags } from '../../../components/DogVariantTags/DogVariantsTags';
+import { NavLinkState } from '../../../types';
+import { useDogVariants } from '../../../hooks';
 import { ImageModal } from '../ImageModal';
-import styles from './dogImageList.module.css';
+import tagStyles from '../../../components/DogVariantTags/dogVariantTags.module.css';
+import { ModeType } from './constants';
+import styles from './dogDetails.module.css';
 
 const IMAGES_PER_PAGE = 10;
 
-const DogImageList: FC = () => {
+interface DogGalleryProps {
+    imageList: string[];
+    mode: string;
+}
+
+export const DogGallery: FC<DogGalleryProps> = ({ imageList, mode }) => {
     const { t } = useTranslation();
     const { breedName, variant } = useParams();
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [displayedCount, setDisplayedCount] = useState(IMAGES_PER_PAGE);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
     const sentinelRef = useRef<HTMLDivElement>(null);
-    const queryKey = ['dogImageList', breedName, variant];
+    const { dogVariants } = useDogVariants(breedName || '');
 
-    const {
-        data: imageList = [],
-        isLoading,
-        isError,
-    } = useQuery({
-        queryKey,
-        queryFn: () => fetchDogImageList(breedName || '', variant || ''),
-        enabled: !!breedName,
-        staleTime: Infinity,
-        gcTime: Infinity,
-    });
+    const navLinkState = ({ isActive }: NavLinkState) =>
+        isActive 
+            ? `${tagStyles['tag-active']}  typography-active typography-xs` 
+            : `${tagStyles['tag']}  typography-secondary typography-xs`;
 
     useEffect(() => {
         setDisplayedCount(IMAGES_PER_PAGE);
@@ -37,7 +36,7 @@ const DogImageList: FC = () => {
     }, [breedName, variant]);
 
     useEffect(() => {
-        if (!sentinelRef.current || displayedCount >= imageList.length) {
+        if (!sentinelRef.current || displayedCount >= imageList.length || mode !== ModeType.GALLERY) {
             return;
         }
 
@@ -59,47 +58,44 @@ const DogImageList: FC = () => {
         return () => {
             observer.disconnect();
         };
-    }, [displayedCount, imageList.length, isLoadingMore]);
+    }, [displayedCount, imageList.length, mode, isLoadingMore]);
 
-    const capitalizeFirstLetter = (word: string) => {
-        return word?.charAt(0).toLocaleUpperCase() + word?.slice(1);
+    const capitalizeFirstLetter = (word: string | undefined) => {
+        if (!word) return '';
+        return word.charAt(0).toLocaleUpperCase() + word.slice(1);
     };
 
-    if (!breedName) {
-        return null;
-    }
-
-    if (isLoading) {
-        return <Loader />;
-    }
-
-    if (isError) {
-        return <DogError />;
-    }
-
     const displayedImages = imageList.slice(0, displayedCount);
-
     return (
-        <div className={styles['main-wrapper']}>
-            <h1 className={`${styles['title']} typography-header-large typography-bold typography-primary`}>
-                {capitalizeFirstLetter(breedName)}
-                {variant && ` ${capitalizeFirstLetter(variant)}`} -{' '}
-                {t('headers.imageList')}
-            </h1>
-            <p className={`${styles['count']} -large typography-secondary`}>
+        <div className={styles['gallery-view']}>
+            
+            <h2 className={`${styles['gallery-title']} typography-header-medium typography-bold typography-primary`}>
+                {t('headers.imageList')} - {capitalizeFirstLetter(breedName)}
+                {variant && ` ${capitalizeFirstLetter(variant)}`}
+            </h2>
+            <p className={`${styles['gallery-count']} -large typography-secondary`}>
                 {t('content.imageCount', { count: imageList.length })}
             </p>
+            <>
+            {breedName && (
+                <DogVariantsTags
+                    dogVariants={dogVariants}
+                    breedName={breedName}
+                    navLinkState={navLinkState}
+                />
+            )}
             <div className={styles['image-grid']}>
+        
                 {displayedImages.map((imageUrl, index) => (
                     <div
                         key={index}
-                        className={styles['image-item']}
+                        className={styles['grid-item']}
                         onClick={() => setSelectedImage(imageUrl)}
                     >
                         <img
                             src={imageUrl}
                             alt={`${breedName} ${index + 1}`}
-                            className={styles['image']}
+                            className={styles['grid-image']}
                             loading="lazy"
                         />
                     </div>
@@ -113,6 +109,7 @@ const DogImageList: FC = () => {
                         )
                     )}
             </div>
+            </>
             {displayedCount < imageList.length && (
                 <div ref={sentinelRef} className={styles['sentinel']} />
             )}
@@ -126,6 +123,4 @@ const DogImageList: FC = () => {
         </div>
     );
 };
-
-export default DogImageList;
 

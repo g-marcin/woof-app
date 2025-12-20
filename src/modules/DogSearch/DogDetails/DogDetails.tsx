@@ -1,7 +1,7 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { FC, useMemo, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import spinnerIcon from '../../../assets/spinner.svg';
 import {
     fetchDogImageList,
@@ -11,16 +11,19 @@ import {
 import { useDogVariants } from '../../../hooks';
 import { NavLinkState } from '../../../types';
 import { DogError } from '../DogError';
-import { ImageModal } from '../ImageModal';
 import { ModeNavigation } from '../ModeNavigation';
+import { DogGallery } from './DogGallery';
+import { DogRandom } from './DogRandom';
+import { DogVariantsTags } from '../../../components/DogVariantTags/DogVariantsTags';
+import tagStyles from '../../../components/DogVariantTags/dogVariantTags.module.css';
+import { ModeType } from './constants';
 import styles from './dogDetails.module.css';
 
 const DogDetails: FC = () => {
-    const navigate = useNavigate();
     const { t } = useTranslation();
     const { breedName, variant } = useParams();
     const [searchParams] = useSearchParams();
-    const mode = searchParams.get('mode') || 'default';
+    const mode = searchParams.get('mode') || ModeType.DETAILS;
     const queryClient = useQueryClient();
     const queryKey = ['dogImageList', breedName, variant];
     const currentIndexKey = ['dogImageIndex', breedName, variant];
@@ -37,12 +40,12 @@ const DogDetails: FC = () => {
     });
 
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
     useEffect(() => {
         const stored = queryClient.getQueryData<number>(currentIndexKey) ?? 0;
         setCurrentIndex(stored);
     }, [breedName, variant, queryClient, currentIndexKey]);
+
 
     const currentImage = useMemo(
         () => (imageList.length > 0 ? imageList[currentIndex % imageList.length] : ''),
@@ -50,32 +53,12 @@ const DogDetails: FC = () => {
     );
 
     const {
-        data: randomImage = '',
-        isLoading: isRandomLoading,
         isError: isRandomError,
     } = useQuery({
         queryKey: ['randomDogImage', breedName, variant],
         queryFn: () => fetchSingleImage(breedName || '', variant || ''),
-        enabled: mode === 'random' && !!breedName,
+        enabled: mode === ModeType.RANDOM && !!breedName,
         staleTime: 0,
-    });
-
-    const [randomImageState, setRandomImageState] = useState<string>('');
-    const [randomImageKey, setRandomImageKey] = useState(0);
-
-    useEffect(() => {
-        if (randomImage) {
-            setRandomImageState(randomImage);
-        }
-    }, [randomImage]);
-
-    const randomMutation = useMutation({
-        mutationFn: () => fetchSingleImage(breedName || '', variant || ''),
-        onSuccess: async (newImage) => {
-            await preloadImage(newImage);
-            setRandomImageState(newImage);
-            setRandomImageKey(prev => prev + 1);
-        },
     });
 
     const handleImageClick = () => {
@@ -88,10 +71,6 @@ const DogDetails: FC = () => {
         }
     };
 
-    const handleRandomClick = () => {
-        randomMutation.mutate();
-    };
-
     const { dogVariants } = useDogVariants(breedName || '');
     if (!breedName) {
         return;
@@ -99,96 +78,24 @@ const DogDetails: FC = () => {
 
     const navLinkState = ({ isActive }: NavLinkState) =>
         isActive 
-            ? `${styles['tag-active']}  typography-active typography-xs` 
-            : `${styles['tag']}  typography-secondary typography-xs`;
+            ? `${tagStyles['tag-active']}  typography-active typography-xs` 
+            : `${tagStyles['tag']}  typography-secondary typography-xs`;
 
     const capitalizeFirstLetter = (word: string) => {
         return word?.charAt(0).toLocaleUpperCase() + word?.slice(1);
     };
 
-    if (isError || (mode === 'random' && isRandomError)) {
+    if (isError || (mode === ModeType.RANDOM && isRandomError)) {
         return <DogError />;
     }
 
     const renderContent = () => {
-        if (mode === 'list') {
-            return (
-                <div className={styles['list-view']}>
-                    <h2 className={`${styles['list-title']} typography-header-medium typography-bold typography-primary`}>
-                        {t('headers.imageList')} - {capitalizeFirstLetter(breedName)}
-                        {variant && ` ${capitalizeFirstLetter(variant)}`}
-                    </h2>
-                    <p className={`${styles['list-count']} -large typography-secondary`}>
-                        {t('content.imageCount', { count: imageList.length })}
-                    </p>
-                    <div className={styles['image-grid']}>
-                        {imageList.map((imageUrl, index) => (
-                            <div
-                                key={index}
-                                className={styles['grid-item']}
-                                onClick={() => setSelectedImage(imageUrl)}
-                            >
-                                <img
-                                    src={imageUrl}
-                                    alt={`${breedName} ${index + 1}`}
-                                    className={styles['grid-image']}
-                                    loading="lazy"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                    {selectedImage && (
-                        <ImageModal
-                            imageUrl={selectedImage}
-                            imageList={imageList}
-                            onClose={() => setSelectedImage(null)}
-                        />
-                    )}
-                </div>
-            );
+        if (mode === ModeType.GALLERY) {
+            return <DogGallery imageList={imageList} mode={mode} />;
         }
 
-        if (mode === 'random') {
-            const displayImage = randomImageState || randomImage;
-            const isLoading = randomMutation.isPending || (isRandomLoading && !displayImage);
-            return (
-                <div className={styles['random-view']}>
-                    <h2 className={`${styles['random-title']} typography-header-medium typography-bold typography-primary`}>
-                        {t('headers.randomImage')} - {capitalizeFirstLetter(breedName)}
-                        {variant && ` ${capitalizeFirstLetter(variant)}`}
-                    </h2>
-                    <div className={styles['random-image-wrapper']}>
-                        <div className={styles['random-image-container']}>
-                            {displayImage ? (
-                                <img
-                                    key={randomImageKey}
-                                    src={displayImage}
-                                    alt="random-dog-image"
-                                    className={styles['random-image']}
-                                />
-                            ) : (
-                                <div className={styles['placeholder']} />
-                            )}
-                            {isLoading && (
-                                <div className={styles['loader-overlay']}>
-                                    <img
-                                        src={spinnerIcon}
-                                        alt="loading"
-                                        className={styles['loader-spinner']}
-                                    />
-                                </div>
-                            )}
-                        </div>
-                        <button
-                            onClick={handleRandomClick}
-                            className={`${styles['random-button']} primary -large typography-bold`}
-                            disabled={isLoading}
-                        >
-                            {t('buttons.getRandom')}
-                        </button>
-                    </div>
-                </div>
-            );
+        if (mode === ModeType.RANDOM) {
+            return <DogRandom />;
         }
 
         return (
@@ -230,7 +137,7 @@ const DogDetails: FC = () => {
                 <div className={styles['main-wrapper']}>
                     <ModeNavigation />
                     {renderContent()}
-                    {mode === 'default' && (
+                    {mode === ModeType.DETAILS && (
                         <>
                             <div className={styles['description-wrapper']}>
                                 <h1>{capitalizeFirstLetter(breedName)}:</h1>
@@ -241,33 +148,11 @@ const DogDetails: FC = () => {
                                 {capitalizeFirstLetter(breedName)}{' '}
                                 {t('headers.variants')}
                             </h1>
-                            <div className={styles['tags-wrapper']}>
-                                {dogVariants.length === 0 && (
-                                    <p className={`${styles['tag']}  typography-secondary `} >
-                                        {t('content.noVariants')}
-                                    </p>
-                                )}
-                                {dogVariants.map((dogVariant) => {
-                                    return (
-                                        <NavLink
-                                        
-                                            onClick={(e) => {
-                                                const target = e.target as Element;
-                                                if (target.innerHTML === variant) {
-                                                    e.preventDefault();
-                                                    navigate(`/search/${breedName}`);
-                                                }
-                                            }}
-                                            to={`/search/${breedName}/${dogVariant}`}
-                                            className={navLinkState}
-                                            
-                                            key={dogVariant}
-                                        >
-                                            {dogVariant}
-                                        </NavLink>
-                                    );
-                                })}
-                            </div>
+                            <DogVariantsTags
+                                dogVariants={dogVariants}
+                                breedName={breedName}
+                                navLinkState={navLinkState}
+                            />
                         </>
                     )}
                 </div>
