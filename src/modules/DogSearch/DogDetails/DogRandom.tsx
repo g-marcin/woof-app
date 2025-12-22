@@ -67,6 +67,13 @@ export const DogRandom: FC = () => {
                 {variant && ` ${capitalizeFirstLetter(variant)}`}
             </h2>
             <div className={styles['random-image-wrapper']}>
+            {breedName && (
+                <DogVariantsTags
+                    dogVariants={dogVariants}
+                    breedName={breedName}
+                    navLinkState={navLinkState}
+                />
+            )}
                 <div className={styles['random-image-container']}>
                     {displayImage ? (
                         <img
@@ -96,13 +103,7 @@ export const DogRandom: FC = () => {
                     {t('buttons.getRandom')}
                 </button>
             </div>
-            {breedName && (
-                <DogVariantsTags
-                    dogVariants={dogVariants}
-                    breedName={breedName}
-                    navLinkState={navLinkState}
-                />
-            )}
+     
         </div>
     );
 };
