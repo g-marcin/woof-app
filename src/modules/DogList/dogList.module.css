@@ -1,7 +1,7 @@
 .list-wrapper {
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: hidden;
     max-width: 680px;
     margin: 0 auto;
     
