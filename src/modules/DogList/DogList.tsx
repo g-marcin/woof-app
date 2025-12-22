@@ -7,7 +7,6 @@ import styles from './dogList.module.css';
 
 const DogList: FC = () => {
     const { dogEntries, isLoading } = useDogList();
-    console.log(dogEntries);
     
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -19,7 +18,7 @@ const DogList: FC = () => {
                     <Loader />
                 </div>
             ) : (
-                <div className={styles.listWrapperComponent} style={{ paddingLeft: '100px' }}>
+                <div className={styles['list-wrapper']} >
               
                     <h1 className={styles['list-header']}>
                         {t('headers.dogList')}

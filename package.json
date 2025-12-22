@@ -9,11 +9,13 @@
         "build": "tsc && vite build",
         "preview": "vite preview",
         "lint": "eslint src --max-warnings 0",
-        "prettier": "npx prettier . --write"
+        "prettier": "npx prettier . --write",
+        "install-git-hook": "node scripts/install-git-hook.js"
     },
     "dependencies": {
         "@tanstack/react-query": "^5.0.0",
         "axios": "^1.4.0",
+        "dotenv": "^17.2.3",
         "firebase": "^12.7.0",
         "i18next": "^25.7.3",
         "react": "^19.2.3",
@@ -29,8 +31,8 @@
         "@vitejs/plugin-react": "^5.1.2",
         "eslint": "^9.39.2",
         "eslint-plugin-react-hooks": "^7.0.1",
-        "globals": "^15.0.0",
         "eslint-plugin-react-refresh": "^0.4.1",
+        "globals": "^15.0.0",
         "prettier": "^3.7.4",
         "typescript": "^5.0.2",
         "vite": "^7.3.0"
