@@ -28,7 +28,7 @@ export const en = {
         getRandom: 'random',
         viewList: 'Gallery',
         viewRandom: 'Random',
-        viewDefault: 'Details',
+        viewDefault: 'Main',
     },
     labels: {
         typeDog: 'Type requested breed...',

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import dogIcon from '@assets/dog-solid.svg';
-import infoIcon from '@assets/info.svg';
-import searchIcon from '@assets/search.svg';
+import { DogSolid } from '@assets/svg/DogSolid';
+import { Info } from '@assets/svg/Info';
+import { Search } from '@assets/svg/Search';
 import { NavLinkState } from '../../types';
 import { LanguageToggle } from '../../components/LanguageToggle';
 import { ThemeToggle } from '../../components/ThemeToggle';
@@ -15,25 +15,17 @@ export const Navbar: FC = () => {
     return (
         <nav className={styles['navbar']}>
             <span className={styles['navbar-group']}>
-                <NavLink to="/home" className={navLinkState}>
-                    <img src={dogIcon} alt="dog-icon" className={styles.icon} />
+                <NavLink to="/listing" className={navLinkState}>
+                    <DogSolid className={styles.icon} />
                 </NavLink>
                 <NavLink to="/search" className={navLinkState}>
-                    <img
-                        src={searchIcon}
-                        alt="search-icon"
-                        className={styles.icon}
-                    />
+                    <Search className={styles.icon} />
                 </NavLink>
             </span>
             <span className={styles['navbar-group']}>
                 <ThemeToggle />
                 <NavLink to="/readme" className={navLinkState}>
-                    <img
-                        src={infoIcon}
-                        alt="info-icon"
-                        className={styles.icon}
-                    />
+                    <Info className={styles.icon} />
                 </NavLink>
                 <LanguageToggle />
             </span>

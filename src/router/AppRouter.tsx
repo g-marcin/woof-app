@@ -2,18 +2,16 @@ import { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from '../layout';
 import { Loader } from '../components';
-import { LandingPage } from '../modules/LandingPage/LandingPage';
+import { Start } from '../modules/Start';
 import { ErrorPage } from './ErrorPage';
-const DogList = lazy(() => import('../modules/DogList/DogList'));
-const DogSearch = lazy(() => import('../modules/DogSearch/DogSearch'));
-const Readme = lazy(() => import('../modules/Readme/Readme'));
+const Listing = lazy(() => import('../modules/Listing'));
+const Search = lazy(() => import('../modules/DogSearch/Search'));
+const Readme = lazy(() => import('../modules/Readme'));
 const DogDetails = lazy(
-    () => import('../modules/DogSearch/DogDetails/DogDetails'),
+    () => import('@modules/DogDetails/DogMain.tsx'),
 );
-const DogIntro = lazy(() => import('../modules/DogSearch/DogIntro/DogIntro'));
-const DogImageList = lazy(
-    () => import('../modules/DogSearch/DogImageList/DogImageList'),
-);
+const DogIntro = lazy(() => import('@modules/DogDetails/DogIntro/DogIntro'));
+
 const RandomDogImage = lazy(
     () => import('../modules/DogSearch/RandomDogImage/RandomDogImage'),
 );
@@ -21,11 +19,11 @@ export const AppRouter = createBrowserRouter([
     {
         path: '',
         element: <Layout />,
-        errorElement: <ErrorPage errorMessage="Page not found" />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '',
-                element: <LandingPage />,
+                element: <Start />,
             },
             {
                 path: '/readme',
@@ -36,10 +34,10 @@ export const AppRouter = createBrowserRouter([
                 ),
             },
             {
-                path: '/home',
+                path: '/listing',
                 element: (
                     <Suspense fallback={<Loader />}>
-                        <DogList />
+                        <Listing />
                     </Suspense>
                 ),
             },
@@ -47,7 +45,7 @@ export const AppRouter = createBrowserRouter([
                 path: '/search',
                 element: (
                     <Suspense fallback={<Loader />}>
-                        <DogSearch />
+                        <Search />
                     </Suspense>
                 ),
                 children: [
@@ -72,22 +70,6 @@ export const AppRouter = createBrowserRouter([
                         element: (
                             <Suspense fallback={<Loader />}>
                                 <DogDetails />
-                            </Suspense>
-                        ),
-                    },
-                    {
-                        path: ':breedName/:variant/images',
-                        element: (
-                            <Suspense fallback={<Loader />}>
-                                <DogImageList />
-                            </Suspense>
-                        ),
-                    },
-                    {
-                        path: ':breedName/images',
-                        element: (
-                            <Suspense fallback={<Loader />}>
-                                <DogImageList />
                             </Suspense>
                         ),
                     },

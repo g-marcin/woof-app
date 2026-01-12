@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import enFlag from '@assets/en.svg';
-import plFlag from '@assets/pl.svg';
+import { FlagEn } from '@assets/svg/FlagEn';
+import { FlagPl } from '@assets/svg/FlagPl';
 
 export const LanguageToggle: FC = () => {
     const { i18n } = useTranslation();
@@ -19,11 +19,7 @@ export const LanguageToggle: FC = () => {
 
     return (
         <button onClick={onFlagClick}>
-            {language ? (
-                <img src={plFlag} alt="polish-flag" />
-            ) : (
-                <img src={enFlag} alt="uk-flag" />
-            )}
+            {language ? <FlagPl /> : <FlagEn />}
         </button>
     );
 };

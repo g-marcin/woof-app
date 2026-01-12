@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
-import bulbRegular from '@assets/bulb-regular.svg';
-import bulbSolid from '@assets/bulb-solid.svg';
+import { BulbRegular } from '@assets/svg/BulbRegular';
+import { BulbSolid } from '@assets/svg/BulbSolid';
 
 export const ThemeToggle: FC = () => {
     const [isDark, setIsDark] = useState(
@@ -27,11 +27,7 @@ export const ThemeToggle: FC = () => {
     };
     return (
         <button onClick={onClick}>
-            {isDark ? (
-                <img src={bulbSolid} alt="bulb-off" />
-            ) : (
-                <img src={bulbRegular} alt="bulb-on" />
-            )}
+            {isDark ? <BulbSolid /> : <BulbRegular />}
         </button>
     );
 };
