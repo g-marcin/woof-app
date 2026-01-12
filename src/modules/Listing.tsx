@@ -29,7 +29,7 @@ const Listing: FC = () => {
                                     className="no-underline"
                                     key={dog}
                                 >
-                            <div className="flex items-center justify-between p-4 bg-[color:var(--secondary)] rounded-lg hover:opacity-80 transition-opacity duration-300 text-[color:var(--typography-secondary)]">
+                            <div className="flex items-center justify-between gap-4 p-4 bg-[color:var(--secondary)] rounded-lg hover:opacity-80 transition-opacity duration-300 text-[color:var(--typography-secondary)]">
                                     {dog}
                                 
                                 <div className="flex flex-wrap content-center gap-1.5">
@@ -45,7 +45,7 @@ const Listing: FC = () => {
                                                         `/search/${dog}/${variant}`,
                                                     );
                                                 }}
-                                                className="bg-[color:var(--primary)]"
+                                                className="!bg-[color:var(--primary)] !text-[color:var(--typography-tertiary)] !border-[color:var(--typography-secondary)]"
                                             >
                                                 {variant}
                                             </Tag>
