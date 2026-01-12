@@ -8,7 +8,7 @@ import {
     preloadImage,
 } from '../../hooks/useDogDetails/useDogDetails';
 import { useDogVariants } from '../../hooks';
-import { DogError } from '../DogError';
+import { DogError } from '../DogSearch/DogError/DogError';
 import { ModeNavigation } from '../DogSearch/ModeNavigation';
 import { DogGallery } from './DogGallery';
 import { DogRandom } from './DogRandom';

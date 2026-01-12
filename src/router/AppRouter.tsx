@@ -8,9 +8,9 @@ const Listing = lazy(() => import('../modules/Listing'));
 const Search = lazy(() => import('../modules/DogSearch/Search'));
 const Readme = lazy(() => import('../modules/Readme'));
 const DogDetails = lazy(
-    () => import('@modules/DogDetails/DogMain.tsx'),
+    () => import('../modules/DogDetails/DogMain'),
 );
-const DogIntro = lazy(() => import('@modules/DogDetails/DogIntro/DogIntro'));
+const DogIntro = lazy(() => import('../modules/DogDetails/DogIntro/DogIntro'));
 
 const RandomDogImage = lazy(
     () => import('../modules/DogSearch/RandomDogImage/RandomDogImage'),
