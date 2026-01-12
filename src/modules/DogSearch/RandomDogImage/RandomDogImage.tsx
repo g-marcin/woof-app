@@ -2,9 +2,9 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import spinnerIcon from '@assets/spinner.svg';
+import { Spinner } from '@assets/svg/Spinner';
 import { fetchSingleImage, preloadImage } from '../../../hooks/useDogDetails/useDogDetails';
-import { DogError } from '../DogError';
+import { DogError } from '../DogError/DogError';
 
 const RandomDogImage: FC = () => {
     const { t } = useTranslation();
@@ -73,10 +73,9 @@ const RandomDogImage: FC = () => {
                     )}
                     {isLoading && (
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1] pointer-events-none w-[60px] h-[60px] flex items-center justify-center bg-white/90 rounded-full">
-                            <img
-                                src={spinnerIcon}
-                                alt="loading"
-                                className="w-[50px] h-[50px] animate-spin [filter:invert(44%)_sepia(65%)_saturate(629%)_hue-rotate(158deg)_brightness(87%)_contrast(89%)]"
+                            <Spinner
+                                className="w-[50px] h-[50px] animate-spin"
+                                color="var(--secondary)"
                             />
                         </div>
                     )}
