@@ -1,5 +1,4 @@
 import { FC, useEffect, useState, useCallback } from 'react';
-import styles from './imageModal.module.css';
 
 interface ImageModalProps {
     imageUrl: string;
@@ -55,16 +54,15 @@ export const ImageModal: FC<ImageModalProps> = ({ imageUrl, imageList, onClose }
     const showArrows = imageList && imageList.length > 1;
 
     return (
-        <div className={styles['modal-overlay']} onClick={onClose}>
-            <div className={styles['modal-content']} onClick={(e) => e.stopPropagation()}>
-                <button className={`${styles['close-button']} typography-bold typography-primary`} style={{ fontSize: '28px' }} onClick={onClose}>
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-[1000] p-5" onClick={onClose}>
+            <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                <button className="absolute top-2.5 right-2.5 bg-white/90 border-none rounded-full w-10 h-10 cursor-pointer flex items-center justify-center transition-all duration-300 z-[1001] hover:bg-white hover:opacity-90 typography-bold typography-primary text-[28px]" onClick={onClose}>
                     ×
                 </button>
                 {showArrows && (
                     <>
                         <button
-                            className={`${styles['nav-button']} typography-bold typography-primary`}
-                            style={{ fontSize: '36px' }}
+                            className="absolute top-1/2 left-5 -translate-y-1/2 bg-white/90 border-none rounded-full w-[50px] h-[50px] cursor-pointer flex items-center justify-center transition-all duration-300 z-[1001] leading-none hover:bg-white hover:opacity-90 max-md:w-10 max-md:h-10 max-md:left-2.5 typography-bold typography-primary text-4xl"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handlePrevious();
@@ -74,8 +72,7 @@ export const ImageModal: FC<ImageModalProps> = ({ imageUrl, imageList, onClose }
                             ‹
                         </button>
                         <button
-                            className={`${styles['nav-button']} ${styles['nav-button-right']} typography-bold typography-primary`}
-                            style={{ fontSize: '36px' }}
+                            className="absolute top-1/2 right-5 -translate-y-1/2 bg-white/90 border-none rounded-full w-[50px] h-[50px] cursor-pointer flex items-center justify-center transition-all duration-300 z-[1001] leading-none hover:bg-white hover:opacity-90 max-md:w-10 max-md:h-10 max-md:right-2.5 typography-bold typography-primary text-4xl"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleNext();
@@ -86,7 +83,7 @@ export const ImageModal: FC<ImageModalProps> = ({ imageUrl, imageList, onClose }
                         </button>
                     </>
                 )}
-                <img src={displayImage} alt="zoomed" className={styles['modal-image']} />
+                <img src={displayImage} alt="zoomed" className="max-w-full max-h-[90vh] object-contain rounded-lg" />
             </div>
         </div>
     );

@@ -2,10 +2,9 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import spinnerIcon from '../../../assets/spinner.svg';
+import spinnerIcon from '@assets/spinner.svg';
 import { fetchSingleImage, preloadImage } from '../../../hooks/useDogDetails/useDogDetails';
 import { DogError } from '../DogError';
-import styles from './randomDogImage.module.css';
 
 const RandomDogImage: FC = () => {
     const { t } = useTranslation();
@@ -54,37 +53,37 @@ const RandomDogImage: FC = () => {
     const isLoading = mutation.isPending || (isInitialLoading && !currentImage);
 
     return (
-        <div className={styles['main-wrapper']}>
-            <h1 className={`${styles['title']} typography-header-large typography-bold typography-primary`}>
+        <div className="flex flex-col gap-5 px-5 pb-[100px] max-w-[1200px] mx-auto items-center">
+            <h1 className="text-center typography-header-large typography-bold typography-primary">
                 {t('headers.randomImage')}
                 {breedName && ` - ${capitalizeFirstLetter(breedName)}`}
                 {variant && ` ${capitalizeFirstLetter(variant)}`}
             </h1>
-            <div className={styles['image-wrapper']}>
-                <div className={styles['image-container']}>
+            <div className="flex flex-col items-center gap-5 w-full">
+                <div className="relative w-[500px] h-[500px] min-w-[500px] min-h-[500px] rounded-xl overflow-hidden bg-[color:var(--secondary)] shadow-[0_4px_12px_rgba(0,0,0,0.15)] md:max-md:w-full md:max-md:max-w-[400px] md:max-md:h-[400px] md:max-md:min-w-full md:max-md:min-h-[400px] max-sm:max-w-[300px] max-sm:h-[300px] max-sm:min-h-[300px]">
                     {currentImage ? (
                         <img
                             key={imageKey}
                             src={currentImage}
                             alt="random-dog-image"
-                            className={styles['random-image']}
+                            className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 ease-in-out"
                         />
                     ) : (
-                        <div className={styles['placeholder']} />
+                        <div className="w-full h-full bg-[color:var(--secondary)]" />
                     )}
                     {isLoading && (
-                        <div className={styles['loader-overlay']}>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1] pointer-events-none w-[60px] h-[60px] flex items-center justify-center bg-white/90 rounded-full">
                             <img
                                 src={spinnerIcon}
                                 alt="loading"
-                                className={styles['loader-spinner']}
+                                className="w-[50px] h-[50px] animate-spin [filter:invert(44%)_sepia(65%)_saturate(629%)_hue-rotate(158deg)_brightness(87%)_contrast(89%)]"
                             />
                         </div>
                     )}
                 </div>
                 <button
                     onClick={handleRandomClick}
-                    className={`${styles['random-button']} primary -large typography-bold`}
+                    className="py-3 px-6 bg-[color:var(--secondary)] border-none rounded-lg cursor-pointer transition-all duration-300 ease-in-out shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:not-disabled:opacity-80 hover:not-disabled:shadow-[0_4px_12px_rgba(0,0,0,0.15)] disabled:opacity-60 disabled:cursor-not-allowed primary typography-secondary typography-bold"
                     disabled={isLoading}
                 >
                     {t('buttons.getRandom')}

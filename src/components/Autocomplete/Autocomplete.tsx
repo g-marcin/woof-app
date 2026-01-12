@@ -30,9 +30,10 @@ export const Autocomplete:FC<AutocompleteProps> = ({dogList, onSearch}) => {
     }
     return <div className={styles.modal}>
         <ul>
-        {dogList.filter((result)=>result[0].startsWith(debouncedQuery))
-.map((result, index) => {
-        return (<li className={styles['autocomplete-item']} key={index} onClick={()=>onClick(result[0])}>{result[0]}</li>)
+        {dogList
+        .filter((result)=>result[0].startsWith(debouncedQuery))
+        .map((result, index) => {
+            return (<li className={styles['autocomplete-item']} key={index} onClick={()=>onClick(result[0])}>{result[0]}</li>)
         })}
         </ul>
     </div>;

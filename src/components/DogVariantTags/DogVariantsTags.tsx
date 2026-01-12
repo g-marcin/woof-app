@@ -1,31 +1,26 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLinkState } from '../../types';
-import { DogVariantLink } from '../../modules/DogSearch/DogDetails/DogVariantLink';
-import styles from './dogVariantTags.module.css';
+import { DogVariantLink } from '../../modules/DogDetails/DogVariantLink';
+import { Tag } from '../Tag';
 
 export interface DogVariantsTagsProps {
     dogVariants: string[];
     breedName: string;
-    navLinkState: (state: NavLinkState) => string;
 }
 
-export const DogVariantsTags: FC<DogVariantsTagsProps> = ({ dogVariants, breedName, navLinkState }) => {
+export const DogVariantsTags: FC<DogVariantsTagsProps> = ({ dogVariants, breedName }) => {
     const { t } = useTranslation();
 
     return (
-        <div className={styles['tags-wrapper']}>
+        <div className="flex flex-wrap content-center gap-1.5">
             {dogVariants.length === 0 && (
-                <p className={`${styles['tag']}  typography-secondary `}>
-                    {t('content.noVariants')}
-                </p>
+                <Tag>{t('content.noVariants')}</Tag>
             )}
             {dogVariants.map((dogVariant) => (
                 <DogVariantLink
                     key={dogVariant}
                     variant={dogVariant}
                     breedName={breedName}
-                    navLinkState={navLinkState}
                 />
             ))}
         </div>
