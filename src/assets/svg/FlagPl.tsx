@@ -1,0 +1,22 @@
+export const FlagPl = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    width={31}
+    height={23}
+    viewBox="0 0 31 23"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g clipPath="url(#clip0_77_361)">
+      <path fillRule="evenodd" clipRule="evenodd" d="M31 23H0V0H31V23Z" fill="white" />
+      <path fillRule="evenodd" clipRule="evenodd" d="M31 23H0V11.5H31V23Z" fill="#DC143C" />
+    </g>
+    <rect x={0.5} y={0.5} width={30} height={22} />
+    <defs>
+      <clipPath id="clip0_77_361">
+        <rect width={31} height={23} fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+)
+

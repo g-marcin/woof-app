@@ -13,6 +13,7 @@
         "install-git-hook": "node scripts/install-git-hook.js"
     },
     "dependencies": {
+        "@tailwindcss/vite": "^4.1.18",
         "@tanstack/react-query": "^5.0.0",
         "axios": "^1.4.0",
         "dotenv": "^17.2.3",

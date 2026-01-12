@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { DogSearchContext } from '../../modules/DogSearch/DogSearchContext/DogSearchContext'
+import { DogSearchContext } from '../../common/DogSearchContext/DogSearchContext'
 
 export const useDogSearchContext = () => {
   const dogSearchContextValue = useContext(DogSearchContext)

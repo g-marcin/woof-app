@@ -28,7 +28,7 @@ export const pl = {
         getRandom: 'Losuj',
         viewList: 'Galeria',
         viewRandom: 'Losowe',
-        viewDefault: 'Detale',
+        viewDefault: 'Główna',
     },
     labels: {
         typeDog: 'Wpisz rasę, której szukasz...',
