@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import loaderIcon from '../../assets/spinner.svg';
-import styles from './loader.module.css';
+import { Spinner } from '@assets/spinner';
 
 export const Loader: FC = () => {
     const [isTimeout, setIsTimeout] = useState(false);
@@ -9,15 +8,11 @@ export const Loader: FC = () => {
     }, []);
 
     return (
-        <div className={styles['animation-container']}>
+        <div className='align-self-center justify-self-center p-30'>
             {isTimeout ? (
                 <div>No data available</div>
             ) : (
-                <img
-                    src={loaderIcon}
-                    alt="loader-icon"
-                    className={`${styles['rotate']} ${styles['icon']}`}
-                />
+                <Spinner color="#1f83bb" className="animate-spin text-color-red-500" />
             )}
         </div>
     );

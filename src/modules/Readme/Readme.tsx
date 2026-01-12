@@ -1,15 +1,15 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import enFlag from '../../assets/en.svg';
-import plFlag from '../../assets/pl.svg';
+import enFlag from '@assets/en.svg';
+import plFlag from '@assets/pl.svg';
 import styles from './readme.module.css';
 
 const Readme: FC = () => {
     const { t } = useTranslation();
 
     return (
-        <div className={styles['wrapper']}>
-            <span className={styles.header}>
+        <div className='flex flex-col gap-2 m-auto max-w-200'>
+            <span className='flex gap-2 items-center m-auto p-10'>
                 <h1>Readme:{t('headers.readme')}</h1>
                 {t('headers.readme') == 'PL' ? (
                     <img src={plFlag} alt="" />

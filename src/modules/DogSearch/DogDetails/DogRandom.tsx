@@ -3,11 +3,11 @@ import { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { DogVariantsTags } from '../../../components/DogVariantTags/DogVariantsTags';
+import tagStyles from '../../../components/DogVariantTags/dogVariantTags.module.css';
 import { NavLinkState } from '../../../types';
 import { useDogVariants } from '../../../hooks';
-import spinnerIcon from '../../../assets/spinner.svg';
+import spinnerIcon from '@assets/spinner.svg';
 import { fetchSingleImage, preloadImage } from '../../../hooks/useDogDetails/useDogDetails';
-import tagStyles from '../../../components/DogVariantTags/dogVariantTags.module.css';
 import styles from './dogDetails.module.css';
 
 export const DogRandom: FC = () => {

@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import spinnerIcon from '../../../assets/spinner.svg';
+import spinnerIcon from '@assets/spinner.svg';
 import { fetchSingleImage, preloadImage } from '../../../hooks/useDogDetails/useDogDetails';
 import { DogError } from '../DogError';
 import styles from './randomDogImage.module.css';

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import dogIcon from '../../../assets/shield-dog-solid.svg';
+import dogIcon from '@assets/shield-dog-solid.svg';
 import styles from './dogIntro.module.css';
 
 const DogIntro: FC = () => {

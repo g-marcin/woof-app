@@ -2,10 +2,10 @@ import { FC, useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { DogVariantsTags } from '../../../components/DogVariantTags/DogVariantsTags';
+import tagStyles from '../../../components/DogVariantTags/dogVariantTags.module.css';
 import { NavLinkState } from '../../../types';
 import { useDogVariants } from '../../../hooks';
 import { ImageModal } from '../ImageModal';
-import tagStyles from '../../../components/DogVariantTags/dogVariantTags.module.css';
 import { ModeType } from './constants';
 import styles from './dogDetails.module.css';
 

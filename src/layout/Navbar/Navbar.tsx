@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import dogIcon from '../../../assets/dog-solid.svg';
-import infoIcon from '../../../assets/info.svg';
-import searchIcon from '../../../assets/search.svg';
-import { NavLinkState } from '../../../types';
-import { LanguageToggle } from '../../LanguageToggle';
-import { ThemeToggle } from '../../ThemeToggle';
+import dogIcon from '@assets/dog-solid.svg';
+import infoIcon from '@assets/info.svg';
+import searchIcon from '@assets/search.svg';
+import { NavLinkState } from '../../types';
+import { LanguageToggle } from '../../components/LanguageToggle';
+import { ThemeToggle } from '../../components/ThemeToggle';
 import styles from './navbar.module.css';
 
 export const Navbar: FC = () => {

@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
-import bulbRegular from '../../assets/bulb-regular.svg';
-import bulbSolid from '../../assets/bulb-solid.svg';
+import bulbRegular from '@assets/bulb-regular.svg';
+import bulbSolid from '@assets/bulb-solid.svg';
 
 export const ThemeToggle: FC = () => {
     const [isDark, setIsDark] = useState(
@@ -16,7 +16,7 @@ export const ThemeToggle: FC = () => {
         !currentTheme && window.localStorage.setItem('theme', 'dark');
         !currentTheme && setIsDark(true);
     }, []);
-    const onBulbClick = () => {
+    const onClick = () => {
         const currentTheme = isDark;
         const newTheme = !currentTheme;
         window.localStorage.setItem('theme', newTheme ? 'dark' : 'light');
@@ -26,7 +26,7 @@ export const ThemeToggle: FC = () => {
             ?.setAttribute('data-theme', `${newTheme ? 'dark' : 'light'}`);
     };
     return (
-        <button onClick={onBulbClick}>
+        <button onClick={onClick}>
             {isDark ? (
                 <img src={bulbSolid} alt="bulb-off" />
             ) : (

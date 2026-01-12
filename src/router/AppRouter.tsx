@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import { Layout, Loader } from '../components';
+import { Layout } from '../layout';
+import { Loader } from '../components';
 import { LandingPage } from '../modules/LandingPage/LandingPage';
 import { ErrorPage } from './ErrorPage';
 const DogList = lazy(() => import('../modules/DogList/DogList'));
@@ -30,7 +31,7 @@ export const AppRouter = createBrowserRouter([
                 path: '/readme',
                 element: (
                     <Suspense fallback={<Loader />}>
-                        <Readme />
+                        <Readme/>
                     </Suspense>
                 ),
             },
