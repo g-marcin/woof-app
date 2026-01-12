@@ -84,7 +84,7 @@ const RandomDogImage: FC = () => {
                 </div>
                 <button
                     onClick={handleRandomClick}
-                    className={`${styles['random-button']} primary -large typography-bold`}
+                    className={`${styles['random-button']} primary typography-secondary -large typography-bold`}
                     disabled={isLoading}
                 >
                     {t('buttons.getRandom')}

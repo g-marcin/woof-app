@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Spinner } from '@assets/spinner';
+import { Spinner } from '@assets/Spinner';
 
 export const Loader: FC = () => {
     const [isTimeout, setIsTimeout] = useState(false);

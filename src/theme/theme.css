@@ -3,8 +3,10 @@ html[data-theme='dark'] {
     --secondary: #efba54;
     --typography-primary: #787779;
     --typography-secondary: #000000;
+    --typography-tertiary: #ffffff;
     --typography-headers: #ffffff;
     --typography-active: #000000;
+    --typography-active-secondary: #000000;
     --link-active: #1f83bb;
     --shadow-primary:rgba(226, 169, 65, 0.4) 0px 3px 8px;
 }
@@ -14,8 +16,10 @@ html[data-theme='light'] {
     --secondary: #d1cece;
     --typography-primary: #0f0e0f;
     --typography-secondary: #0c0c0c;
+    --typography-tertiary: #000000;
     --typography-headers: #000000;
     --typography-active: #ffffff;
+    --typography-active-secondary: #ffffff;
     --link-active: #0a0a0a;
     --shadow-primary:rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

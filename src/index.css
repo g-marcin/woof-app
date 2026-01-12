@@ -80,7 +80,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: var(--typography-secondary);
+        /* color: var(--typography-tertiary); */
         letter-spacing: 0.02em;
         padding: 2px;
     }
@@ -112,4 +112,7 @@
 }
 
 @layer utilities {
+    .bg-secondary {
+        background: var(--secondary);
+    }
 }

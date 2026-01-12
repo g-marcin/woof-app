@@ -210,13 +210,7 @@
 }
 
 .random-button {
-    padding: 12px 24px;
-    background: var(--secondary);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color: var(--typography-secondary);
 }
 
 .random-button:hover:not(:disabled) {
@@ -269,6 +263,5 @@
     padding-left: 10px;
     justify-self: center;
     height: 100vh;
-    
 }
 

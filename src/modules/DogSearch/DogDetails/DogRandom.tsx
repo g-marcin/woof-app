@@ -6,9 +6,9 @@ import { DogVariantsTags } from '../../../components/DogVariantTags/DogVariantsT
 import tagStyles from '../../../components/DogVariantTags/dogVariantTags.module.css';
 import { NavLinkState } from '../../../types';
 import { useDogVariants } from '../../../hooks';
-import spinnerIcon from '@assets/spinner.svg';
 import { fetchSingleImage, preloadImage } from '../../../hooks/useDogDetails/useDogDetails';
 import styles from './dogDetails.module.css';
+import { Loader } from '../../../components/Loader';
 
 export const DogRandom: FC = () => {
     const { t } = useTranslation();
@@ -86,13 +86,7 @@ export const DogRandom: FC = () => {
                         <div className={styles['placeholder']} />
                     )}
                     {isLoading && (
-                        <div className={styles['loader-overlay']}>
-                            <img
-                                src={spinnerIcon}
-                                alt="loading"
-                                className={styles['loader-spinner']}
-                            />
-                        </div>
+                        <Loader/>
                     )}
                 </div>
                 <button
