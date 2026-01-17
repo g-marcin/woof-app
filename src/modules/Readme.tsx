@@ -12,6 +12,13 @@ const Readme: FC = () => {
                 <h1>Readme:{t('headers.readme')}</h1>
                 {t('headers.readme') == 'PL' ? <FlagPl /> : <FlagEn />}
             </span>
+
+            <h1>About:</h1>
+            <p>{t('readme.about')}</p>
+
+            <h1>Tech Stack:</h1>
+            <p>{t('readme.techStack')}</p>
+
             <h1>react-router:</h1>
             <p>{t('readme.router')}</p>
             <h1>custom hooks:</h1>
@@ -40,8 +47,14 @@ const Readme: FC = () => {
             <p>{t('readme.darkMode')}</p>
             <h1>lazy-loading:</h1>
             <p>{t('readme.lazyLoading')}</p>
-            <h1>responive-design:</h1>
+            <h1>responsive-design:</h1>
             <p>{t('readme.responsiveDesign')}</p>
+
+            <h1>dog-api:</h1>
+            <p>{t('readme.dogApi')}</p>
+
+            <h1>image-resizer:</h1>
+            <p>{t('readme.imageResizer')}</p>
         </div>
     );
 };

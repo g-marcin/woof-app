@@ -38,6 +38,8 @@ export const en = {
         noBreed2: 'available yet. Keep looking!',
     },
     readme: {
+        about: `Modern React web application for exploring dog breeds with advanced search, image galleries, theme switching, and multi-language support.`,
+        techStack: `React 19 • TypeScript 5 • Vite 7 • React Router 7 • React Query • Axios • i18next • Tailwind CSS 4`,
         router: `I used react router to enable navigating between diferent pages. Navigation is done with <Navlink>, <Link> components and useNavigate() hook.`,
         customHooks1: `Each page with content uses custom hook and request required data.`,
         customHooks2: `
@@ -48,11 +50,13 @@ eg. useDogList hook gets breeds & subBreeds list and pass to DogList component.
         svgIcons: `I used svg icons manually downloaded from font-awesome website`,
         formApi: `I used form tag to enable submit on ENTER click.`,
         inputValidation: `I added simple built-in validation with input required attribute.`,
-        cssModules: `I used separate css-module for each component to support style encapsulation.`,
+        cssModules: `I used Tailwind CSS utility classes for rapid development and consistent styling throughout the application.`,
         cssVariables: `I used css-variables to collect colors in one place. They may be changed easily.`,
         darkMode: `I used css-variables to implement simple dark mode feature.`,
         lazyLoading: `I used lazy loadning to load each page which reduces amount of data required to be download on page load`,
         inputAutofocus: `I added built in autofocus attribute to input tag `,
         responsiveDesign: `App is fully responsive. Ready to be displayed on desktop, tablet and mobile devices`,
+        dogApi: `RESTful backend API service for dog breed data. Provides endpoints for fetching breed information, details, and images. Configured via VITE_API_URL environment variable.`,
+        imageResizer: `Image optimization service for resizing and caching dog breed images. Improves performance by serving optimized image sizes. Configured via VITE_IMAGE_RESIZER_URL environment variable.`,
     },
 } as const;
