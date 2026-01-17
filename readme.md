@@ -3,11 +3,6 @@
 https://woof-app-ff670.web.app
 
 
-<h2>Netlify:</h2>
-http://www.woof-app2.netlify.app
-<p>Warning! netlify limits some of the functionalities(random picture, search)</p>
-<p>Uwaga! netlify ogranicza niektóre funckcjonalności(losowy obraz, wyszukiwanie)</p>
-
 <h1 >Instalation:</h1>
 <ol>
 <li> Clone github repository</li>
