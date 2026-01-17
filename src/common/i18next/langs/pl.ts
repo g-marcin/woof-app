@@ -39,7 +39,7 @@ export const pl = {
     },
     readme: {
         about: `Nowoczesna aplikacja React do eksploracji ras psów z zaawansowanym wyszukiwaniem, galeriami zdjęć, przełączaniem motywów i obsługą wielu języków.`,
-        techStack: `React 19 • TypeScript 5 • Vite 7 • React Router 7 • React Query • Axios • i18next • Tailwind CSS 4`,
+        techStack: `React 19 • TypeScript 5 • Vite 7 • React Router 7 • Axios • i18next • Tailwind CSS 4 • CSS Modules`,
         router: `Użyłem react router do poruszania się pomiędzy stronami. Nawigacja jest obsłużona z pomocą komponentów <Link> i <NavLink> oraz hooka useNavigate(). `,
         customHooks1: `Każda strona z danymi używa custom-hooka do pobrania ich po wejściu na daną stronę.`,
         customHooks2: `

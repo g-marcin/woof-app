@@ -39,7 +39,7 @@ export const en = {
     },
     readme: {
         about: `Modern React web application for exploring dog breeds with advanced search, image galleries, theme switching, and multi-language support.`,
-        techStack: `React 19 • TypeScript 5 • Vite 7 • React Router 7 • React Query • Axios • i18next • Tailwind CSS 4`,
+        techStack: `React 19 • TypeScript 5 • Vite 7 • React Router 7 • Axios • i18next • Tailwind CSS 4`,
         router: `I used react router to enable navigating between diferent pages. Navigation is done with <Navlink>, <Link> components and useNavigate() hook.`,
         customHooks1: `Each page with content uses custom hook and request required data.`,
         customHooks2: `

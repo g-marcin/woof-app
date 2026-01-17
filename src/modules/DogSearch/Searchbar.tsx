@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Autocomplete } from '../../components/Autocomplete';
 import { useDogList } from '../../hooks';
-import { useDogSearchContext } from '../../hooks/useDogSearchContext';
+import { useDogSearchContext } from '../../context/DogSearchContext/DogSearchContext';
+
 
 export type DogBreed = string;
 

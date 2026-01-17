@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useParams } from 'react-router-dom';
 import { Searchbar } from './Searchbar';
-import { DogSearchContextProvider } from '../../common/DogSearchContext/DogSearchContext';
+import { DogSearchContextProvider } from '../../context/DogSearchContext/DogSearchContext';
 
 const Search: FC = () => {
     const { breedName } = useParams();

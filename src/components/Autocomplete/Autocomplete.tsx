@@ -1,5 +1,5 @@
 import { FC, useEffect, useState} from 'react';
-import { useDogSearchContext } from '../../hooks/useDogSearchContext';
+import { useDogSearchContext } from '../../context/DogSearchContext/DogSearchContext';
 import { DogEntries } from '../../types';
 
 type DogBreed = string;

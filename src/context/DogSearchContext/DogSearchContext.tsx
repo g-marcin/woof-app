@@ -1,5 +1,7 @@
 import { PropsWithChildren, FC, useState, Dispatch, SetStateAction } from 'react'
 import { createContext } from 'react'
+import { useContext } from 'react'
+
 
 type DogSearchContextType = [string, Dispatch<SetStateAction<string>>]
 
@@ -13,4 +15,10 @@ export const DogSearchContextProvider: FC<PropsWithChildren> = ({ children }) =>
             {children}
         </DogSearchContext.Provider>
     )
+}
+
+export const useDogSearchContext = () => {
+  const dogSearchContextValue = useContext(DogSearchContext)
+
+  return dogSearchContextValue
 }
