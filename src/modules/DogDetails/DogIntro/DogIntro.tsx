@@ -6,7 +6,7 @@ const DogIntro: FC = () => {
     const { t } = useTranslation();
     return (
         <div className="flex flex-col gap-4 items-center">
-            <ShieldDogSolid className="bg-[color:var(--typography-primary)] rounded-full w-[90px] h-[90px] p-[70px] my-[35px] border-4 border-[color:var(--secondary)]" />
+            <ShieldDogSolid className='bg-typography-primary rounded-full w-50 h-50 p-5 m-10 border-2 border-secondary'/>
             <p>
                 {t('content.intro1')}
                 <br />
