@@ -28,7 +28,7 @@ export const pl = {
         getRandom: 'Losuj',
         viewList: 'Galeria',
         viewRandom: 'Losowe',
-        viewDefault: 'Detale',
+        viewDefault: 'Główna',
     },
     labels: {
         typeDog: 'Wpisz rasę, której szukasz...',
@@ -38,6 +38,8 @@ export const pl = {
         noBreed2: ' w naszej bazie. Poszukaj innej.',
     },
     readme: {
+        about: `Nowoczesna aplikacja React do eksploracji ras psów z zaawansowanym wyszukiwaniem, galeriami zdjęć, przełączaniem motywów i obsługą wielu języków.`,
+        techStack: `React 19 • TypeScript 5 • Vite 7 • React Router 7 • Axios • i18next • Tailwind CSS 4 • CSS Modules`,
         router: `Użyłem react router do poruszania się pomiędzy stronami. Nawigacja jest obsłużona z pomocą komponentów <Link> i <NavLink> oraz hooka useNavigate(). `,
         customHooks1: `Każda strona z danymi używa custom-hooka do pobrania ich po wejściu na daną stronę.`,
         customHooks2: `
@@ -48,11 +50,13 @@ np hook useDogList pobiera dane o rasach i podrasach. Następnie hook użyty jes
         svgIcons: `Użyłem ikon w formacie svg pobranych ze strony font-awesome.`,
         formApi: `Użyłem html tagu form żeby w prosty sposób umożliwić wysyłanie submitu po kliknęciu ENTER.`,
         inputValidation: `Dodałem prostą validację do imputu za pomocą atrybutu required.`,
-        cssModules: `Użyłem css modules żeby rozdzielić style do oddzielnych plików co zapewnia enkapsulację styli.`,
+        cssModules: `Użyłem Tailwind CSS do szybkiego tworzenia styli i zapewnienia spójności wizualnej w całej aplikacji.`,
         cssVariables: `Użyłem zmiennych css  żeby w prosty sposób można było edytować kolory aplikacji.`,
         darkMode: `Użyłem zmiennych css do zaimplementowania podstawowej funkcjonalności dark theme.`,
         lazyLoading: `Użyłem lazy loading importu żeby zmniejszyć ilość danych potrzebnych do załadowania strony`,
         inputAutofocus: `Wykorzystałem wbudowany attrybut autofocus na htmlowym tagu input `,
         responsiveDesign: `Aplikacja jest responsywna. Można używać na desktopie, tablecie i telefonie`,
+        dogApi: `RESTful backend API do obsługi danych o rasach psów. Dostarcza endpointów do pobierania informacji o rasach, szczegółów i zdjęć. Konfiguracja przez zmienną VITE_API_URL.`,
+        imageResizer: `Serwis optymalizacji obrazów do skalowania i cachowania zdjęć ras psów. Poprawia wydajność poprzez dostarczanie zoptymalizowanych rozmiarów obrazów. Konfiguracja przez zmienną VITE_IMAGE_RESIZER_URL.`,
     },
 } as const;

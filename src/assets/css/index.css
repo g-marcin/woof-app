@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+
+@layer base {
+    * {
+        font-family: Poppins;
+        color: var(--typography-primary);
+        font-weight: 200;
+        font-size: 16px;  
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: var(--primary);
+        height: 100vh;
+        z-index: 0;
+    }
+
+    button,
+    a,
+    main,
+    nav,
+    header {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        background: none;
+        border: none;
+        text-align: start;
+        cursor: pointer;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 14px;
+        color: var(--typography-headers);
+        font-weight: 400;
+    }
+
+    p {
+        margin: 10px 0;
+        padding: 0;
+        line-height: 18px;
+        font-size: 12px;
+        letter-spacing: 0.03em;
+        font-weight: 500;
+        padding-left: 5px;
+    }
+
+    input {
+        background: var(--primary);
+        border: 1px solid var(--typography-primary);
+        border-radius: 8px;
+        padding: 8px;
+        display: flex;
+    }
+}
+
+@layer components {
+
+    .rotate {
+        animation: rotation 2s infinite linear;
+    }
+
+    .icon {
+        /*  change svg format icon color with css  */
+        filter: invert(44%) sepia(65%) saturate(629%) hue-rotate(158deg)
+            brightness(87%) contrast(89%);
+    }
+
+    .filter-active {
+        filter: invert(44%) sepia(65%) saturate(629%) hue-rotate(158deg)
+            brightness(87%) contrast(89%);
+    }
+    
+    button.primary,
+    .primary {
+        background: var(--secondary);
+        color: var(--typography-active);
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 8px;
+        width: 80px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        letter-spacing: 0.02em;
+        padding: 2px;
+    }
+
+    button.primary:hover,
+    .primary:hover {
+        opacity: 0.7;
+    }
+
+    .bg-typography-primary {
+        background: var(--typography-primary);
+    }
+
+    .border-secondary {
+        border-color: var(--secondary);
+    }
+
+    .typography-secondary {
+        color: var(--typography-secondary);
+    }
+
+    .typography-active {
+        color: var(--typography-active);
+    }
+
+    .typography-xs {
+        font-size: 10px;
+    }
+
+    .start-button {
+        color: #000000;
+    }
+
+    html[data-theme='light'] .start-shield {
+        background: var(--secondary) !important;
+    }
+}
+
+@layer utilities {
+    .bg-secondary {
+        background: var(--secondary);
+    }
+}
