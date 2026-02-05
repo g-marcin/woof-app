@@ -1,5 +1,5 @@
-export * from './Header';
-export { Layout } from './Layout';
-export * from './MainWrapper';
-export * from './Navbar';
-export * from './PageWrapper';
+export * from './Header'
+export { Layout } from './Layout'
+export * from './MainWrapper'
+export * from './Navbar'
+export * from './PageWrapper'

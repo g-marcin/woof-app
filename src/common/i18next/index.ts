@@ -1,7 +1,7 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import { en } from './langs/en';
-import { pl } from './langs/pl';
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import { en } from './langs/en'
+import { pl } from './langs/pl'
 
 i18n.use(initReactI18next)
     .init({
@@ -17,6 +17,6 @@ i18n.use(initReactI18next)
         fallbackLng: 'pl',
     })
     .then(() => null)
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error))
 
-export default i18n;
+export default i18n

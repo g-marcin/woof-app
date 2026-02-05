@@ -1,14 +1,14 @@
-import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import { FlagEn } from '@assets/svg/FlagEn';
-import { FlagPl } from '@assets/svg/FlagPl';
+import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
+import { FlagEn } from '@assets/svg/FlagEn'
+import { FlagPl } from '@assets/svg/FlagPl'
 
 const Readme: FC = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
     return (
-        <div className='flex flex-col gap-2 m-auto max-w-200 p-5'>
-            <span className='flex gap-2 items-center m-auto p-10'>
+        <div className="flex flex-col gap-2 m-auto max-w-200 p-5">
+            <span className="flex gap-2 items-center m-auto p-10">
                 <h1>Readme: {t('headers.readme')}</h1>
                 {t('headers.readme') == 'PL' ? <FlagPl /> : <FlagEn />}
             </span>
@@ -64,7 +64,7 @@ const Readme: FC = () => {
             <h1>image-resizer:</h1>
             <p>{t('readme.imageResizer')}</p>
         </div>
-    );
-};
+    )
+}
 
-export default Readme;
+export default Readme

@@ -1,2 +1,2 @@
-export * from './index.css';
-export * from './theme.css';
+export * from './index.css'
+export * from './theme.css'

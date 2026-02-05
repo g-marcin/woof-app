@@ -1,1 +1,1 @@
-export * from './DogIntro';
+export * from './DogIntro'

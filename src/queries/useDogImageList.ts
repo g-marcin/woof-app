@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-import { fetchDogImageList } from '../hooks/useDogDetails/useDogDetails';
-import { queryKeys } from './queryKeys';
+import { useQuery } from '@tanstack/react-query'
+import { fetchDogImageList } from '../hooks/useDogDetails/useDogDetails'
+import { queryKeys } from './queryKeys'
 
 export const useDogImageList = (breedName: string, breedVariant: string) => {
     return useQuery({
@@ -8,5 +8,5 @@ export const useDogImageList = (breedName: string, breedVariant: string) => {
         queryFn: () => fetchDogImageList(breedName, breedVariant),
         staleTime: Infinity,
         enabled: !!breedName,
-    });
-};
+    })
+}

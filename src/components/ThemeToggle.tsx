@@ -1,33 +1,33 @@
-import { FC, useEffect, useState } from 'react';
-import { BulbRegular } from '@assets/svg/BulbRegular';
-import { BulbSolid } from '@assets/svg/BulbSolid';
+import { FC, useEffect, useState } from 'react'
+import { BulbRegular } from '@assets/svg/BulbRegular'
+import { BulbSolid } from '@assets/svg/BulbSolid'
 
 export const ThemeToggle: FC = () => {
     const [isDark, setIsDark] = useState(
-        window.localStorage.getItem('theme') === 'dark',
-    );
+        window.localStorage.getItem('theme') === 'dark'
+    )
     useEffect(() => {
-        const htmlElement = document.getElementsByTagName('html')[0];
-        const currentTheme = window.localStorage.getItem('theme');
+        const htmlElement = document.getElementsByTagName('html')[0]
+        const currentTheme = window.localStorage.getItem('theme')
         htmlElement.setAttribute(
             'data-theme',
-            currentTheme ? currentTheme : 'dark',
-        );
-        !currentTheme && window.localStorage.setItem('theme', 'dark');
-        !currentTheme && setIsDark(true);
-    }, []);
+            currentTheme ? currentTheme : 'dark'
+        )
+        !currentTheme && window.localStorage.setItem('theme', 'dark')
+        !currentTheme && setIsDark(true)
+    }, [])
     const onClick = () => {
-        const currentTheme = isDark;
-        const newTheme = !currentTheme;
-        window.localStorage.setItem('theme', newTheme ? 'dark' : 'light');
-        setIsDark(newTheme);
+        const currentTheme = isDark
+        const newTheme = !currentTheme
+        window.localStorage.setItem('theme', newTheme ? 'dark' : 'light')
+        setIsDark(newTheme)
         document
             .getElementsByTagName('html')[0]
-            ?.setAttribute('data-theme', `${newTheme ? 'dark' : 'light'}`);
-    };
+            ?.setAttribute('data-theme', `${newTheme ? 'dark' : 'light'}`)
+    }
     return (
         <button onClick={onClick}>
             {isDark ? <BulbSolid /> : <BulbRegular />}
         </button>
-    );
-};
+    )
+}

@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ShieldDogSolid } from '@assets/svg/ShieldDogSolid';
+import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
+import { ShieldDogSolid } from '@assets/svg/ShieldDogSolid'
 
 export const DogError: FC = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation()
     return (
         <div className="flex flex-col gap-4 items-center">
             <ShieldDogSolid className="bg-[color:var(--typography-primary)] rounded-full w-[85px] h-[85px] p-[70px] my-[35px] border-4 border-[color:var(--secondary)]" />
@@ -14,5 +14,5 @@ export const DogError: FC = () => {
                 {t('errors.noBreed2')}
             </p>
         </div>
-    );
-};
+    )
+}

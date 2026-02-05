@@ -59,4 +59,4 @@ np hook useDogList pobiera dane o rasach i podrasach. Następnie hook użyty jes
         dogApi: `RESTful backend API do obsługi danych o rasach psów. Dostarcza endpointów do pobierania informacji o rasach, szczegółów i zdjęć. Konfiguracja przez zmienną VITE_API_URL.`,
         imageResizer: `Serwis optymalizacji obrazów do skalowania i cachowania zdjęć ras psów. Poprawia wydajność poprzez dostarczanie zoptymalizowanych rozmiarów obrazów. Konfiguracja przez zmienną VITE_IMAGE_RESIZER_URL.`,
     },
-} as const;
+} as const
