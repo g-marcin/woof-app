@@ -1,3 +1,7 @@
 export * from './useDogDetails'
 export * from './useDogList'
 export * from './useDogVariants'
+export * from './useDogDetails';
+export * from './useDogDescription';
+export * from './useDogList';
+export * from './useDogVariants';

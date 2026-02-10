@@ -6,15 +6,15 @@ import {
     fetchDogImageList,
     fetchSingleImage,
     preloadImage,
-} from '../../hooks/useDogDetails/useDogDetails'
-import { useDogVariants } from '../../hooks'
-import { DogError } from '../DogSearch/DogError/DogError'
-import { ModeNavigation } from '../DogSearch/ModeNavigation'
-import { DogGallery } from './DogGallery'
-import { DogRandom } from './DogRandom'
-import { DogVariantsTags } from '../../components/DogVariantTags/DogVariantsTags'
-import { ModeType } from './constants'
-import { Loader } from '../../components'
+} from '../../hooks/useDogDetails/useDogDetails';
+import { useDogVariants, useDogDescription } from '../../hooks';
+import { DogError } from '../DogSearch/DogError/DogError';
+import { ModeNavigation } from '../DogSearch/ModeNavigation';
+import { DogGallery } from './DogGallery';
+import { DogRandom } from './DogRandom';
+import { DogVariantsTags } from '../../components/DogVariantTags/DogVariantsTags';
+import { ModeType } from './constants';
+import { Loader } from '../../components';
 
 const DogMain: FC = () => {
     const { t } = useTranslation()
@@ -66,6 +66,11 @@ const DogMain: FC = () => {
     }
 
     const { dogVariants } = useDogVariants(breedName || '')
+    const { description, isLoading: isDescriptionLoading } = useDogDescription(
+        breedName || '',
+        variant,
+    );
+
     if (!breedName) {
         return
     }
@@ -121,9 +126,20 @@ const DogMain: FC = () => {
                     {mode === ModeType.DETAILS && (
                         <>
                             <div className="text-justify items-center">
-                                <h1>{capitalizeFirstLetter(breedName)}:</h1>
-                                <p>{t('content.dogDescription1')}</p>
-                                <p>{t('content.dogDescription2')}</p>
+                                <h1>
+                                    {capitalizeFirstLetter(breedName)}
+                                    {variant ? ` - ${capitalizeFirstLetter(variant)}` : ''}:
+                                </h1>
+                                {isDescriptionLoading ? (
+                                    <p className="animate-pulse">{t('content.loading')}</p>
+                                ) : description ? (
+                                    <p>{description}</p>
+                                ) : (
+                                    <>
+                                        <p>{t('content.dogDescription1')}</p>
+                                        <p>{t('content.dogDescription2')}</p>
+                                    </>
+                                )}
                             </div>
                             <h1>
                                 {capitalizeFirstLetter(breedName)}{' '}

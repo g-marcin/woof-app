@@ -19,6 +19,7 @@ export const en = {
         intro2: 'about the pet chosen by you.',
         noVariants: 'No dog variants available',
         imageCount: 'Total images: {{count}}',
+        loading: 'Loading description...',
     },
     buttons: {
         search: 'Search',

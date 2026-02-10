@@ -19,6 +19,7 @@ export const pl = {
         intro2: 'O interesującym Cię pupilu.',
         noVariants: 'Brak rodzajów do wyświetlenia',
         imageCount: 'Ilość: {{count}}',
+        loading: 'Ładowanie opisu...',
     },
     buttons: {
         search: 'Szukaj',
