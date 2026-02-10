@@ -1,16 +1,19 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { FC, useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { Spinner } from '@assets/svg/Spinner';
-import { fetchSingleImage, preloadImage } from '../../../hooks/useDogDetails/useDogDetails';
-import { DogError } from '../DogError/DogError';
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { FC, useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
+import { Spinner } from '@assets/svg/Spinner'
+import {
+    fetchSingleImage,
+    preloadImage,
+} from '../../../hooks/useDogDetails/useDogDetails'
+import { DogError } from '../DogError/DogError'
 
 const RandomDogImage: FC = () => {
-    const { t } = useTranslation();
-    const { breedName, variant } = useParams();
-    const [imageKey, setImageKey] = useState(0);
-    const [currentImage, setCurrentImage] = useState<string>('');
+    const { t } = useTranslation()
+    const { breedName, variant } = useParams()
+    const [imageKey, setImageKey] = useState(0)
+    const [currentImage, setCurrentImage] = useState<string>('')
 
     const {
         data: initialImage = '',
@@ -21,36 +24,36 @@ const RandomDogImage: FC = () => {
         queryFn: () => fetchSingleImage(breedName || '', variant || ''),
         enabled: true,
         staleTime: 0,
-    });
+    })
 
     useEffect(() => {
         if (initialImage) {
-            setCurrentImage(initialImage);
+            setCurrentImage(initialImage)
         }
-    }, [initialImage]);
+    }, [initialImage])
 
     const mutation = useMutation({
         mutationFn: () => fetchSingleImage(breedName || '', variant || ''),
-        onSuccess: async (newImage) => {
-            await preloadImage(newImage);
-            setCurrentImage(newImage);
-            setImageKey(prev => prev + 1);
+        onSuccess: async newImage => {
+            await preloadImage(newImage)
+            setCurrentImage(newImage)
+            setImageKey(prev => prev + 1)
         },
-    });
+    })
 
     const handleRandomClick = () => {
-        mutation.mutate();
-    };
-
-    const capitalizeFirstLetter = (word: string) => {
-        return word?.charAt(0).toLocaleUpperCase() + word?.slice(1);
-    };
-
-    if (isError) {
-        return <DogError />;
+        mutation.mutate()
     }
 
-    const isLoading = mutation.isPending || (isInitialLoading && !currentImage);
+    const capitalizeFirstLetter = (word: string) => {
+        return word?.charAt(0).toLocaleUpperCase() + word?.slice(1)
+    }
+
+    if (isError) {
+        return <DogError />
+    }
+
+    const isLoading = mutation.isPending || (isInitialLoading && !currentImage)
 
     return (
         <div className="flex flex-col gap-5 px-5 pb-[100px] max-w-[1200px] mx-auto items-center">
@@ -89,8 +92,7 @@ const RandomDogImage: FC = () => {
                 </button>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default RandomDogImage;
-
+export default RandomDogImage

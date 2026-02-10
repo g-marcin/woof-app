@@ -1,1 +1,1 @@
-export * from './DogVariantsTags';
+export * from './DogVariantsTags'

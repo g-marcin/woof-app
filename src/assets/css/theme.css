@@ -1,4 +1,4 @@
-html[data-theme='dark'] {
+html[data-theme="dark"] {
     --primary: #1f1d2b;
     --secondary: #efba54;
     --typography-primary: #787779;
@@ -8,10 +8,10 @@ html[data-theme='dark'] {
     --typography-active: #000000;
     --typography-active-secondary: #000000;
     --link-active: #1f83bb;
-    --shadow-primary:rgba(226, 169, 65, 0.4) 0px 3px 8px;
+    --shadow-primary: rgba(226, 169, 65, 0.4) 0px 3px 8px;
 }
 
-html[data-theme='light'] {
+html[data-theme="light"] {
     --primary: #ffffff;
     --secondary: #d1cece;
     --typography-primary: #0f0e0f;
@@ -21,5 +21,5 @@ html[data-theme='light'] {
     --typography-active: #ffffff;
     --typography-active-secondary: #ffffff;
     --link-active: #0a0a0a;
-    --shadow-primary:rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    --shadow-primary: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

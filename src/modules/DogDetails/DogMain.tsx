@@ -1,13 +1,13 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { FC, useMemo, useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { FC, useMemo, useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useParams, useSearchParams } from 'react-router-dom'
 import {
     fetchDogImageList,
     fetchSingleImage,
     preloadImage,
 } from '../../hooks/useDogDetails/useDogDetails';
-import { useDogVariants } from '../../hooks';
+import { useDogVariants, useDogDescription } from '../../hooks';
 import { DogError } from '../DogSearch/DogError/DogError';
 import { ModeNavigation } from '../DogSearch/ModeNavigation';
 import { DogGallery } from './DogGallery';
@@ -17,77 +17,79 @@ import { ModeType } from './constants';
 import { Loader } from '../../components';
 
 const DogMain: FC = () => {
-    const { t } = useTranslation();
-    const { breedName, variant } = useParams();
-    const [searchParams] = useSearchParams();
-    const mode = searchParams.get('mode') || ModeType.DETAILS;
-    const queryClient = useQueryClient();
-    const queryKey = ['dogImageList', breedName, variant];
-    const currentIndexKey = ['dogImageIndex', breedName, variant];
+    const { t } = useTranslation()
+    const { breedName, variant } = useParams()
+    const [searchParams] = useSearchParams()
+    const mode = searchParams.get('mode') || ModeType.DETAILS
+    const queryClient = useQueryClient()
+    const queryKey = ['dogImageList', breedName, variant]
+    const currentIndexKey = ['dogImageIndex', breedName, variant]
 
-    const {
-        data: imageList = [],
-        isError,
-    } = useQuery({
+    const { data: imageList = [], isError } = useQuery({
         queryKey,
         queryFn: () => fetchDogImageList(breedName || '', variant || ''),
         enabled: !!breedName,
         staleTime: Infinity,
         gcTime: Infinity,
-    });
+    })
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0)
 
     useEffect(() => {
-        const stored = queryClient.getQueryData<number>(currentIndexKey) ?? 0;
-        setCurrentIndex(stored);
-    }, [breedName, variant, queryClient, currentIndexKey]);
-
+        const stored = queryClient.getQueryData<number>(currentIndexKey) ?? 0
+        setCurrentIndex(stored)
+    }, [breedName, variant, queryClient, currentIndexKey])
 
     const currentImage = useMemo(
-        () => (imageList.length > 0 ? imageList[currentIndex % imageList.length] : ''),
-        [imageList, currentIndex],
-    );
+        () =>
+            imageList.length > 0
+                ? imageList[currentIndex % imageList.length]
+                : '',
+        [imageList, currentIndex]
+    )
 
-    const {
-        isError: isRandomError,
-    } = useQuery({
+    const { isError: isRandomError } = useQuery({
         queryKey: ['randomDogImage', breedName, variant],
         queryFn: () => fetchSingleImage(breedName || '', variant || ''),
         enabled: mode === ModeType.RANDOM && !!breedName,
         staleTime: 0,
-    });
+    })
 
     const handleImageClick = () => {
-        if (imageList.length === 0) return;
-        const nextIndex = (currentIndex + 1) % imageList.length;
-        setCurrentIndex(nextIndex);
-        queryClient.setQueryData<number>(currentIndexKey, nextIndex);
+        if (imageList.length === 0) return
+        const nextIndex = (currentIndex + 1) % imageList.length
+        setCurrentIndex(nextIndex)
+        queryClient.setQueryData<number>(currentIndexKey, nextIndex)
         if (imageList.length > nextIndex + 1) {
-            preloadImage(imageList[(nextIndex + 1) % imageList.length]);
+            preloadImage(imageList[(nextIndex + 1) % imageList.length])
         }
-    };
+    }
 
-    const { dogVariants } = useDogVariants(breedName || '');
+    const { dogVariants } = useDogVariants(breedName || '')
+    const { description, isLoading: isDescriptionLoading } = useDogDescription(
+        breedName || '',
+        variant,
+    );
+
     if (!breedName) {
-        return;
+        return
     }
 
     const capitalizeFirstLetter = (word: string) => {
-        return word?.charAt(0).toLocaleUpperCase() + word?.slice(1);
-    };
+        return word?.charAt(0).toLocaleUpperCase() + word?.slice(1)
+    }
 
     if (isError || (mode === ModeType.RANDOM && isRandomError)) {
-        return <DogError />;
+        return <DogError />
     }
 
     const renderContent = () => {
         if (mode === ModeType.GALLERY) {
-            return <DogGallery imageList={imageList} mode={mode} />;
+            return <DogGallery imageList={imageList} mode={mode} />
         }
 
         if (mode === ModeType.RANDOM) {
-            return <DogRandom />;
+            return <DogRandom />
         }
 
         return (
@@ -103,17 +105,15 @@ const DogMain: FC = () => {
                                 onClick={handleImageClick}
                             />
                         )}
-                        {imageList.length === 0 && (
-                            <Loader/>
-                        )}
+                        {imageList.length === 0 && <Loader />}
                     </div>
                     <div className="text-[color:var(--secondary)] typography-bold">
                         {t('buttons.clickMe')}
                     </div>
                 </div>
             </>
-        );
-    };
+        )
+    }
 
     return (
         <>
@@ -126,9 +126,20 @@ const DogMain: FC = () => {
                     {mode === ModeType.DETAILS && (
                         <>
                             <div className="text-justify items-center">
-                                <h1>{capitalizeFirstLetter(breedName)}:</h1>
-                                <p>{t('content.dogDescription1')}</p>
-                                <p>{t('content.dogDescription2')}</p>
+                                <h1>
+                                    {capitalizeFirstLetter(breedName)}
+                                    {variant ? ` - ${capitalizeFirstLetter(variant)}` : ''}:
+                                </h1>
+                                {isDescriptionLoading ? (
+                                    <p className="animate-pulse">{t('content.loading')}</p>
+                                ) : description ? (
+                                    <p>{description}</p>
+                                ) : (
+                                    <>
+                                        <p>{t('content.dogDescription1')}</p>
+                                        <p>{t('content.dogDescription2')}</p>
+                                    </>
+                                )}
                             </div>
                             <h1>
                                 {capitalizeFirstLetter(breedName)}{' '}
@@ -143,7 +154,7 @@ const DogMain: FC = () => {
                 </div>
             )}
         </>
-    );
-};
+    )
+}
 
-export default DogMain;
+export default DogMain

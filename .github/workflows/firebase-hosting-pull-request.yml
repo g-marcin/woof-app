@@ -13,7 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci && npm run build
+
+      - name: Build with Docker
+        run: |
+          docker build --target builder -t woof-app-build .
+          docker create --name temp-container woof-app-build
+          docker cp temp-container:/usr/local/app/dist ./dist
+          docker rm temp-container
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

@@ -1,12 +1,11 @@
 @import "tailwindcss";
 
-
 @layer base {
     * {
         font-family: Poppins;
         color: var(--typography-primary);
         font-weight: 200;
-        font-size: 16px;  
+        font-size: 16px;
     }
 
     body {
@@ -58,7 +57,6 @@
 }
 
 @layer components {
-
     .rotate {
         animation: rotation 2s infinite linear;
     }
@@ -73,7 +71,7 @@
         filter: invert(44%) sepia(65%) saturate(629%) hue-rotate(158deg)
             brightness(87%) contrast(89%);
     }
-    
+
     button.primary,
     .primary {
         background: var(--secondary);
@@ -119,7 +117,7 @@
         color: #000000;
     }
 
-    html[data-theme='light'] .start-shield {
+    html[data-theme="light"] .start-shield {
         background: var(--secondary) !important;
     }
 }

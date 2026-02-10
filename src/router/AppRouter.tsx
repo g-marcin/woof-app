@@ -1,20 +1,18 @@
-import { Suspense, lazy } from 'react';
-import { createBrowserRouter } from 'react-router-dom';
-import { Layout } from '../layout';
-import { Loader } from '../components';
-import { Start } from '../modules/Start';
-import { ErrorPage } from './ErrorPage';
-const Listing = lazy(() => import('../modules/Listing'));
-const Search = lazy(() => import('../modules/DogSearch/Search'));
-const Readme = lazy(() => import('../modules/Readme'));
-const DogDetails = lazy(
-    () => import('../modules/DogDetails/DogMain'),
-);
-const DogIntro = lazy(() => import('../modules/DogDetails/DogIntro/DogIntro'));
+import { Suspense, lazy } from 'react'
+import { createBrowserRouter } from 'react-router-dom'
+import { Layout } from '../layout'
+import { Loader } from '../components'
+import { Start } from '../modules/Start'
+import { ErrorPage } from './ErrorPage'
+const Listing = lazy(() => import('../modules/Listing'))
+const Search = lazy(() => import('../modules/DogSearch/Search'))
+const Readme = lazy(() => import('../modules/Readme'))
+const DogDetails = lazy(() => import('../modules/DogDetails/DogMain'))
+const DogIntro = lazy(() => import('../modules/DogDetails/DogIntro/DogIntro'))
 
 const RandomDogImage = lazy(
-    () => import('../modules/DogSearch/RandomDogImage/RandomDogImage'),
-);
+    () => import('../modules/DogSearch/RandomDogImage/RandomDogImage')
+)
 export const AppRouter = createBrowserRouter([
     {
         path: '',
@@ -29,7 +27,7 @@ export const AppRouter = createBrowserRouter([
                 path: '/readme',
                 element: (
                     <Suspense fallback={<Loader />}>
-                        <Readme/>
+                        <Readme />
                     </Suspense>
                 ),
             },
@@ -101,4 +99,4 @@ export const AppRouter = createBrowserRouter([
             },
         ],
     },
-]);
+])

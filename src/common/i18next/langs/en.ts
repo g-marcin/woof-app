@@ -19,6 +19,7 @@ export const en = {
         intro2: 'about the pet chosen by you.',
         noVariants: 'No dog variants available',
         imageCount: 'Total images: {{count}}',
+        loading: 'Loading description...',
     },
     buttons: {
         search: 'Search',
@@ -59,4 +60,4 @@ eg. useDogList hook gets breeds & subBreeds list and pass to DogList component.
         dogApi: `RESTful backend API service for dog breed data. Provides endpoints for fetching breed information, details, and images. Configured via VITE_API_URL environment variable.`,
         imageResizer: `Image optimization service for resizing and caching dog breed images. Improves performance by serving optimized image sizes. Configured via VITE_IMAGE_RESIZER_URL environment variable.`,
     },
-} as const;
+} as const

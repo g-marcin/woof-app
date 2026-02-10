@@ -1,2 +1,1 @@
-export { ModeNavigation } from './ModeNavigation';
-
+export { ModeNavigation } from './ModeNavigation'

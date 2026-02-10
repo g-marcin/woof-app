@@ -1,56 +1,57 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { FC, useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { DogVariantsTags } from '../../components/DogVariantTags/DogVariantsTags';
-import { useDogVariants } from '../../hooks';
-import { fetchSingleImage, preloadImage } from '../../hooks/useDogDetails/useDogDetails';
-import { Loader } from '../../components/Loader';
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { FC, useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
+import { DogVariantsTags } from '../../components/DogVariantTags/DogVariantsTags'
+import { useDogVariants } from '../../hooks'
+import {
+    fetchSingleImage,
+    preloadImage,
+} from '../../hooks/useDogDetails/useDogDetails'
+import { Loader } from '../../components/Loader'
 
 export const DogRandom: FC = () => {
-    const { t } = useTranslation();
-    const { breedName, variant } = useParams();
-    const { dogVariants } = useDogVariants(breedName || '');
+    const { t } = useTranslation()
+    const { breedName, variant } = useParams()
+    const { dogVariants } = useDogVariants(breedName || '')
 
-    const {
-        data: randomImage = '',
-        isLoading: isRandomLoading,
-    } = useQuery({
+    const { data: randomImage = '', isLoading: isRandomLoading } = useQuery({
         queryKey: ['randomDogImage', breedName, variant],
         queryFn: () => fetchSingleImage(breedName || '', variant || ''),
         enabled: !!breedName,
         staleTime: 0,
-    });
+    })
 
-    const [randomImageState, setRandomImageState] = useState<string>('');
-    const [randomImageKey, setRandomImageKey] = useState(0);
+    const [randomImageState, setRandomImageState] = useState<string>('')
+    const [randomImageKey, setRandomImageKey] = useState(0)
 
     useEffect(() => {
         if (randomImage) {
-            setRandomImageState(randomImage);
+            setRandomImageState(randomImage)
         }
-    }, [randomImage]);
+    }, [randomImage])
 
     const randomMutation = useMutation({
         mutationFn: () => fetchSingleImage(breedName || '', variant || ''),
-        onSuccess: async (newImage) => {
-            await preloadImage(newImage);
-            setRandomImageState(newImage);
-            setRandomImageKey(prev => prev + 1);
+        onSuccess: async newImage => {
+            await preloadImage(newImage)
+            setRandomImageState(newImage)
+            setRandomImageKey(prev => prev + 1)
         },
-    });
+    })
 
     const handleRandomClick = () => {
-        randomMutation.mutate();
-    };
+        randomMutation.mutate()
+    }
 
     const capitalizeFirstLetter = (word: string | undefined) => {
-        if (!word) return '';
-        return word.charAt(0).toLocaleUpperCase() + word.slice(1);
-    };
+        if (!word) return ''
+        return word.charAt(0).toLocaleUpperCase() + word.slice(1)
+    }
 
-    const displayImage = randomImageState || randomImage;
-    const isLoading = randomMutation.isPending || (isRandomLoading && !displayImage);
+    const displayImage = randomImageState || randomImage
+    const isLoading =
+        randomMutation.isPending || (isRandomLoading && !displayImage)
 
     return (
         <div className="w-full">
@@ -59,12 +60,12 @@ export const DogRandom: FC = () => {
                 {variant && ` ${capitalizeFirstLetter(variant)}`}
             </h2>
             <div className="flex flex-col items-center gap-5 w-full mx-auto">
-            {breedName && (
-                <DogVariantsTags
-                    dogVariants={dogVariants}
-                    breedName={breedName}
-                />
-            )}
+                {breedName && (
+                    <DogVariantsTags
+                        dogVariants={dogVariants}
+                        breedName={breedName}
+                    />
+                )}
                 <div className="relative w-full max-w-[800px] aspect-square rounded-xl overflow-hidden bg-[color:var(--secondary)] shadow-[0_4px_12px_rgba(0,0,0,0.15)] mx-auto">
                     {displayImage ? (
                         <img
@@ -76,9 +77,7 @@ export const DogRandom: FC = () => {
                     ) : (
                         <div className="w-full h-full bg-[color:var(--secondary)]" />
                     )}
-                    {isLoading && (
-                        <Loader/>
-                    )}
+                    {isLoading && <Loader />}
                 </div>
                 <button
                     onClick={handleRandomClick}
@@ -88,8 +87,6 @@ export const DogRandom: FC = () => {
                     {t('buttons.getRandom')}
                 </button>
             </div>
-     
         </div>
-    );
-};
-
+    )
+}

@@ -1,1 +1,1 @@
-export * from './DogMain';
+export * from './DogMain'

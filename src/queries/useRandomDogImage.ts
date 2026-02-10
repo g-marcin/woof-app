@@ -1,5 +1,5 @@
-import { useMutation } from '@tanstack/react-query';
-import { fetchSingleImage } from '../hooks/useDogDetails/useDogDetails';
+import { useMutation } from '@tanstack/react-query'
+import { fetchSingleImage } from '../hooks/useDogDetails/useDogDetails'
 
 export const useRandomDogImage = () => {
     return useMutation({
@@ -7,8 +7,8 @@ export const useRandomDogImage = () => {
             breedName,
             breedVariant,
         }: {
-            breedName: string;
-            breedVariant: string;
+            breedName: string
+            breedVariant: string
         }) => fetchSingleImage(breedName, breedVariant),
-    });
-};
+    })
+}
