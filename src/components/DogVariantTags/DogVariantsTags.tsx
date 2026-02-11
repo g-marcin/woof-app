@@ -12,7 +12,6 @@ export const DogVariantsTags: FC<DogVariantsTagsProps> = ({
     dogVariants,
     breedName,
 }) => {
-
     return (
         <div className="flex flex-wrap content-center gap-1.5">
             {dogVariants.map(dogVariant => (
