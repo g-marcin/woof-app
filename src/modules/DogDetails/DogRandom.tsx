@@ -60,7 +60,7 @@ export const DogRandom: FC = () => {
                 {variant && ` ${capitalizeFirstLetter(variant)}`}
             </h2>
             <div className="flex flex-col items-center gap-5 w-full mx-auto">
-                {breedName && (
+                {breedName && dogVariants.length > 0 && (
                     <DogVariantsTags
                         dogVariants={dogVariants}
                         breedName={breedName}

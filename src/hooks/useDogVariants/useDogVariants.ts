@@ -5,7 +5,7 @@ import { DogVariants, DogVariantsDTO } from '../../types'
 import { dogVariantsMapper } from './dogVariantsMapper'
 
 export const useDogVariants = (breedName: string) => {
-    const [dogVariants, setDogVariants] = useState<DogVariants>([''])
+    const [dogVariants, setDogVariants] = useState<DogVariants>([])
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(false)
     useEffect(() => {

@@ -1,1 +1,1 @@
-export * from './useDogDescription';
+export * from './useDogDescription'
