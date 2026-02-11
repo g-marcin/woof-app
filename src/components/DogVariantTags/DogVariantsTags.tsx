@@ -1,7 +1,5 @@
 import { FC } from 'react'
-import { useTranslation } from 'react-i18next'
 import { DogVariantLink } from '../../modules/DogDetails/DogVariantLink'
-import { Tag } from '../Tag'
 
 export interface DogVariantsTagsProps {
     dogVariants: string[]
