@@ -6,15 +6,15 @@ import {
     fetchDogImageList,
     fetchSingleImage,
     preloadImage,
-} from '../../hooks/useDogDetails/useDogDetails';
-import { useDogVariants, useDogDescription } from '../../hooks';
-import { DogError } from '../DogSearch/DogError/DogError';
-import { ModeNavigation } from '../DogSearch/ModeNavigation';
-import { DogGallery } from './DogGallery';
-import { DogRandom } from './DogRandom';
-import { DogVariantsTags } from '../../components/DogVariantTags/DogVariantsTags';
-import { ModeType } from './constants';
-import { Loader } from '../../components';
+} from '../../hooks/useDogDetails/useDogDetails'
+import { useDogVariants, useDogDescription } from '../../hooks'
+import { DogError } from '../DogSearch/DogError/DogError'
+import { ModeNavigation } from '../DogSearch/ModeNavigation'
+import { DogGallery } from './DogGallery'
+import { DogRandom } from './DogRandom'
+import { DogVariantsTags } from '../../components/DogVariantTags/DogVariantsTags'
+import { ModeType } from './constants'
+import { Loader } from '../../components'
 
 const DogMain: FC = () => {
     const { t } = useTranslation()
@@ -68,8 +68,8 @@ const DogMain: FC = () => {
     const { dogVariants } = useDogVariants(breedName || '')
     const { description, isLoading: isDescriptionLoading } = useDogDescription(
         breedName || '',
-        variant,
-    );
+        variant
+    )
 
     if (!breedName) {
         return
@@ -128,10 +128,15 @@ const DogMain: FC = () => {
                             <div className="text-justify items-center">
                                 <h1>
                                     {capitalizeFirstLetter(breedName)}
-                                    {variant ? ` - ${capitalizeFirstLetter(variant)}` : ''}:
+                                    {variant
+                                        ? ` - ${capitalizeFirstLetter(variant)}`
+                                        : ''}
+                                    :
                                 </h1>
                                 {isDescriptionLoading ? (
-                                    <p className="animate-pulse">{t('content.loading')}</p>
+                                    <p className="animate-pulse">
+                                        {t('content.loading')}
+                                    </p>
                                 ) : description ? (
                                     <p>{description}</p>
                                 ) : (
@@ -141,14 +146,20 @@ const DogMain: FC = () => {
                                     </>
                                 )}
                             </div>
-                            <h1>
-                                {capitalizeFirstLetter(breedName)}{' '}
-                                {t('headers.variants')}
-                            </h1>
-                            <DogVariantsTags
-                                dogVariants={dogVariants}
-                                breedName={breedName}
-                            />
+
+                            {dogVariants.length > 0 && (
+                                <>
+                                    {' '}
+                                    <h1>
+                                        {capitalizeFirstLetter(breedName)}{' '}
+                                        {t('headers.variants')}
+                                    </h1>
+                                    <DogVariantsTags
+                                        dogVariants={dogVariants}
+                                        breedName={breedName}
+                                    />
+                                </>
+                            )}
                         </>
                     )}
                 </div>

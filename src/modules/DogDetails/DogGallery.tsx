@@ -74,7 +74,7 @@ export const DogGallery: FC<DogGalleryProps> = ({ imageList, mode }) => {
                 {t('content.imageCount', { count: imageList.length })}
             </p>
             <>
-                {breedName && (
+                {breedName && dogVariants.length>0 && (
                     <DogVariantsTags
                         dogVariants={dogVariants}
                         breedName={breedName}
