@@ -4,6 +4,8 @@ import { Layout } from '../layout'
 import { Loader } from '../components'
 import { Start } from '../modules/Start'
 import { ErrorPage } from './ErrorPage'
+import { QueryErrorFallback } from './QueryErrorFallback'
+import { ErrorBoundary } from 'react-error-boundary'
 const Listing = lazy(() => import('../modules/Listing'))
 const Search = lazy(() => import('../modules/DogSearch/Search'))
 const Readme = lazy(() => import('../modules/Readme'))
@@ -34,9 +36,11 @@ export const AppRouter = createBrowserRouter([
             {
                 path: '/listing',
                 element: (
-                    <Suspense fallback={<Loader />}>
-                        <Listing />
-                    </Suspense>
+                    <ErrorBoundary fallbackRender={QueryErrorFallback}>
+                        <Suspense fallback={<Loader />}>
+                            <Listing />
+                        </Suspense>
+                    </ErrorBoundary>
                 ),
             },
             {
