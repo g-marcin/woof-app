@@ -134,9 +134,13 @@ const DogMain: FC = () => {
                             :
                         </h1>
                         {isDescriptionLoading ? (
-                            <p className="animate-pulse">
-                                {t('content.loading')}
-                            </p>
+                            <div className="space-y-2 mt-1" aria-hidden="true">
+                                <div className="h-4 bg-[color:var(--secondary)] opacity-40 rounded animate-pulse w-full" />
+                                <div className="h-4 bg-[color:var(--secondary)] opacity-40 rounded animate-pulse w-[92%]" />
+                                <div className="h-4 bg-[color:var(--secondary)] opacity-40 rounded animate-pulse w-[96%]" />
+                                <div className="h-4 bg-[color:var(--secondary)] opacity-40 rounded animate-pulse w-[85%]" />
+                                <div className="h-4 bg-[color:var(--secondary)] opacity-40 rounded animate-pulse w-[90%]" />
+                            </div>
                         ) : description ? (
                             <p>{description}</p>
                         ) : (
