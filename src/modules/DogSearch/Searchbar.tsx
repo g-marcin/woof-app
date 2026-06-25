@@ -30,7 +30,10 @@ export const Searchbar: FC = () => {
         setIsFocused(false)
     }
     return (
-        <form className="flex gap-3 items-center border-2 border-secondary justify-center p-2.5 box-shadow-primary">
+        <form
+            className="flex gap-3 items-center border-2 border-secondary justify-center p-2.5 box-shadow-primary"
+            onSubmit={e => { e.preventDefault(); onSearch(searchQuery as DogBreed) }}
+        >
             <div className="relative pt-2">
                 <label className="absolute -top-1 left-3 px-1 text-[10px] typography-secondary bg-[color:var(--secondary)] z-[2]">
                     {t('labels.typeDog')}
@@ -71,7 +74,7 @@ export const Searchbar: FC = () => {
                 )}
             </div>
             <button
-                type="submit"
+                type="button"
                 className="primary typography-secondary"
                 onClick={() => onSearch(searchQuery as DogBreed)}
             >
