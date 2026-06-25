@@ -39,7 +39,10 @@ export const Autocomplete: FC<AutocompleteProps> = ({ dogList, onSearch }) => {
                     filteredResults.map(result => (
                         <li
                             key={result[0]}
-                            onClick={() => onClick(result[0])}
+                            onMouseDown={e => {
+                                e.preventDefault()
+                                onClick(result[0])
+                            }}
                             className="px-3 py-2 hover:bg-[color:var(--secondary)] text-[color:var(--typography-primary)] hover:text-[color:var(--typography-secondary)] cursor-pointer transition-colors duration-150 border-b border-[color:var(--secondary)]/30 last:border-b-0"
                         >
                             {result[0]}
