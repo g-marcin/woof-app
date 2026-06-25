@@ -120,7 +120,7 @@ const DogMain: FC = () => {
     }
 
     return (
-        <div className="flex flex-col min-h-fit gap-2.5 max-w-[1200px] mx-auto px-5 pb-[100px]">
+        <div className="flex flex-col min-h-fit gap-2.5 max-w-[1200px] mx-auto px-5">
             <ModeNavigation />
             {renderContent()}
             {mode === ModeType.DETAILS && (
