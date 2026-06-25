@@ -133,22 +133,16 @@ const DogMain: FC = () => {
                                 : ''}
                             :
                         </h1>
-                        {isDescriptionLoading ? (
-                            <div className="space-y-2 mt-1" aria-hidden="true">
-                                <div className="h-4 bg-[color:var(--secondary)] opacity-40 rounded animate-pulse w-full" />
-                                <div className="h-4 bg-[color:var(--secondary)] opacity-40 rounded animate-pulse w-[92%]" />
-                                <div className="h-4 bg-[color:var(--secondary)] opacity-40 rounded animate-pulse w-[96%]" />
-                                <div className="h-4 bg-[color:var(--secondary)] opacity-40 rounded animate-pulse w-[85%]" />
-                                <div className="h-4 bg-[color:var(--secondary)] opacity-40 rounded animate-pulse w-[90%]" />
-                            </div>
-                        ) : description ? (
-                            <p>{description}</p>
-                        ) : (
-                            <>
-                                <p>{t('content.dogDescription1')}</p>
-                                <p>{t('content.dogDescription2')}</p>
-                            </>
-                        )}
+                        <div className={`transition-opacity duration-300 ${isDescriptionLoading ? 'opacity-0' : 'opacity-100'}`}>
+                            {description ? (
+                                <p>{description}</p>
+                            ) : (
+                                <>
+                                    <p>{t('content.dogDescription1')}</p>
+                                    <p>{t('content.dogDescription2')}</p>
+                                </>
+                            )}
+                        </div>
                     </div>
 
                     {dogVariants.length > 0 && (
