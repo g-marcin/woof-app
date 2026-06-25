@@ -7,7 +7,7 @@ import {
     fetchSingleImage,
     preloadImage,
 } from '../../hooks/useDogDetails/useDogDetails'
-import { useDogVariants, useDogDescription } from '../../hooks'
+import { useDogVariants, useDogDescription, useDogList } from '../../hooks'
 import { DogError } from '../DogSearch/DogError/DogError'
 import { ModeNavigation } from '../DogSearch/ModeNavigation'
 import { DogGallery } from './DogGallery'
@@ -25,10 +25,13 @@ const DogMain: FC = () => {
     const queryKey = ['dogImageList', breedName, variant]
     const currentIndexKey = ['dogImageIndex', breedName, variant]
 
+    const { dogEntries } = useDogList()
+    const isKnownBreed = !!breedName && dogEntries.some(([name]) => name.toLowerCase() === breedName.toLowerCase())
+
     const { data: imageList = [], isError, isLoading } = useQuery({
         queryKey,
         queryFn: () => fetchDogImageList(breedName || '', variant || ''),
-        enabled: !!breedName,
+        enabled: isKnownBreed,
         staleTime: Infinity,
         gcTime: Infinity,
     })
@@ -73,6 +76,10 @@ const DogMain: FC = () => {
 
     if (!breedName) {
         return
+    }
+
+    if (!isKnownBreed) {
+        return <DogError />
     }
 
     if (isLoading) {
