@@ -1,4 +1,4 @@
-import { FC, useCallback, useRef, useState } from 'react'
+import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Autocomplete } from '../../components/Autocomplete'
@@ -23,12 +23,22 @@ export const Searchbar: FC = () => {
     const listboxId = 'dog-autocomplete-listbox'
     const activeOptionId = activeIndex >= 0 ? `dog-option-${activeIndex}` : undefined
 
+    const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+    const showError = () => {
+        setInputError(true)
+        if (errorTimerRef.current) clearTimeout(errorTimerRef.current)
+        errorTimerRef.current = setTimeout(() => setInputError(false), 3000)
+    }
+
+    useEffect(() => () => { if (errorTimerRef.current) clearTimeout(errorTimerRef.current) }, [])
+
     const onSearch = (breed: DogBreed) => {
         const normalized = breed.toLocaleLowerCase().trim()
         if (normalized) {
             const known = dogEntries.some(([name]) => name.toLowerCase() === normalized)
             if (!known) {
-                setInputError(true)
+                showError()
                 return
             }
             setInputError(false)
@@ -78,9 +88,10 @@ export const Searchbar: FC = () => {
                     value={searchQuery}
                 />
                 {inputError && (
-                    <p className="absolute text-red-500 text-[10px] mt-0.5 left-0 whitespace-nowrap">
-                        {t('errors.noBreed1')}{t('errors.noBreed2')}
-                    </p>
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-30 bg-red-600 text-white text-xs rounded px-2 py-1 whitespace-nowrap shadow-md">
+                        {t('errors.noBreed')}
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-red-600" />
+                    </div>
                 )}
                 {isFocused ? (
                     <Autocomplete dogList={dogEntries} onSearch={onSearch} onKeyboardRef={onKeyboardRef} listboxId={listboxId} onActiveIndexChange={setActiveIndex} />
@@ -90,7 +101,7 @@ export const Searchbar: FC = () => {
             </div>
             <button
                 type="button"
-                className="primary typography-secondary"
+                className="primary typography-secondary mt-2"
                 onClick={() => onSearch(searchQuery as DogBreed)}
             >
                 {t('buttons.search')}

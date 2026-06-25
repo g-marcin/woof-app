@@ -35,8 +35,7 @@ export const pl = {
         typeDog: 'Wpisz rasę, której szukasz...',
     },
     errors: {
-        noBreed1: 'Ajajaj! Tej rasy nie ma jeszcze',
-        noBreed2: ' w naszej bazie. Poszukaj innej.',
+        noBreed: 'Ajajaj! Tej rasy nie ma w naszej bazie. Poszukaj innej.',
     },
     readme: {
         about: `Nowoczesna aplikacja React do eksploracji ras psów z zaawansowanym wyszukiwaniem, galeriami zdjęć, przełączaniem motywów i obsługą wielu języków.`,

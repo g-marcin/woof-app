@@ -120,7 +120,7 @@ const DogMain: FC = () => {
     }
 
     return (
-        <div className="flex flex-col min-h-fit gap-2.5 max-w-[1200px] mx-auto px-5 pb-[100px]">
+        <div className="flex flex-col min-h-fit gap-2.5 max-w-[1200px] mx-auto px-5">
             <ModeNavigation />
             {renderContent()}
             {mode === ModeType.DETAILS && (
@@ -133,18 +133,16 @@ const DogMain: FC = () => {
                                 : ''}
                             :
                         </h1>
-                        {isDescriptionLoading ? (
-                            <p className="animate-pulse">
-                                {t('content.loading')}
-                            </p>
-                        ) : description ? (
-                            <p>{description}</p>
-                        ) : (
-                            <>
-                                <p>{t('content.dogDescription1')}</p>
-                                <p>{t('content.dogDescription2')}</p>
-                            </>
-                        )}
+                        <div className={`transition-opacity duration-300 ${isDescriptionLoading ? 'opacity-0' : 'opacity-100'}`}>
+                            {description ? (
+                                <p>{description}</p>
+                            ) : (
+                                <>
+                                    <p>{t('content.dogDescription1')}</p>
+                                    <p>{t('content.dogDescription2')}</p>
+                                </>
+                            )}
+                        </div>
                     </div>
 
                     {dogVariants.length > 0 && (
