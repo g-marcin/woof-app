@@ -25,7 +25,7 @@ const DogMain: FC = () => {
     const queryKey = ['dogImageList', breedName, variant]
     const currentIndexKey = ['dogImageIndex', breedName, variant]
 
-    const { data: imageList = [], isError } = useQuery({
+    const { data: imageList = [], isError, isLoading } = useQuery({
         queryKey,
         queryFn: () => fetchDogImageList(breedName || '', variant || ''),
         enabled: !!breedName,
@@ -75,12 +75,16 @@ const DogMain: FC = () => {
         return
     }
 
-    const capitalizeFirstLetter = (word: string) => {
-        return word?.charAt(0).toLocaleUpperCase() + word?.slice(1)
+    if (isLoading) {
+        return <Loader />
     }
 
     if (isError || (mode === ModeType.RANDOM && isRandomError)) {
         return <DogError />
+    }
+
+    const capitalizeFirstLetter = (word: string) => {
+        return word?.charAt(0).toLocaleUpperCase() + word?.slice(1)
     }
 
     const renderContent = () => {
@@ -116,55 +120,49 @@ const DogMain: FC = () => {
     }
 
     return (
-        <>
-            {isError ? (
-                <DogError />
-            ) : (
-                <div className="flex flex-col min-h-fit gap-2.5 max-w-[1200px] mx-auto px-5 pb-[100px]">
-                    <ModeNavigation />
-                    {renderContent()}
-                    {mode === ModeType.DETAILS && (
-                        <>
-                            <div className="text-justify items-center">
-                                <h1>
-                                    {capitalizeFirstLetter(breedName)}
-                                    {variant
-                                        ? ` - ${capitalizeFirstLetter(variant)}`
-                                        : ''}
-                                    :
-                                </h1>
-                                {isDescriptionLoading ? (
-                                    <p className="animate-pulse">
-                                        {t('content.loading')}
-                                    </p>
-                                ) : description ? (
-                                    <p>{description}</p>
-                                ) : (
-                                    <>
-                                        <p>{t('content.dogDescription1')}</p>
-                                        <p>{t('content.dogDescription2')}</p>
-                                    </>
-                                )}
-                            </div>
+        <div className="flex flex-col min-h-fit gap-2.5 max-w-[1200px] mx-auto px-5 pb-[100px]">
+            <ModeNavigation />
+            {renderContent()}
+            {mode === ModeType.DETAILS && (
+                <>
+                    <div className="text-justify items-center">
+                        <h1>
+                            {capitalizeFirstLetter(breedName)}
+                            {variant
+                                ? ` - ${capitalizeFirstLetter(variant)}`
+                                : ''}
+                            :
+                        </h1>
+                        {isDescriptionLoading ? (
+                            <p className="animate-pulse">
+                                {t('content.loading')}
+                            </p>
+                        ) : description ? (
+                            <p>{description}</p>
+                        ) : (
+                            <>
+                                <p>{t('content.dogDescription1')}</p>
+                                <p>{t('content.dogDescription2')}</p>
+                            </>
+                        )}
+                    </div>
 
-                            {dogVariants.length > 0 && (
-                                <>
-                                    {' '}
-                                    <h1>
-                                        {capitalizeFirstLetter(breedName)}{' '}
-                                        {t('headers.variants')}
-                                    </h1>
-                                    <DogVariantsTags
-                                        dogVariants={dogVariants}
-                                        breedName={breedName}
-                                    />
-                                </>
-                            )}
+                    {dogVariants.length > 0 && (
+                        <>
+                            {' '}
+                            <h1>
+                                {capitalizeFirstLetter(breedName)}{' '}
+                                {t('headers.variants')}
+                            </h1>
+                            <DogVariantsTags
+                                dogVariants={dogVariants}
+                                breedName={breedName}
+                            />
                         </>
                     )}
-                </div>
+                </>
             )}
-        </>
+        </div>
     )
 }
 
