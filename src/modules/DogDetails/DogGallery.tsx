@@ -70,7 +70,7 @@ export const DogGallery: FC<DogGalleryProps> = ({ imageList, mode }) => {
                 {t('headers.imageList')} - {capitalizeFirstLetter(breedName)}
                 {variant && ` ${capitalizeFirstLetter(variant)}`}
             </h2>
-            <p className="text-center mb-5 -large typography-secondary">
+            <p className="text-center mb-5 -large text-[color:var(--typography-primary)]">
                 {t('content.imageCount', { count: imageList.length })}
             </p>
             <>
