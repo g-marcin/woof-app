@@ -14,10 +14,18 @@ export const Searchbar: FC = () => {
     const [searchQuery, setSearchQuery] = useDogSearchContext()
     const { dogEntries } = useDogList()
     const [isFocused, setIsFocused] = useState(false)
+    const [inputError, setInputError] = useState(false)
 
-    const onSearch = (breedName: DogBreed) => {
-        if (breedName) {
-            navigate(`/search/${breedName}`.toLocaleLowerCase().trim())
+    const onSearch = (breed: DogBreed) => {
+        const normalized = breed.toLocaleLowerCase().trim()
+        if (normalized) {
+            const known = dogEntries.some(([name]) => name.toLowerCase() === normalized)
+            if (!known) {
+                setInputError(true)
+                return
+            }
+            setInputError(false)
+            navigate(`/search/${normalized}`)
         }
         setIsFocused(false)
     }
@@ -32,6 +40,7 @@ export const Searchbar: FC = () => {
                     className="z-[1] w-[180px] md:w-[280px] relative"
                     onChange={e => {
                         setSearchQuery(e.target.value)
+                        setInputError(false)
                     }}
                     required
                     placeholder={breedName}
@@ -50,6 +59,11 @@ export const Searchbar: FC = () => {
                     }}
                     value={searchQuery}
                 />
+                {inputError && (
+                    <p className="absolute text-red-500 text-[10px] mt-0.5 left-0 whitespace-nowrap">
+                        {t('errors.noBreed1')}{t('errors.noBreed2')}
+                    </p>
+                )}
                 {isFocused ? (
                     <Autocomplete dogList={dogEntries} onSearch={onSearch} />
                 ) : (
