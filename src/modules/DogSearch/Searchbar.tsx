@@ -15,10 +15,13 @@ export const Searchbar: FC = () => {
     const { dogEntries } = useDogList()
     const [isFocused, setIsFocused] = useState(false)
     const [inputError, setInputError] = useState(false)
+    const [activeIndex, setActiveIndex] = useState(-1)
     const keyboardHandlerRef = useRef<((e: KeyboardEvent) => void) | null>(null)
     const onKeyboardRef = useCallback((handler: (e: KeyboardEvent) => void) => {
         keyboardHandlerRef.current = handler
     }, [])
+    const listboxId = 'dog-autocomplete-listbox'
+    const activeOptionId = activeIndex >= 0 ? `dog-option-${activeIndex}` : undefined
 
     const onSearch = (breed: DogBreed) => {
         const normalized = breed.toLocaleLowerCase().trim()
@@ -44,6 +47,11 @@ export const Searchbar: FC = () => {
                 </label>
                 <input
                     type="text"
+                    role="combobox"
+                    aria-autocomplete="list"
+                    aria-expanded={isFocused}
+                    aria-controls={listboxId}
+                    aria-activedescendant={activeOptionId}
                     className="z-[1] w-[180px] md:w-[280px] relative"
                     onChange={e => {
                         setSearchQuery(e.target.value)
@@ -73,7 +81,7 @@ export const Searchbar: FC = () => {
                     </p>
                 )}
                 {isFocused ? (
-                    <Autocomplete dogList={dogEntries} onSearch={onSearch} onKeyboardRef={onKeyboardRef} />
+                    <Autocomplete dogList={dogEntries} onSearch={onSearch} onKeyboardRef={onKeyboardRef} listboxId={listboxId} onActiveIndexChange={setActiveIndex} />
                 ) : (
                     <></>
                 )}
