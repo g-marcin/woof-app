@@ -35,8 +35,7 @@ export const en = {
         typeDog: 'Type requested breed...',
     },
     errors: {
-        noBreed1: 'Oh no! This race is not ',
-        noBreed2: 'available yet. Keep looking!',
+        noBreed: 'Oh no! This breed is not available yet. Keep looking!',
     },
     readme: {
         about: `Modern React web application for exploring dog breeds with advanced search, image galleries, theme switching, and multi-language support.`,
