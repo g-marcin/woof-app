@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Autocomplete } from '../../components/Autocomplete'
@@ -15,6 +15,10 @@ export const Searchbar: FC = () => {
     const { dogEntries } = useDogList()
     const [isFocused, setIsFocused] = useState(false)
     const [inputError, setInputError] = useState(false)
+    const keyboardHandlerRef = useRef<((e: KeyboardEvent) => void) | null>(null)
+    const onKeyboardRef = useCallback((handler: (e: KeyboardEvent) => void) => {
+        keyboardHandlerRef.current = handler
+    }, [])
 
     const onSearch = (breed: DogBreed) => {
         const normalized = breed.toLocaleLowerCase().trim()
@@ -45,6 +49,7 @@ export const Searchbar: FC = () => {
                         setSearchQuery(e.target.value)
                         setInputError(false)
                     }}
+                    onKeyDown={e => keyboardHandlerRef.current?.(e.nativeEvent)}
                     required
                     placeholder={breedName}
                     onFocus={e => {
@@ -68,7 +73,7 @@ export const Searchbar: FC = () => {
                     </p>
                 )}
                 {isFocused ? (
-                    <Autocomplete dogList={dogEntries} onSearch={onSearch} />
+                    <Autocomplete dogList={dogEntries} onSearch={onSearch} onKeyboardRef={onKeyboardRef} />
                 ) : (
                     <></>
                 )}
