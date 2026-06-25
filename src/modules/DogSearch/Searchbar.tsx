@@ -101,7 +101,7 @@ export const Searchbar: FC = () => {
             </div>
             <button
                 type="button"
-                className="primary typography-secondary"
+                className="primary typography-secondary self-end"
                 onClick={() => onSearch(searchQuery as DogBreed)}
             >
                 {t('buttons.search')}
