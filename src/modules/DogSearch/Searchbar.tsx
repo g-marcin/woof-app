@@ -65,6 +65,7 @@ export const Searchbar: FC = () => {
                         setSearchQuery('')
                         setIsFocused(true)
                     }}
+                    onClick={() => setSearchQuery('')}
                     onBlur={e => {
                         if (!breedName) {
                             return
