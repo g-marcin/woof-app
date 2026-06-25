@@ -16,7 +16,7 @@ export const Searchbar: FC = () => {
     const [isFocused, setIsFocused] = useState(false)
 
     const onSearch = (breedName: DogBreed) => {
-        if (searchQuery) {
+        if (breedName) {
             navigate(`/search/${breedName}`.toLocaleLowerCase().trim())
         }
         setIsFocused(false)
