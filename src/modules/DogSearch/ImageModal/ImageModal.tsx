@@ -1,4 +1,5 @@
 import { FC, useEffect, useState, useCallback } from 'react'
+import { RoundButton } from '../../../components'
 
 interface ImageModalProps {
     imageUrl: string
@@ -66,44 +67,35 @@ export const ImageModal: FC<ImageModalProps> = ({
             onClick={onClose}
         >
             <div
-                className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center"
+                className="flex flex-col w-[90vw] h-[85vh]"
                 onClick={e => e.stopPropagation()}
             >
-                <button
-                    className="absolute top-2.5 right-2.5 bg-white/90 border-none rounded-full w-10 h-10 cursor-pointer flex items-center justify-center transition-all duration-300 z-[1001] hover:bg-white hover:opacity-90 typography-bold typography-primary text-[28px]"
-                    onClick={onClose}
-                >
-                    ×
-                </button>
-                {showArrows && (
-                    <>
-                        <button
-                            className="absolute top-1/2 left-5 -translate-y-1/2 bg-white/90 border-none rounded-full w-[50px] h-[50px] cursor-pointer flex items-center justify-center transition-all duration-300 z-[1001] leading-none hover:bg-white hover:opacity-90 max-md:w-10 max-md:h-10 max-md:left-2.5 typography-bold typography-primary text-4xl"
-                            onClick={e => {
-                                e.stopPropagation()
-                                handlePrevious()
-                            }}
-                            aria-label="Previous image"
-                        >
-                            ‹
-                        </button>
-                        <button
-                            className="absolute top-1/2 right-5 -translate-y-1/2 bg-white/90 border-none rounded-full w-[50px] h-[50px] cursor-pointer flex items-center justify-center transition-all duration-300 z-[1001] leading-none hover:bg-white hover:opacity-90 max-md:w-10 max-md:h-10 max-md:right-2.5 typography-bold typography-primary text-4xl"
-                            onClick={e => {
-                                e.stopPropagation()
-                                handleNext()
-                            }}
-                            aria-label="Next image"
-                        >
-                            ›
-                        </button>
-                    </>
-                )}
-                <img
-                    src={displayImage}
-                    alt="zoomed"
-                    className="max-w-full max-h-[90vh] object-contain rounded-lg"
-                />
+                <div className="flex justify-end pb-2">
+                    <RoundButton onClick={onClose} aria-label="Close">×</RoundButton>
+                </div>
+                <div className="flex flex-1 min-h-0 items-center gap-2">
+                    <RoundButton
+                        onClick={e => { e.stopPropagation(); handlePrevious() }}
+                        aria-label="Previous image"
+                        hidden={!showArrows}
+                    >
+                        ‹
+                    </RoundButton>
+                    <div className="flex-1 min-h-0 h-full overflow-hidden">
+                        <img
+                            src={displayImage}
+                            alt="zoomed"
+                            className="w-full h-full object-contain rounded-lg"
+                        />
+                    </div>
+                    <RoundButton
+                        onClick={e => { e.stopPropagation(); handleNext() }}
+                        aria-label="Next image"
+                        hidden={!showArrows}
+                    >
+                        ›
+                    </RoundButton>
+                </div>
             </div>
         </div>
     )
