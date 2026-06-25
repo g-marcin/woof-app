@@ -62,6 +62,7 @@ export const Searchbar: FC = () => {
                     placeholder={breedName}
                     onFocus={e => {
                         e.target.placeholder = ''
+                        setSearchQuery('')
                         setIsFocused(true)
                     }}
                     onBlur={e => {
