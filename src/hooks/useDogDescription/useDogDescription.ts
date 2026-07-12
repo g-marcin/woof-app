@@ -1,21 +1,16 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { httpClient } from '../../common'
+import type { components } from '@mgrzmil-org/api-types'
 
-interface DescriptionDTO {
-    status: string
-    message: {
-        breed: string
-        variant?: string
-        description_en: string
-        description_pl: string
-    }
-}
+type BreedDescriptionResponse =
+    components['schemas']['APIResponse_DescriptionMessage_']
+type DescriptionMessage = components['schemas']['DescriptionMessage']
 
 const fetchBreedDescription = async (
     breedName: string
-): Promise<DescriptionDTO['message']> => {
-    const response = await httpClient.get<DescriptionDTO>(
+): Promise<DescriptionMessage> => {
+    const response = await httpClient.get<BreedDescriptionResponse>(
         `/breed/${breedName}/description`
     )
     if (response.data.status === 'success') {
@@ -27,8 +22,8 @@ const fetchBreedDescription = async (
 const fetchVariantDescription = async (
     breedName: string,
     variant: string
-): Promise<DescriptionDTO['message']> => {
-    const response = await httpClient.get<DescriptionDTO>(
+): Promise<DescriptionMessage> => {
+    const response = await httpClient.get<BreedDescriptionResponse>(
         `/breed/${breedName}/${variant}/description`
     )
     if (response.data.status === 'success') {
