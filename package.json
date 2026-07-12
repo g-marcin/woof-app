@@ -8,11 +8,14 @@
         "dev": "vite --host 0.0.0.0",
         "build": "tsc && vite build",
         "preview": "vite preview",
+        "typecheck": "tsc --noEmit",
         "lint": "biome lint src",
         "lint:fix": "biome lint src --fix",
         "format": "biome format . --write",
         "check": "biome check . --fix",
-        "install-git-hook": "node scripts/install-git-hook.js"
+        "install-git-hook": "node scripts/install-git-hook.js",
+        "api-types:link": "npx --yes yalc add @mgrzmil-org/api-types && bun install",
+        "api-types:unlink": "npx --yes yalc remove @mgrzmil-org/api-types --pure && bun install"
     },
     "dependencies": {
         "@mgrzmil-org/api-types": "^0.0.2",
