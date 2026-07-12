@@ -56,8 +56,13 @@ React 19, TypeScript, Vite, Tailwind CSS, React Query, react-i18next (en/pl), Bi
 
 ## API
 
-Depends on [dog-api](https://github.com/g-marcin/dog-api) (`VITE_DOG_API_URL`) for breeds, images, and descriptions.
+Depends on [dog-api](https://github.com/g-marcin/dog-api) (`VITE_DOG_API_URL`) for breeds, images, and descriptions. Response types are generated from dog-api's OpenAPI schema and published as `@mgrzmil-org/api-types` — the frontend never hand-declares response shapes, so a backend contract change surfaces as a compile error here instead of a runtime bug.
 
-## API Types
+woof-app is the client in a larger multi-service system (dog-api, image-resizer, Postgres) — see [mgrzmil.dev](https://mgrzmil.dev) for the full architecture.
 
-Response types are generated from dog-api's OpenAPI schema and published as `@mgrzmil-org/api-types`. See `dog-api/scripts/dev_push_types.sh` for the local dev loop (yalc) instead of publishing on every change.
+## Technical Decisions
+
+- **Contract-first API types** — generated from dog-api's OpenAPI schema instead of hand-written, to keep the two repos from drifting apart silently.
+- **yalc for local type iteration** — `dog-api/scripts/dev_push_types.sh` + `bun run api-types:link` lets a contract change be tried out here before publishing to npm.
+- **Biome over ESLint + Prettier** — one tool, one config, faster.
+- **Bun over npm** — faster installs and scripts for a project this size.
