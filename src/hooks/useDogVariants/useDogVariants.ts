@@ -1,8 +1,11 @@
-import { AxiosResponse } from 'axios'
+import type { AxiosResponse } from 'axios'
 import { useEffect, useState } from 'react'
+import type { components } from '@mgrzmil-org/api-types'
 import { httpClient } from '../../common'
-import { DogVariants, DogVariantsDTO } from '../../types'
+import type { DogVariants } from '../../types'
 import { dogVariantsMapper } from './dogVariantsMapper'
+
+type DogVariantsResponse = components['schemas']['APIResponse_List_str__']
 
 export const useDogVariants = (breedName: string) => {
     const [dogVariants, setDogVariants] = useState<DogVariants>([])
@@ -13,16 +16,13 @@ export const useDogVariants = (breedName: string) => {
 
         httpClient
             .get(`/breed/${breedName}/list`)
-            .then((response: AxiosResponse<DogVariantsDTO>) => {
-                if (!response.data.code) {
+            .then((response: AxiosResponse<DogVariantsResponse>) => {
+                if (response.data.status === 'success') {
                     setIsError(false)
                     setDogVariants(dogVariantsMapper(response.data))
                 } else {
-                    if (!response.data.status) {
-                        return
-                    }
                     throw new Error(
-                        `${response.data.code} ${response.data.status}`
+                        `Failed to fetch breed variants: ${response.data.status}`
                     )
                 }
             })

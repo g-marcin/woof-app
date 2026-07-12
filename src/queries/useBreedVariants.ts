@@ -1,20 +1,25 @@
 import { useQuery } from '@tanstack/react-query'
+import type { components } from '@mgrzmil-org/api-types'
 import { httpClient } from '../common'
-import { DogVariantsDTO, DogVariants } from '../types'
+import { DogVariants } from '../types'
 import { dogVariantsMapper } from '../hooks/useDogVariants/dogVariantsMapper'
 import { queryKeys } from './queryKeys'
+
+type DogVariantsResponse = components['schemas']['APIResponse_List_str__']
 
 const fetchBreedVariants = async (breedName: string): Promise<DogVariants> => {
     if (!breedName) {
         return []
     }
 
-    const response = await httpClient.get<DogVariantsDTO>(
+    const response = await httpClient.get<DogVariantsResponse>(
         `/breed/${breedName}/list`
     )
 
-    if (response.data.code) {
-        throw new Error(`${response.data.code} ${response.data.status}`)
+    if (response.data.status !== 'success') {
+        throw new Error(
+            `Failed to fetch breed variants: ${response.data.status}`
+        )
     }
 
     return dogVariantsMapper(response.data)

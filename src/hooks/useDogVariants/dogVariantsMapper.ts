@@ -1,5 +1,7 @@
-import { DogVariantsDTO } from '../../types'
+import type { components } from '@mgrzmil-org/api-types'
 
-export const dogVariantsMapper = (dogVariantsDTO: DogVariantsDTO) => {
-    return dogVariantsDTO.message
+type DogVariantsResponse = components['schemas']['APIResponse_List_str__']
+
+export const dogVariantsMapper = (dogVariantsResponse: DogVariantsResponse) => {
+    return dogVariantsResponse.message
 }
