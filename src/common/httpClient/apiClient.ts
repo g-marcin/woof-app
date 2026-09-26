@@ -1,11 +1,6 @@
 import type { paths } from '@mgrzmil-org/api-types'
 import { httpClient } from './httpClient'
 
-// Typed wrapper over httpClient driven by the dog-api OpenAPI `paths`, so the
-// URL, its path params and the response body are all checked against the
-// spec instead of an unchecked `httpClient.get<T>(url)` cast. It stays on
-// axios because the OpenTelemetry XMLHttpRequest instrumentation relies on it.
-
 type GetPath = {
     [P in keyof paths]: paths[P] extends { get: object } ? P : never
 }[keyof paths]
