@@ -1,36 +1,28 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { httpClient } from '../../common'
+import { apiGetMessage } from '../../common'
 import type { components } from '@mgrzmil-org/api-types'
 
-type BreedDescriptionResponse =
-    components['schemas']['APIResponse_DescriptionMessage_']
 type DescriptionMessage = components['schemas']['DescriptionMessage']
 
-const fetchBreedDescription = async (
-    breedName: string
-): Promise<DescriptionMessage> => {
-    const response = await httpClient.get<BreedDescriptionResponse>(
-        `/breed/${breedName}/description`
-    )
-    if (response.data.status === 'success') {
-        return response.data.message
-    }
-    throw new Error('Failed to fetch breed description')
-}
-
-const fetchVariantDescription = async (
+const fetchBreedDescription = (
     breedName: string,
-    variant: string
-): Promise<DescriptionMessage> => {
-    const response = await httpClient.get<BreedDescriptionResponse>(
-        `/breed/${breedName}/${variant}/description`
-    )
-    if (response.data.status === 'success') {
-        return response.data.message
-    }
-    throw new Error('Failed to fetch variant description')
-}
+    signal?: AbortSignal
+): Promise<DescriptionMessage> =>
+    apiGetMessage('/breed/{breed}/description', {
+        path: { breed: breedName },
+        signal,
+    })
+
+const fetchVariantDescription = (
+    breedName: string,
+    variant: string,
+    signal?: AbortSignal
+): Promise<DescriptionMessage> =>
+    apiGetMessage('/breed/{breed}/{variant}/description', {
+        path: { breed: breedName, variant },
+        signal,
+    })
 
 export const useDogDescription = (breedName: string, variant?: string) => {
     const { i18n } = useTranslation()
@@ -42,7 +34,7 @@ export const useDogDescription = (breedName: string, variant?: string) => {
         isError: isBreedError,
     } = useQuery({
         queryKey: ['breedDescription', breedName],
-        queryFn: () => fetchBreedDescription(breedName),
+        queryFn: ({ signal }) => fetchBreedDescription(breedName, signal),
         enabled: !!breedName,
         staleTime: Infinity,
         gcTime: Infinity,
@@ -54,7 +46,8 @@ export const useDogDescription = (breedName: string, variant?: string) => {
         isError: isVariantError,
     } = useQuery({
         queryKey: ['variantDescription', breedName, variant],
-        queryFn: () => fetchVariantDescription(breedName, variant!),
+        queryFn: ({ signal }) =>
+            fetchVariantDescription(breedName, variant ?? '', signal),
         enabled: !!breedName && !!variant,
         staleTime: Infinity,
         gcTime: Infinity,

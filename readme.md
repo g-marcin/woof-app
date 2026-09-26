@@ -25,7 +25,7 @@ woof-app/
 │   ├── layout/      # Header, Navbar, page wrappers
 │   ├── router/      # Route definitions
 │   ├── hooks/       # Custom hooks (data fetching, theme, etc.)
-│   ├── queries/     # React Query hooks
+│   ├── queries/     # React Query keys
 │   ├── common/      # httpClient, i18next, queryClient
 │   └── types.ts
 ├── package.json

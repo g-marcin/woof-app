@@ -1,36 +1,19 @@
-import type { AxiosResponse } from 'axios'
-import { useEffect, useState } from 'react'
-import type { components } from '@mgrzmil-org/api-types'
-import { httpClient } from '../../common'
+import { useQuery } from '@tanstack/react-query'
+import { apiGetMessage } from '../../common'
+import { queryKeys } from '../../queries/queryKeys'
 import type { DogVariants } from '../../types'
-import { dogVariantsMapper } from './dogVariantsMapper'
 
-type DogVariantsResponse = components['schemas']['APIResponse_List_str__']
+const fetchDogVariants = (
+    breedName: string,
+    signal?: AbortSignal
+): Promise<DogVariants> =>
+    apiGetMessage('/breed/{breed}/list', { path: { breed: breedName }, signal })
 
 export const useDogVariants = (breedName: string) => {
-    const [dogVariants, setDogVariants] = useState<DogVariants>([])
-    const [isLoading, setIsLoading] = useState(false)
-    const [isError, setIsError] = useState(false)
-    useEffect(() => {
-        setIsLoading(true)
-
-        httpClient
-            .get(`/breed/${breedName}/list`)
-            .then((response: AxiosResponse<DogVariantsResponse>) => {
-                if (response.data.status === 'success') {
-                    setIsError(false)
-                    setDogVariants(dogVariantsMapper(response.data))
-                } else {
-                    throw new Error(
-                        `Failed to fetch breed variants: ${response.data.status}`
-                    )
-                }
-            })
-            .then(() => setIsLoading(false))
-            .catch((error: Error) => {
-                console.error(error)
-                setIsError(true)
-            })
-    }, [breedName])
-    return { dogVariants: dogVariants, isLoading: isLoading, isError: isError }
+    const { data, isLoading, isError } = useQuery({
+        queryKey: queryKeys.breeds.variants(breedName),
+        queryFn: ({ signal }) => fetchDogVariants(breedName, signal),
+        enabled: !!breedName,
+    })
+    return { dogVariants: data ?? [], isLoading, isError }
 }

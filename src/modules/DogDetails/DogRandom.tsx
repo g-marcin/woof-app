@@ -17,7 +17,8 @@ export const DogRandom: FC = () => {
 
     const { data: randomImage = '', isLoading: isRandomLoading } = useQuery({
         queryKey: ['randomDogImage', breedName, variant],
-        queryFn: () => fetchSingleImage(breedName || '', variant || ''),
+        queryFn: ({ signal }) =>
+            fetchSingleImage(breedName || '', variant || '', signal),
         enabled: !!breedName,
         staleTime: 0,
     })
