@@ -12,18 +12,34 @@ export const preloadImage = (src: string): Promise<void> => {
     })
 }
 
+const getRandomImage = (breedName: string, breedVariant: string) => {
+    if (!breedName) {
+        return apiGet('/breeds/image/random')
+    }
+    if (breedVariant) {
+        return apiGet('/breed/{breed}/{subbreed}/images/random', {
+            breed: breedName,
+            subbreed: breedVariant,
+        })
+    }
+    return apiGet('/breed/{breed}/images/random', { breed: breedName })
+}
+
+const getImageList = (breedName: string, breedVariant: string) => {
+    if (breedVariant) {
+        return apiGet('/breed/{breed}/{subbreed}/images', {
+            breed: breedName,
+            subbreed: breedVariant,
+        })
+    }
+    return apiGet('/breed/{breed}/images', { breed: breedName })
+}
+
 export const fetchSingleImage = async (
     breedName: string,
     breedVariant: string
 ): Promise<string> => {
-    const data = !breedName
-        ? await apiGet('/breeds/image/random')
-        : breedVariant
-          ? await apiGet('/breed/{breed}/{subbreed}/images/random', {
-                breed: breedName,
-                subbreed: breedVariant,
-            })
-          : await apiGet('/breed/{breed}/images/random', { breed: breedName })
+    const data = await getRandomImage(breedName, breedVariant)
     if (data.status === 'success') {
         return dogDetailsMapper(data).imageSrc
     }
@@ -46,12 +62,7 @@ export const fetchDogImageList = async (
     breedName: string,
     breedVariant: string
 ): Promise<string[]> => {
-    const data = breedVariant
-        ? await apiGet('/breed/{breed}/{subbreed}/images', {
-              breed: breedName,
-              subbreed: breedVariant,
-          })
-        : await apiGet('/breed/{breed}/images', { breed: breedName })
+    const data = await getImageList(breedName, breedVariant)
     if (data.status === 'success' && Array.isArray(data.message)) {
         return data.message
     }
