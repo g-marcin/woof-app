@@ -25,8 +25,8 @@ woof-app/
 │   ├── layout/      # Header, Navbar, page wrappers
 │   ├── router/      # Route definitions
 │   ├── hooks/       # Custom hooks (data fetching, theme, etc.)
-│   ├── queries/     # React Query keys
-│   ├── common/      # httpClient, i18next, queryClient
+│   ├── api/         # generated dog-api client (bun run api:generate)
+│   ├── common/      # i18next, queryClient
 │   └── types.ts
 ├── package.json
 └── .env             # VITE_DOG_API_URL
@@ -56,7 +56,7 @@ React 19, TypeScript, Vite, Tailwind CSS, React Query, react-i18next (en/pl), Bi
 
 ## API
 
-Depends on [dog-api](https://github.com/g-marcin/dog-api) (`VITE_DOG_API_URL`) for breeds, images, and descriptions. Response types are generated from dog-api's OpenAPI schema and published as `@mgrzmil-org/api-types` — the frontend never hand-declares response shapes, so a backend contract change surfaces as a compile error here instead of a runtime bug.
+Depends on [dog-api](https://github.com/g-marcin/dog-api) (`VITE_DOG_API_URL`) for breeds, images, and descriptions. dog-api's OpenAPI schema is published as `@mgrzmil-org/api-types`; `bun run api:generate` turns it into a typed axios client and React Query options in `src/api/generated` (one function per endpoint, e.g. `breedImages`, `breedImagesOptions`). The frontend never hand-writes URLs or response shapes, so a backend contract change surfaces as a compile error here instead of a runtime bug.
 
 woof-app is the client in a larger multi-service system (dog-api, image-resizer, Postgres) — see [mgrzmil.dev](https://mgrzmil.dev) for the full architecture.
 

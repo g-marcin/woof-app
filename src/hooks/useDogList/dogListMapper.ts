@@ -1,8 +1,7 @@
-import type { components } from '@mgrzmil-org/api-types'
+import type { ApiResponseDictStrListStr } from '../../api/generated'
 
-type DogListMessage =
-    components['schemas']['APIResponse_Dict_str__List_str___']['message']
-
-export const dogListMapper = (dogListMessage: DogListMessage) => {
+export const dogListMapper = (
+    dogListMessage: ApiResponseDictStrListStr['message']
+) => {
     return Object.entries(dogListMessage)
 }

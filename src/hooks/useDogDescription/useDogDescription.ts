@@ -1,28 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { apiGetMessage } from '../../common'
-import type { components } from '@mgrzmil-org/api-types'
-
-type DescriptionMessage = components['schemas']['DescriptionMessage']
-
-const fetchBreedDescription = (
-    breedName: string,
-    signal?: AbortSignal
-): Promise<DescriptionMessage> =>
-    apiGetMessage('/breed/{breed}/description', {
-        path: { breed: breedName },
-        signal,
-    })
-
-const fetchVariantDescription = (
-    breedName: string,
-    variant: string,
-    signal?: AbortSignal
-): Promise<DescriptionMessage> =>
-    apiGetMessage('/breed/{breed}/{variant}/description', {
-        path: { breed: breedName, variant },
-        signal,
-    })
+import {
+    breedDescriptionOptions,
+    variantDescriptionOptions,
+} from '../../api/generated/@tanstack/react-query.gen'
 
 export const useDogDescription = (breedName: string, variant?: string) => {
     const { i18n } = useTranslation()
@@ -33,8 +14,8 @@ export const useDogDescription = (breedName: string, variant?: string) => {
         isLoading: isBreedLoading,
         isError: isBreedError,
     } = useQuery({
-        queryKey: ['breedDescription', breedName],
-        queryFn: ({ signal }) => fetchBreedDescription(breedName, signal),
+        ...breedDescriptionOptions({ path: { breed: breedName } }),
+        select: response => response.message,
         enabled: !!breedName,
         staleTime: Infinity,
         gcTime: Infinity,
@@ -45,9 +26,10 @@ export const useDogDescription = (breedName: string, variant?: string) => {
         isLoading: isVariantLoading,
         isError: isVariantError,
     } = useQuery({
-        queryKey: ['variantDescription', breedName, variant],
-        queryFn: ({ signal }) =>
-            fetchVariantDescription(breedName, variant ?? '', signal),
+        ...variantDescriptionOptions({
+            path: { breed: breedName, variant: variant ?? '' },
+        }),
+        select: response => response.message,
         enabled: !!breedName && !!variant,
         staleTime: Infinity,
         gcTime: Infinity,

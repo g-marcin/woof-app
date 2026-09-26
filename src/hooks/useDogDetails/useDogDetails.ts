@@ -1,4 +1,10 @@
-import { apiGetMessage } from '../../common'
+import {
+    breedImages,
+    randomBreedImage,
+    randomImage,
+    randomSubbreedImage,
+    subbreedImages,
+} from '../../api/generated'
 
 export const MAX_QUEUE_SIZE = 5
 
@@ -11,41 +17,50 @@ export const preloadImage = (src: string): Promise<void> => {
     })
 }
 
-export const fetchSingleImage = (
+export const fetchSingleImage = async (
     breedName: string,
     breedVariant: string,
     signal?: AbortSignal
 ): Promise<string> => {
     if (!breedName) {
-        return apiGetMessage('/breeds/image/random', { signal })
+        const { data } = await randomImage({ signal, throwOnError: true })
+        return data.message
     }
     if (breedVariant) {
-        return apiGetMessage('/breed/{breed}/{subbreed}/images/random', {
+        const { data } = await randomSubbreedImage({
             path: { breed: breedName, subbreed: breedVariant },
             signal,
+            throwOnError: true,
         })
+        return data.message
     }
-    return apiGetMessage('/breed/{breed}/images/random', {
+    const { data } = await randomBreedImage({
         path: { breed: breedName },
         signal,
+        throwOnError: true,
     })
+    return data.message
 }
 
-export const fetchDogImageList = (
+export const fetchDogImageList = async (
     breedName: string,
     breedVariant: string,
     signal?: AbortSignal
 ): Promise<string[]> => {
     if (breedVariant) {
-        return apiGetMessage('/breed/{breed}/{subbreed}/images', {
+        const { data } = await subbreedImages({
             path: { breed: breedName, subbreed: breedVariant },
             signal,
+            throwOnError: true,
         })
+        return data.message
     }
-    return apiGetMessage('/breed/{breed}/images', {
+    const { data } = await breedImages({
         path: { breed: breedName },
         signal,
+        throwOnError: true,
     })
+    return data.message
 }
 
 export const fetchInitialImages = async (
