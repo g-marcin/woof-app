@@ -21,7 +21,8 @@ const RandomDogImage: FC = () => {
         isError,
     } = useQuery({
         queryKey: ['randomDogImage', breedName, variant],
-        queryFn: () => fetchSingleImage(breedName || '', variant || ''),
+        queryFn: ({ signal }) =>
+            fetchSingleImage(breedName || '', variant || '', signal),
         enabled: true,
         staleTime: 0,
     })

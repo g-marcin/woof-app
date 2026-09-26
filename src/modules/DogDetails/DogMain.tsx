@@ -27,7 +27,8 @@ const DogMain: FC = () => {
 
     const { data: imageList = [], isError, isLoading } = useQuery({
         queryKey,
-        queryFn: () => fetchDogImageList(breedName || '', variant || ''),
+        queryFn: ({ signal }) =>
+            fetchDogImageList(breedName || '', variant || '', signal),
         enabled: !!breedName,
         staleTime: Infinity,
         gcTime: Infinity,
@@ -50,7 +51,8 @@ const DogMain: FC = () => {
 
     const { isError: isRandomError } = useQuery({
         queryKey: ['randomDogImage', breedName, variant],
-        queryFn: () => fetchSingleImage(breedName || '', variant || ''),
+        queryFn: ({ signal }) =>
+            fetchSingleImage(breedName || '', variant || '', signal),
         enabled: mode === ModeType.RANDOM && !!breedName,
         staleTime: 0,
     })

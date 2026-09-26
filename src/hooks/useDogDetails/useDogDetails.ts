@@ -1,5 +1,4 @@
-import { apiGet } from '../../common'
-import { dogDetailsMapper } from './dogDetailsMapper'
+import { apiGetMessage } from '../../common'
 
 export const MAX_QUEUE_SIZE = 5
 
@@ -12,38 +11,41 @@ export const preloadImage = (src: string): Promise<void> => {
     })
 }
 
-const getRandomImage = (breedName: string, breedVariant: string) => {
-    if (!breedName) {
-        return apiGet('/breeds/image/random')
-    }
-    if (breedVariant) {
-        return apiGet('/breed/{breed}/{subbreed}/images/random', {
-            breed: breedName,
-            subbreed: breedVariant,
-        })
-    }
-    return apiGet('/breed/{breed}/images/random', { breed: breedName })
-}
-
-const getImageList = (breedName: string, breedVariant: string) => {
-    if (breedVariant) {
-        return apiGet('/breed/{breed}/{subbreed}/images', {
-            breed: breedName,
-            subbreed: breedVariant,
-        })
-    }
-    return apiGet('/breed/{breed}/images', { breed: breedName })
-}
-
-export const fetchSingleImage = async (
+export const fetchSingleImage = (
     breedName: string,
-    breedVariant: string
+    breedVariant: string,
+    signal?: AbortSignal
 ): Promise<string> => {
-    const data = await getRandomImage(breedName, breedVariant)
-    if (data.status === 'success') {
-        return dogDetailsMapper(data).imageSrc
+    if (!breedName) {
+        return apiGetMessage('/breeds/image/random', { signal })
     }
-    throw new Error(`Failed to fetch image: ${data.status}`)
+    if (breedVariant) {
+        return apiGetMessage('/breed/{breed}/{subbreed}/images/random', {
+            path: { breed: breedName, subbreed: breedVariant },
+            signal,
+        })
+    }
+    return apiGetMessage('/breed/{breed}/images/random', {
+        path: { breed: breedName },
+        signal,
+    })
+}
+
+export const fetchDogImageList = (
+    breedName: string,
+    breedVariant: string,
+    signal?: AbortSignal
+): Promise<string[]> => {
+    if (breedVariant) {
+        return apiGetMessage('/breed/{breed}/{subbreed}/images', {
+            path: { breed: breedName, subbreed: breedVariant },
+            signal,
+        })
+    }
+    return apiGetMessage('/breed/{breed}/images', {
+        path: { breed: breedName },
+        signal,
+    })
 }
 
 export const fetchInitialImages = async (
@@ -56,15 +58,4 @@ export const fetchInitialImages = async (
     const images = await Promise.all(promises)
     await Promise.all(images.map(img => preloadImage(img)))
     return images
-}
-
-export const fetchDogImageList = async (
-    breedName: string,
-    breedVariant: string
-): Promise<string[]> => {
-    const data = await getImageList(breedName, breedVariant)
-    if (data.status === 'success' && Array.isArray(data.message)) {
-        return data.message
-    }
-    throw new Error('Failed to fetch image list')
 }
