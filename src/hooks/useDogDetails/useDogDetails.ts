@@ -1,11 +1,12 @@
-import type { components } from '@mgrzmil-org/api-types'
-import { httpClient } from '../../common'
-import { dogDetailsMapper } from './dogDetailsMapper'
+import {
+    breedImages,
+    randomBreedImage,
+    randomImage,
+    randomSubbreedImage,
+    subbreedImages,
+} from '../../api/generated'
 
 export const MAX_QUEUE_SIZE = 5
-
-type DogDetailsResponse = components['schemas']['APIResponse_str_']
-type DogImageListResponse = components['schemas']['APIResponse_List_str__']
 
 export const preloadImage = (src: string): Promise<void> => {
     return new Promise((resolve, reject) => {
@@ -18,16 +19,48 @@ export const preloadImage = (src: string): Promise<void> => {
 
 export const fetchSingleImage = async (
     breedName: string,
-    breedVariant: string
+    breedVariant: string,
+    signal?: AbortSignal
 ): Promise<string> => {
-    const endpoint = breedName
-        ? `/breed/${breedName}${breedVariant ? `/${breedVariant}` : ''}/images/random`
-        : '/breeds/image/random'
-    const response = await httpClient.get<DogDetailsResponse>(endpoint)
-    if (response.data.status === 'success') {
-        return dogDetailsMapper(response.data).imageSrc
+    if (!breedName) {
+        const { data } = await randomImage({ signal, throwOnError: true })
+        return data.message
     }
-    throw new Error(`Failed to fetch image: ${response.data.status}`)
+    if (breedVariant) {
+        const { data } = await randomSubbreedImage({
+            path: { breed: breedName, subbreed: breedVariant },
+            signal,
+            throwOnError: true,
+        })
+        return data.message
+    }
+    const { data } = await randomBreedImage({
+        path: { breed: breedName },
+        signal,
+        throwOnError: true,
+    })
+    return data.message
+}
+
+export const fetchDogImageList = async (
+    breedName: string,
+    breedVariant: string,
+    signal?: AbortSignal
+): Promise<string[]> => {
+    if (breedVariant) {
+        const { data } = await subbreedImages({
+            path: { breed: breedName, subbreed: breedVariant },
+            signal,
+            throwOnError: true,
+        })
+        return data.message
+    }
+    const { data } = await breedImages({
+        path: { breed: breedName },
+        signal,
+        throwOnError: true,
+    })
+    return data.message
 }
 
 export const fetchInitialImages = async (
@@ -40,20 +73,4 @@ export const fetchInitialImages = async (
     const images = await Promise.all(promises)
     await Promise.all(images.map(img => preloadImage(img)))
     return images
-}
-
-export const fetchDogImageList = async (
-    breedName: string,
-    breedVariant: string
-): Promise<string[]> => {
-    const response = await httpClient.get<DogImageListResponse>(
-        `/breed/${breedName}${breedVariant ? `/${breedVariant}` : ''}/images`
-    )
-    if (
-        response.data.status === 'success' &&
-        Array.isArray(response.data.message)
-    ) {
-        return response.data.message
-    }
-    throw new Error('Failed to fetch image list')
 }

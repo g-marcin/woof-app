@@ -1,36 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { httpClient } from '../../common'
-import type { components } from '@mgrzmil-org/api-types'
-
-type BreedDescriptionResponse =
-    components['schemas']['APIResponse_DescriptionMessage_']
-type DescriptionMessage = components['schemas']['DescriptionMessage']
-
-const fetchBreedDescription = async (
-    breedName: string
-): Promise<DescriptionMessage> => {
-    const response = await httpClient.get<BreedDescriptionResponse>(
-        `/breed/${breedName}/description`
-    )
-    if (response.data.status === 'success') {
-        return response.data.message
-    }
-    throw new Error('Failed to fetch breed description')
-}
-
-const fetchVariantDescription = async (
-    breedName: string,
-    variant: string
-): Promise<DescriptionMessage> => {
-    const response = await httpClient.get<BreedDescriptionResponse>(
-        `/breed/${breedName}/${variant}/description`
-    )
-    if (response.data.status === 'success') {
-        return response.data.message
-    }
-    throw new Error('Failed to fetch variant description')
-}
+import {
+    breedDescriptionOptions,
+    variantDescriptionOptions,
+} from '../../api/generated/@tanstack/react-query.gen'
 
 export const useDogDescription = (breedName: string, variant?: string) => {
     const { i18n } = useTranslation()
@@ -41,8 +14,8 @@ export const useDogDescription = (breedName: string, variant?: string) => {
         isLoading: isBreedLoading,
         isError: isBreedError,
     } = useQuery({
-        queryKey: ['breedDescription', breedName],
-        queryFn: () => fetchBreedDescription(breedName),
+        ...breedDescriptionOptions({ path: { breed: breedName } }),
+        select: response => response.message,
         enabled: !!breedName,
         staleTime: Infinity,
         gcTime: Infinity,
@@ -53,8 +26,10 @@ export const useDogDescription = (breedName: string, variant?: string) => {
         isLoading: isVariantLoading,
         isError: isVariantError,
     } = useQuery({
-        queryKey: ['variantDescription', breedName, variant],
-        queryFn: () => fetchVariantDescription(breedName, variant!),
+        ...variantDescriptionOptions({
+            path: { breed: breedName, variant: variant ?? '' },
+        }),
+        select: response => response.message,
         enabled: !!breedName && !!variant,
         staleTime: Infinity,
         gcTime: Infinity,
