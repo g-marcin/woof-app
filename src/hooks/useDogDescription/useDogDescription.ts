@@ -1,20 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { httpClient } from '../../common'
+import { apiGet } from '../../common'
 import type { components } from '@mgrzmil-org/api-types'
 
-type BreedDescriptionResponse =
-    components['schemas']['APIResponse_DescriptionMessage_']
 type DescriptionMessage = components['schemas']['DescriptionMessage']
 
 const fetchBreedDescription = async (
     breedName: string
 ): Promise<DescriptionMessage> => {
-    const response = await httpClient.get<BreedDescriptionResponse>(
-        `/breed/${breedName}/description`
-    )
-    if (response.data.status === 'success') {
-        return response.data.message
+    const data = await apiGet('/breed/{breed}/description', {
+        breed: breedName,
+    })
+    if (data.status === 'success') {
+        return data.message
     }
     throw new Error('Failed to fetch breed description')
 }
@@ -23,11 +21,12 @@ const fetchVariantDescription = async (
     breedName: string,
     variant: string
 ): Promise<DescriptionMessage> => {
-    const response = await httpClient.get<BreedDescriptionResponse>(
-        `/breed/${breedName}/${variant}/description`
-    )
-    if (response.data.status === 'success') {
-        return response.data.message
+    const data = await apiGet('/breed/{breed}/{variant}/description', {
+        breed: breedName,
+        variant,
+    })
+    if (data.status === 'success') {
+        return data.message
     }
     throw new Error('Failed to fetch variant description')
 }
